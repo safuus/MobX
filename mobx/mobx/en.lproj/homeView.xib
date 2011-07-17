@@ -37,32 +37,32 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUINavigationBar" id="672687034">
+					<object class="IBUINavigationBar" id="1066791975">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="63014860"/>
+						<reference key="NSNextKeyView" ref="966577664"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIBarStyle">1</int>
 						<array key="IBUIItems">
-							<object class="IBUINavigationItem" id="432005914">
-								<reference key="IBUINavigationBar" ref="672687034"/>
+							<object class="IBUINavigationItem" id="687909004">
+								<reference key="IBUINavigationBar" ref="1066791975"/>
 								<string key="IBUITitle">Mobx</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
 					</object>
-					<object class="IBUIScrollView" id="63014860">
+					<object class="IBUIScrollView" id="966577664">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="178912251">
-								<reference key="NSNextResponder" ref="63014860"/>
+							<object class="IBUIImageView" id="221345354">
+								<reference key="NSNextResponder" ref="966577664"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrameSize">{100, 96}</string>
-								<reference key="NSSuperview" ref="63014860"/>
+								<reference key="NSSuperview" ref="966577664"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -76,11 +76,11 @@
 									<string key="NSResourceName">Ixia.gif</string>
 								</object>
 							</object>
-							<object class="IBUITextView" id="878678413">
-								<reference key="NSNextResponder" ref="63014860"/>
+							<object class="IBUITextView" id="384211526">
+								<reference key="NSNextResponder" ref="966577664"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{134, 7}, {176, 89}}</string>
-								<reference key="NSSuperview" ref="63014860"/>
+								<reference key="NSSuperview" ref="966577664"/>
 								<reference key="NSWindow"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -100,11 +100,11 @@
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 							</object>
-							<object class="IBUITableView" id="1056446551">
-								<reference key="NSNextResponder" ref="63014860"/>
+							<object class="IBUITableView" id="70920321">
+								<reference key="NSNextResponder" ref="966577664"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{0, 104}, {320, 263}}</string>
-								<reference key="NSSuperview" ref="63014860"/>
+								<reference key="NSSuperview" ref="966577664"/>
 								<reference key="NSWindow"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">10</int>
@@ -139,6 +139,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<bool key="IBUIAlwaysBounceVertical">YES</bool>
+								<bool key="IBUIScrollEnabled">NO</bool>
+								<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 								<int key="IBUIStyle">1</int>
 								<int key="IBUISeparatorStyle">2</int>
 								<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
@@ -151,7 +153,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NSFrame">{{0, 44}, {320, 367}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="178912251"/>
+						<reference key="NSNextKeyView" ref="221345354"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -160,7 +162,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="NSFrame">{{0, 20}, {320, 411}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="672687034"/>
+				<reference key="NSNextKeyView" ref="1066791975"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -193,8 +195,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="672687034"/>
-							<reference ref="63014860"/>
+							<reference ref="1066791975"/>
+							<reference ref="966577664"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -211,42 +213,42 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
-						<reference key="object" ref="672687034"/>
+						<reference key="object" ref="1066791975"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="432005914"/>
+							<reference ref="687909004"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="432005914"/>
-						<reference key="parent" ref="672687034"/>
+						<reference key="object" ref="687909004"/>
+						<reference key="parent" ref="1066791975"/>
 						<string key="objectName">Navigation Item - Mobx</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
-						<reference key="object" ref="63014860"/>
+						<reference key="object" ref="966577664"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="178912251"/>
-							<reference ref="878678413"/>
-							<reference ref="1056446551"/>
+							<reference ref="221345354"/>
+							<reference ref="70920321"/>
+							<reference ref="384211526"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">23</int>
-						<reference key="object" ref="178912251"/>
-						<reference key="parent" ref="63014860"/>
+						<reference key="object" ref="221345354"/>
+						<reference key="parent" ref="966577664"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">24</int>
-						<reference key="object" ref="878678413"/>
-						<reference key="parent" ref="63014860"/>
+						<reference key="object" ref="384211526"/>
+						<reference key="parent" ref="966577664"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">25</int>
-						<reference key="object" ref="1056446551"/>
-						<reference key="parent" ref="63014860"/>
+						<reference key="object" ref="70920321"/>
+						<reference key="parent" ref="966577664"/>
 					</object>
 				</array>
 			</object>
