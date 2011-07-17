@@ -1,0 +1,336 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7FBDF55713D361C4008627AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBDF55613D361C4008627AF /* UIKit.framework */; };
+		7FBDF55913D361C4008627AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBDF55813D361C4008627AF /* Foundation.framework */; };
+		7FBDF55B13D361C4008627AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBDF55A13D361C4008627AF /* CoreGraphics.framework */; };
+		7FBDF56113D361C4008627AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF55F13D361C4008627AF /* InfoPlist.strings */; };
+		7FBDF56413D361C4008627AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF56313D361C4008627AF /* main.m */; };
+		7FBDF56713D361C4008627AF /* MobxAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF56613D361C4008627AF /* MobxAppDelegate.m */; };
+		7FBDF56A13D361C4008627AF /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF56813D361C4008627AF /* MainWindow.xib */; };
+		7FBDF56D13D361C4008627AF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF56C13D361C4008627AF /* HomeViewController.m */; };
+		7FBDF57013D361C4008627AF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF56F13D361C4008627AF /* SearchViewController.m */; };
+		7FBDF57313D361C4008627AF /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF57113D361C4008627AF /* HomeView.xib */; };
+		7FBDF57613D361C4008627AF /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF57413D361C4008627AF /* SearchView.xib */; };
+		7FBDF57D13D3699E008627AF /* ChatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF57C13D3699E008627AF /* ChatsView.xib */; };
+		7FBDF57F13D369AB008627AF /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF57E13D369AB008627AF /* SettingsView.xib */; };
+		7FBDF58E13D36AB0008627AF /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF58D13D36AB0008627AF /* SettingsViewController.m */; };
+		7FBDF59413D37EB0008627AF /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF59313D37EAF008627AF /* ChatsViewController.m */; };
+		7FBDF59613D38102008627AF /* weicheng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF59513D38102008627AF /* weicheng.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7FBDF55213D361C4008627AF /* Mobx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobx.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FBDF55613D361C4008627AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7FBDF55813D361C4008627AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7FBDF55A13D361C4008627AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7FBDF55E13D361C4008627AF /* Mobx-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mobx-Info.plist"; sourceTree = "<group>"; };
+		7FBDF56013D361C4008627AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7FBDF56213D361C4008627AF /* Mobx-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mobx-Prefix.pch"; sourceTree = "<group>"; };
+		7FBDF56313D361C4008627AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7FBDF56513D361C4008627AF /* MobxAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobxAppDelegate.h; sourceTree = "<group>"; };
+		7FBDF56613D361C4008627AF /* MobxAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobxAppDelegate.m; sourceTree = "<group>"; };
+		7FBDF56913D361C4008627AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		7FBDF56B13D361C4008627AF /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		7FBDF56C13D361C4008627AF /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		7FBDF56E13D361C4008627AF /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		7FBDF56F13D361C4008627AF /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		7FBDF57213D361C4008627AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HomeView.xib; sourceTree = "<group>"; };
+		7FBDF57513D361C4008627AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchView.xib; sourceTree = "<group>"; };
+		7FBDF57C13D3699E008627AF /* ChatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatsView.xib; sourceTree = "<group>"; };
+		7FBDF57E13D369AB008627AF /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsView.xib; path = Mobx.xcodeproj/SettingsView.xib; sourceTree = SOURCE_ROOT; };
+		7FBDF58C13D36AB0008627AF /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = Mobx.xcodeproj/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
+		7FBDF58D13D36AB0008627AF /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Mobx.xcodeproj/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
+		7FBDF59213D37EAF008627AF /* ChatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsViewController.h; sourceTree = "<group>"; };
+		7FBDF59313D37EAF008627AF /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = "<group>"; };
+		7FBDF59513D38102008627AF /* weicheng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = weicheng.jpg; path = Resources/weicheng.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7FBDF54F13D361C4008627AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FBDF55713D361C4008627AF /* UIKit.framework in Frameworks */,
+				7FBDF55913D361C4008627AF /* Foundation.framework in Frameworks */,
+				7FBDF55B13D361C4008627AF /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7FBDF54713D361C4008627AF = {
+			isa = PBXGroup;
+			children = (
+				7FBDF55C13D361C4008627AF /* Mobx */,
+				7FBDF55513D361C4008627AF /* Frameworks */,
+				7FBDF55313D361C4008627AF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7FBDF55313D361C4008627AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7FBDF55213D361C4008627AF /* Mobx.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7FBDF55513D361C4008627AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FBDF55613D361C4008627AF /* UIKit.framework */,
+				7FBDF55813D361C4008627AF /* Foundation.framework */,
+				7FBDF55A13D361C4008627AF /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7FBDF55C13D361C4008627AF /* Mobx */ = {
+			isa = PBXGroup;
+			children = (
+				7FBDF58813D36A35008627AF /* Resources */,
+				7FBDF56513D361C4008627AF /* MobxAppDelegate.h */,
+				7FBDF56613D361C4008627AF /* MobxAppDelegate.m */,
+				7FBDF56B13D361C4008627AF /* HomeViewController.h */,
+				7FBDF56C13D361C4008627AF /* HomeViewController.m */,
+				7FBDF56E13D361C4008627AF /* SearchViewController.h */,
+				7FBDF56F13D361C4008627AF /* SearchViewController.m */,
+				7FBDF59213D37EAF008627AF /* ChatsViewController.h */,
+				7FBDF59313D37EAF008627AF /* ChatsViewController.m */,
+				7FBDF58C13D36AB0008627AF /* SettingsViewController.h */,
+				7FBDF58D13D36AB0008627AF /* SettingsViewController.m */,
+				7FBDF55D13D361C4008627AF /* Supporting Files */,
+			);
+			path = Mobx;
+			sourceTree = "<group>";
+		};
+		7FBDF55D13D361C4008627AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7FBDF55E13D361C4008627AF /* Mobx-Info.plist */,
+				7FBDF55F13D361C4008627AF /* InfoPlist.strings */,
+				7FBDF56213D361C4008627AF /* Mobx-Prefix.pch */,
+				7FBDF56313D361C4008627AF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7FBDF58813D36A35008627AF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7FBDF59513D38102008627AF /* weicheng.jpg */,
+				7FBDF56813D361C4008627AF /* MainWindow.xib */,
+				7FBDF57113D361C4008627AF /* HomeView.xib */,
+				7FBDF57413D361C4008627AF /* SearchView.xib */,
+				7FBDF57C13D3699E008627AF /* ChatsView.xib */,
+				7FBDF57E13D369AB008627AF /* SettingsView.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7FBDF55113D361C4008627AF /* Mobx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FBDF57913D361C5008627AF /* Build configuration list for PBXNativeTarget "Mobx" */;
+			buildPhases = (
+				7FBDF54E13D361C4008627AF /* Sources */,
+				7FBDF54F13D361C4008627AF /* Frameworks */,
+				7FBDF55013D361C4008627AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mobx;
+			productName = Mobx;
+			productReference = 7FBDF55213D361C4008627AF /* Mobx.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7FBDF54913D361C4008627AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Mobx;
+			};
+			buildConfigurationList = 7FBDF54C13D361C4008627AF /* Build configuration list for PBXProject "Mobx" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7FBDF54713D361C4008627AF;
+			productRefGroup = 7FBDF55313D361C4008627AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7FBDF55113D361C4008627AF /* Mobx */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7FBDF55013D361C4008627AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FBDF56113D361C4008627AF /* InfoPlist.strings in Resources */,
+				7FBDF56A13D361C4008627AF /* MainWindow.xib in Resources */,
+				7FBDF57313D361C4008627AF /* HomeView.xib in Resources */,
+				7FBDF57613D361C4008627AF /* SearchView.xib in Resources */,
+				7FBDF57D13D3699E008627AF /* ChatsView.xib in Resources */,
+				7FBDF57F13D369AB008627AF /* SettingsView.xib in Resources */,
+				7FBDF59613D38102008627AF /* weicheng.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7FBDF54E13D361C4008627AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FBDF56413D361C4008627AF /* main.m in Sources */,
+				7FBDF56713D361C4008627AF /* MobxAppDelegate.m in Sources */,
+				7FBDF56D13D361C4008627AF /* HomeViewController.m in Sources */,
+				7FBDF57013D361C4008627AF /* SearchViewController.m in Sources */,
+				7FBDF58E13D36AB0008627AF /* SettingsViewController.m in Sources */,
+				7FBDF59413D37EB0008627AF /* ChatsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7FBDF55F13D361C4008627AF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FBDF56013D361C4008627AF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7FBDF56813D361C4008627AF /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FBDF56913D361C4008627AF /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		7FBDF57113D361C4008627AF /* HomeView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FBDF57213D361C4008627AF /* en */,
+			);
+			name = HomeView.xib;
+			sourceTree = "<group>";
+		};
+		7FBDF57413D361C4008627AF /* SearchView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FBDF57513D361C4008627AF /* en */,
+			);
+			name = SearchView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7FBDF57713D361C4008627AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7FBDF57813D361C4008627AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		7FBDF57A13D361C5008627AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mobx/Mobx-Prefix.pch";
+				INFOPLIST_FILE = "Mobx/Mobx-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7FBDF57B13D361C5008627AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mobx/Mobx-Prefix.pch";
+				INFOPLIST_FILE = "Mobx/Mobx-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7FBDF54C13D361C4008627AF /* Build configuration list for PBXProject "Mobx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FBDF57713D361C4008627AF /* Debug */,
+				7FBDF57813D361C4008627AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FBDF57913D361C5008627AF /* Build configuration list for PBXNativeTarget "Mobx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FBDF57A13D361C5008627AF /* Debug */,
+				7FBDF57B13D361C5008627AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7FBDF54913D361C4008627AF /* Project object */;
+}
