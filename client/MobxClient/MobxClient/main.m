@@ -1,8 +1,8 @@
 //
 //  main.m
-//  mobx
+//  MobxClient
 //
-//  Created by Weicheng Peng on 7/16/11.
+//  Created by Weicheng Peng on 7/15/11.
 //  Copyright 2011 HomeNet. All rights reserved.
 //
 

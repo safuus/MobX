@@ -1,26 +1,23 @@
 //
-//  homeViewController.m
-//  mobx
+//  FirstViewController.m
+//  MobxClient
 //
-//  Created by Weicheng Peng on 7/16/11.
-//  Copyright 2011 Mobx. All rights reserved.
+//  Created by Weicheng Peng on 7/15/11.
+//  Copyright 2011 HomeNet. All rights reserved.
 //
 
-#import "homeViewController.h"
+#import "FirstViewController.h"
 
 
-@implementation HomeViewController
+@implementation FirstViewController
 
-@synthesize navigationBar = _navigationBar; // the application's Navigation bar
-
-
+/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _navigationBar.tintColor = [UIColor darkGrayColor];
 }
-
+*/
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

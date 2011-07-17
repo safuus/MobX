@@ -1,15 +1,15 @@
 //
-//  searchViewController.m
+//  FirstViewController.m
 //  mobx
 //
-//  Created by Weicheng Peng on 7/16/11.
-//  Copyright 2011 Mobx. All rights reserved.
+//  Created by Weicheng Peng on 7/15/11.
+//  Copyright 2011 HomeNet. All rights reserved.
 //
 
-#import "searchViewController.h"
+#import "FirstViewController.h"
 
 
-@implementation SearchViewController
+@implementation FirstViewController
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
