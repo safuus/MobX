@@ -14,9 +14,11 @@
     IBOutlet UILabel *userInfo;
     // New messages etc table list data view handler
     IBOutlet CategoryListViewHandler *categoryListHandler;
+    IBOutlet UITableView *categoryListView;
 }
 
 @property(retain) IBOutlet UILabel *userInfo;
 @property (nonatomic, retain) IBOutlet CategoryListViewHandler *categoryListHandler;
+@property (nonatomic, retain) IBOutlet UITableView *categoryListView;
 
 @end

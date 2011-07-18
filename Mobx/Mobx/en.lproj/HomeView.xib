@@ -120,7 +120,7 @@
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<int key="IBUISeparatorStyle">1</int>
-						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
+						<int key="IBUISectionIndexMinimumDisplayRowCount">5</int>
 						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 						<float key="IBUIRowHeight">44</float>
 						<float key="IBUISectionHeaderHeight">22</float>
@@ -139,7 +139,7 @@
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUICustomObject" id="1019750965">
+			<object class="IBUICustomObject" id="882325825">
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
@@ -164,27 +164,35 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">categoryListHandler</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1019750965"/>
-					</object>
-					<int key="connectionID">34</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="171398057"/>
-						<reference key="destination" ref="1019750965"/>
+						<reference key="destination" ref="882325825"/>
 					</object>
-					<int key="connectionID">35</int>
+					<int key="connectionID">50</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="171398057"/>
-						<reference key="destination" ref="1019750965"/>
+						<reference key="destination" ref="882325825"/>
 					</object>
-					<int key="connectionID">36</int>
+					<int key="connectionID">51</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">categoryListView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="171398057"/>
+					</object>
+					<int key="connectionID">52</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">categoryListHandler</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="882325825"/>
+					</object>
+					<int key="connectionID">53</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -257,7 +265,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">33</int>
-						<reference key="object" ref="1019750965"/>
+						<reference key="object" ref="882325825"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">CategoryListViewHandler</string>
 					</object>
@@ -306,7 +314,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">36</int>
+			<int key="maxID">53</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -327,11 +335,13 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>categoryListHandler</string>
+							<string>categoryListView</string>
 							<string>userInfo</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>CategoryListViewHandler</string>
+							<string>UITableView</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -340,6 +350,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>categoryListHandler</string>
+							<string>categoryListView</string>
 							<string>userInfo</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -347,6 +358,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">categoryListHandler</string>
 								<string key="candidateClassName">CategoryListViewHandler</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">categoryListView</string>
+								<string key="candidateClassName">UITableView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">userInfo</string>
