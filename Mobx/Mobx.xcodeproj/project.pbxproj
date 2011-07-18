@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F52ACBE13D3BE5E00686761 /* CategoryListViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */; };
 		7FBDF55713D361C4008627AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBDF55613D361C4008627AF /* UIKit.framework */; };
 		7FBDF55913D361C4008627AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBDF55813D361C4008627AF /* Foundation.framework */; };
 		7FBDF55B13D361C4008627AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBDF55A13D361C4008627AF /* CoreGraphics.framework */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F52ACBC13D3BE5E00686761 /* CategoryListViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryListViewHandler.h; path = HomeView/CategoryListViewHandler.h; sourceTree = "<group>"; };
+		7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryListViewHandler.m; path = HomeView/CategoryListViewHandler.m; sourceTree = "<group>"; };
 		7FBDF55213D361C4008627AF /* Mobx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FBDF55613D361C4008627AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7FBDF55813D361C4008627AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F52ACAE13D3B8A700686761 /* Home View */ = {
+			isa = PBXGroup;
+			children = (
+				7F52ACBC13D3BE5E00686761 /* CategoryListViewHandler.h */,
+				7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */,
+			);
+			name = "Home View";
+			sourceTree = "<group>";
+		};
 		7FBDF54713D361C4008627AF = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +108,7 @@
 		7FBDF55C13D361C4008627AF /* Mobx */ = {
 			isa = PBXGroup;
 			children = (
+				7F52ACAE13D3B8A700686761 /* Home View */,
 				7FBDF58813D36A35008627AF /* Resources */,
 				7FBDF56513D361C4008627AF /* MobxAppDelegate.h */,
 				7FBDF56613D361C4008627AF /* MobxAppDelegate.m */,
@@ -209,6 +222,7 @@
 				7FBDF57013D361C4008627AF /* SearchViewController.m in Sources */,
 				7FBDF58E13D36AB0008627AF /* SettingsViewController.m in Sources */,
 				7FBDF59413D37EB0008627AF /* ChatsViewController.m in Sources */,
+				7F52ACBE13D3BE5E00686761 /* CategoryListViewHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +343,7 @@
 				7FBDF57B13D361C5008627AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

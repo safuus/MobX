@@ -11,21 +11,27 @@
 
 @implementation HomeViewController
 
-@synthesize phoneNumber = _phoneNumber;
+@synthesize userInfo = _userInfo;
+@synthesize categoryListHandler = _categoryList;
 
+/*
+ // Implement loadView to create a view hierarchy programmatically, without using a nib.
+ - (void)loadView {
+ }
+ */
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _phoneNumber.text = @"Wallace Peng";
+    _userInfo.text = @"Wallace Peng";
+    [_categoryList fillList];
 }
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+    // Return YES for supported orientations	
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -42,7 +48,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -51,6 +56,7 @@
 - (void)dealloc
 {
     [super dealloc];
+    [_categoryList dealloc];
 }
 
 @end

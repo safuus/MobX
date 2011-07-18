@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CategoryListViewHandler.h"
 
 @interface HomeViewController : UIViewController {
 
-    IBOutlet UILabel *phoneNumber;
+    IBOutlet UILabel *userInfo;
+    // New messages etc table list data view handler
+    IBOutlet CategoryListViewHandler *categoryListHandler;
 }
 
-@property(retain) IBOutlet UILabel *phoneNumber;
+@property(retain) IBOutlet UILabel *userInfo;
+@property (nonatomic, retain) IBOutlet CategoryListViewHandler *categoryListHandler;
 
 @end
