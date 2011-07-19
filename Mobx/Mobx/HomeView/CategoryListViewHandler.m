@@ -23,6 +23,17 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //NSUInteger section = [indexPath section];
+    //NSUInteger row = [indexPath row];
+    
+    // do something here
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
 #pragma mark table view data source
 -(NSInteger) tableView : (UITableView *) tableView numberOfRowsInSection: (NSInteger) section {
     return [self.tableListData count]; 

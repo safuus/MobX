@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F09092413D5586100AEB66A /* MobxRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F09092313D5586100AEB66A /* MobxRecord.m */; };
 		7F52ACBE13D3BE5E00686761 /* CategoryListViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */; };
 		7FBDF55713D361C4008627AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBDF55613D361C4008627AF /* UIKit.framework */; };
 		7FBDF55913D361C4008627AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBDF55813D361C4008627AF /* Foundation.framework */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F09092213D5586100AEB66A /* MobxRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxRecord.h; sourceTree = "<group>"; };
+		7F09092313D5586100AEB66A /* MobxRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxRecord.m; sourceTree = "<group>"; };
 		7F52ACBC13D3BE5E00686761 /* CategoryListViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryListViewHandler.h; path = HomeView/CategoryListViewHandler.h; sourceTree = "<group>"; };
 		7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryListViewHandler.m; path = HomeView/CategoryListViewHandler.m; sourceTree = "<group>"; };
 		7FBDF55213D361C4008627AF /* Mobx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobx.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F09090013D5324700AEB66A /* Search View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Search View";
+			sourceTree = "<group>";
+		};
+		7F09092513D5591D00AEB66A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7F09092213D5586100AEB66A /* MobxRecord.h */,
+				7F09092313D5586100AEB66A /* MobxRecord.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		7F52ACAE13D3B8A700686761 /* Home View */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +127,8 @@
 		7FBDF55C13D361C4008627AF /* Mobx */ = {
 			isa = PBXGroup;
 			children = (
+				7F09092513D5591D00AEB66A /* Common */,
+				7F09090013D5324700AEB66A /* Search View */,
 				7F52ACAE13D3B8A700686761 /* Home View */,
 				7FBDF58813D36A35008627AF /* Resources */,
 				7FBDF56513D361C4008627AF /* MobxAppDelegate.h */,
@@ -223,6 +244,7 @@
 				7FBDF58E13D36AB0008627AF /* SettingsViewController.m in Sources */,
 				7FBDF59413D37EB0008627AF /* ChatsViewController.m in Sources */,
 				7F52ACBE13D3BE5E00686761 /* CategoryListViewHandler.m in Sources */,
+				7F09092413D5586100AEB66A /* MobxRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
