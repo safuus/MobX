@@ -16,9 +16,9 @@
 	// The saved state of the search UI if a memory warning removed the view.
     NSString		*savedSearchTerm;
     NSInteger		savedScopeButtonIndex;
-    BOOL			searchWasActive;
+    BOOL			searchWasActive;    
     
-    IBOutlet UINavigationController *navCont;
+    IBOutlet UINavigationController *navController;
 }
 
 
@@ -29,7 +29,7 @@
 @property (nonatomic) NSInteger savedScopeButtonIndex;
 @property (nonatomic) BOOL searchWasActive;
 
-@property (nonatomic, retain) IBOutlet UINavigationController *navCont;
+@property (nonatomic, retain) IBOutlet UINavigationController *navController;
 
 - (void) initializeSearchTableView;
 @end

@@ -12,7 +12,7 @@
 @implementation SearchTableViewController
 
 @synthesize listContent, filteredListContent, savedSearchTerm, savedScopeButtonIndex, searchWasActive;
-@synthesize  navCont;
+@synthesize navController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -47,7 +47,7 @@
     [super dealloc];
     [self.listContent release];
 	[self.filteredListContent release];
-    [self.navCont release];
+    [self.navController release];
 }
 
 - (void)didReceiveMemoryWarning
