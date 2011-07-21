@@ -72,7 +72,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // create a filtered list that will contain products for the search results table.
+    // create a filtered list that will contain records for the search results table.
 	self.filteredListContent = [NSMutableArray arrayWithCapacity:[self.listContent count]];
 	
 	// restore search settings if they were saved in didReceiveMemoryWarning.
@@ -201,7 +201,7 @@
 	[self.filteredListContent removeAllObjects]; // First clear the filtered array.
 	
     /*
-	 Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
+	 Search the main list for records whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
 	 */
 	for (MobxRecord *record in listContent)
 	{
