@@ -11,6 +11,16 @@
 
 @implementation ChatsTableViewController
 
+@synthesize navController;
+@synthesize tmpCell, data, cellNib;
+
+/*
+ Predefined colors to alternate the background color of each cell row by row
+ (see tableView:cellForRowAtIndexPath: and tableView:willDisplayCell:forRowAtIndexPath:).
+ */
+#define DARK_BACKGROUND  [UIColor colorWithRed:151.0/255.0 green:152.0/255.0 blue:155.0/255.0 alpha:1.0]
+#define LIGHT_BACKGROUND [UIColor colorWithRed:172.0/255.0 green:173.0/255.0 blue:175.0/255.0 alpha:1.0]
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -20,146 +30,115 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
+#pragma mark -
+#pragma mark View controller methods
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	self.navController.navigationBar.tintColor = [UIColor darkGrayColor];
+	
+	// Configure the table view.
+    self.tableView.rowHeight = 73.0;
+    self.tableView.backgroundColor = DARK_BACKGROUND;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+	// Load the data.
+    NSBundle* bundle = [NSBundle mainBundle];
+    NSString *dataPath = [bundle pathForResource:@"ChatsViewTableData" ofType:@"plist"];
+    self.data = [[NSArray alloc] initWithContentsOfFile:dataPath]; //[NSArray arrayWithContentsOfFile:dataPath];
+    
+    // create our UINib instance which will later help us load and instanciate the
+	// UITableViewCells's UI via a xib file.
+	//
+	// Note:
+	// The UINib classe provides better performance in situations where you want to create multiple
+	// copies of a nib file’s contents. The normal nib-loading process involves reading the nib file
+	// from disk and then instantiating the objects it contains. However, with the UINib class, the
+	// nib file is read from disk once and the contents are stored in memory.
+	// Because they are in memory, creating successive sets of objects takes less time because it
+	// does not require accessing the disk.
+	//
+	self.cellNib = [UINib nibWithNibName:@"ChatsTableViewCell" bundle:nil];
+	
 }
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+	[super viewDidLoad];
+	
+	self.data = nil;
+	self.tmpCell = nil;
+    self.cellNib = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    [super viewWillAppear:animated];
+    return YES;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    NSInteger count = [self.data count];
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"MobxCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    IndividualSubViewBasedMobxCell *cell = (IndividualSubViewBasedMobxCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
+    if (cell == nil)
+    {
+        [self.cellNib instantiateWithOwner:self options:nil];
+		cell = tmpCell;
+		self.tmpCell = nil;		
     }
     
-    // Configure the cell...
-    
+	// Display dark and light background in alternate rows -- see tableView:willDisplayCell:forRowAtIndexPath:.
+    cell.useDarkBackground = (indexPath.row % 2 == 0);
+	
+	// Configure the data for the cell.
+    NSDictionary *dataItem = [data objectAtIndex:indexPath.row];
+    cell.icon = [UIImage imageNamed:[dataItem objectForKey:@"Icon"]];
+    cell.name = [dataItem objectForKey:@"Name"];
+	
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    cell.backgroundColor = ((IndividualSubViewBasedMobxCell *)cell).useDarkBackground ? DARK_BACKGROUND : LIGHT_BACKGROUND;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+#pragma mark -
+#pragma mark Memory management
+
+- (void)dealloc
+{
+    [self.data release];
+	[self.tmpCell release];
+    [self.cellNib release];
+    [self.navController release];
+	
+    [super dealloc];
 }
 
 @end

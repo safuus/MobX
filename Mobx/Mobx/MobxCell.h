@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ChatsTableViewCell : UITableViewCell {
+@interface MobxCell : UITableViewCell {
+    BOOL useDarkBackground;
     
+    UIImage *icon;
+    NSString *name;
 }
+
+@property BOOL useDarkBackground;
+
+@property(retain) UIImage *icon;
+@property(retain) NSString *name;
 
 @end

@@ -11,6 +11,7 @@
 
 @implementation ChatsViewController
 
+@synthesize chatsTableViewCont;
 
 - (void)dealloc
 {

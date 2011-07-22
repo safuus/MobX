@@ -67,6 +67,8 @@
 
 - (void)dealloc
 {
+    [self.categoryListView release];
+    [self.userInfo release];
     [_categoryListHandler release];
     [super dealloc];
 }

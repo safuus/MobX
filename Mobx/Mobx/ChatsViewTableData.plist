@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<array>
+	<dict>
+		<key>Icon</key>
+		<string>Baseball.png</string>
+		<key>Name</key>
+		<string>Xiaosi sent me 10 messages</string>
+	</dict>
+	<dict>
+		<key>Icon</key>
+		<string>Blocks.png</string>
+		<key>Name</key>
+		<string>Xiaosi asked to have dinner</string>
+	</dict>
+	<dict>
+		<key>Icon</key>
+		<string>Checkers.png</string>
+		<key>Name</key>
+		<string>Wallace going lunch at 12:30pm</string>
+	</dict>
+	<dict>
+		<key>Icon</key>
+		<string>Dinner.png</string>
+		<key>Name</key>
+		<string>Dinner time</string>
+	</dict>
+	<dict>
+		<key>Icon</key>
+		<string>Football.png</string>
+		<key>Name</key>
+		<string>Lets play football on Saturday</string>
+	</dict>
+	<dict>
+		<key>Icon</key>
+		<string>MathGraph.png</string>
+		<key>Name</key>
+		<string>Ahh math is fun</string>
+	</dict>
+</array>
 </plist>

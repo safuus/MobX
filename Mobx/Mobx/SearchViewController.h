@@ -15,4 +15,5 @@
 }
 
 @property (nonatomic, retain) IBOutlet SearchTableViewController *searchTableViewCont;
+
 @end

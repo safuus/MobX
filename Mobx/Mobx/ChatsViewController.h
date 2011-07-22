@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatsTableViewController.h"
 
-
-@interface ChatsViewController : UIViewController {
-    
+@interface ChatsViewController : UINavigationController
+{
+    IBOutlet ChatsTableViewController *chatsTableViewCont;
 }
+
+@property (nonatomic, retain) IBOutlet ChatsTableViewController *chatsTableViewCont;
 
 @end

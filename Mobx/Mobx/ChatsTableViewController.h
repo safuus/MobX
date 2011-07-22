@@ -7,10 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "IndividualSubViewBasedMobxCell.h"
 
 @interface ChatsTableViewController : UITableViewController {
     
+    IBOutlet UINavigationController *navController;
+    
+    IBOutlet IndividualSubViewBasedMobxCell *tmpCell;
+    
+    NSArray *data;	
+    // referring to our xib-based UITableViewCell ('IndividualSubViewBasedMobxCell')
+	UINib *cellNib;
 }
+
+@property (nonatomic, retain)  UINavigationController *navController;
+
+@property (nonatomic, retain) IBOutlet IndividualSubViewBasedMobxCell *tmpCell;
+@property (nonatomic, retain) NSArray *data;
+@property (nonatomic, retain) UINib *cellNib;
 
 @end

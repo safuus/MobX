@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MobxCell.h"
 
-
-@interface ChatsViewCell : MobxCell {
-    
+@interface IndividualSubViewBasedMobxCell : MobxCell {
+    IBOutlet UIImageView *iconView;
+    IBOutlet UILabel *nameLabel;
 }
 
 @end

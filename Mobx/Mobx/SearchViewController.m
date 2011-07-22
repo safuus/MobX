@@ -26,6 +26,7 @@
 
 - (void)dealloc
 {
+    [self.searchTableViewCont release];
 	[super dealloc];
 }
 
