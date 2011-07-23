@@ -123,7 +123,7 @@
 		<string>IDEActiveWorkspaceTabController</string>
 		<string>IDEWindowToolbarIsVisible</string>
 		<string>IDEWindowTabBarIsVisible</string>
-		<string>{{10, 85}, {1400, 781}}</string>
+		<string>{{31, 79}, {1400, 781}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1093,7 +1093,7 @@
 			</dict>
 		</dict>
 		<string>file://localhost/Users/wallacepeng/dev/MobX/Mobx/Mobx.xcodeproj/</string>
-		<real>333127794.63726199</real>
+		<real>333127892.466636</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13487,11 +13487,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>729</integer>
+					<integer>728</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>728</integer>
+					<integer>729</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -13510,8 +13510,8 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{0, 830}</string>
-		<real>333127794.636778</real>
+		<real>333127892.46614403</real>
+		<string>{2173, 968}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13906,7 +13906,7 @@
 				<integer>1055</integer>
 			</dict>
 		</dict>
-		<real>333127794.63662302</real>
+		<real>333127892.46595103</real>
 		<dict>
 			<key>$class</key>
 			<dict>
