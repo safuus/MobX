@@ -243,11 +243,11 @@
 		7FBDF55C13D361C4008627AF /* Mobx */ = {
 			isa = PBXGroup;
 			children = (
-				7F8C41E113DA91EA007297E4 /* Settings View */,
 				7F09092513D5591D00AEB66A /* Common */,
-				7F09090013D5324700AEB66A /* Search View */,
 				7F52ACAE13D3B8A700686761 /* Home View */,
+				7F09090013D5324700AEB66A /* Search View */,
 				7FA5679B13D9396100C75C31 /* Chats View */,
+				7F8C41E113DA91EA007297E4 /* Settings View */,
 				7FBDF58813D36A35008627AF /* Resources */,
 				7FBDF56513D361C4008627AF /* MobxAppDelegate.h */,
 				7FBDF56613D361C4008627AF /* MobxAppDelegate.m */,
