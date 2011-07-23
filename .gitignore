@@ -1,1 +1,2 @@
-/Mobx/Mobx.xcodeproj/xcuserdata/
+**/*.xcodeproj/xcuserdata/
+**/.DS_Store
