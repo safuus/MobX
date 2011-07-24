@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IASKAppSettingsViewController.h"
 
-@interface AllConfigsViewController : UIViewController {
+@interface AllConfigsViewController : UIViewController<IASKSettingsDelegate> {
 
 }
 
