@@ -1,5 +1,5 @@
 //
-//  IndividualSubViewBasedMobxCell.h
+//  CompositeSubviewBasedMobxCell.h
 //  Mobx
 //
 //  Created by Weicheng Peng on 7/21/11.
@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "MobxCell.h"
 
-@interface IndividualSubViewBasedMobxCell : MobxCell {
-    IBOutlet UIImageView *iconView;
-    IBOutlet UILabel *nameLabel;
+@interface CompositeSubviewBasedMobxCell : MobxCell
+{
+    UIView *cellContentView;
 }
 
 @end

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7F09092413D5586100AEB66A /* MobxRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F09092313D5586100AEB66A /* MobxRecord.m */; };
+		7F23394013DC87770092F4AA /* CompositeSubviewBasedMobxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */; };
+		7F23394313DC91990092F4AA /* CategoryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F23394213DC91990092F4AA /* CategoryList.plist */; };
 		7F2C6BB713D6B070009A77EE /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C6BB613D6B070009A77EE /* SearchTableViewController.m */; };
 		7F52ACBE13D3BE5E00686761 /* CategoryListViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */; };
 		7F64B0CB13DA8FD5009F6B18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F64B0CA13DA8FD5009F6B18 /* Settings.bundle */; };
@@ -79,6 +81,10 @@
 /* Begin PBXFileReference section */
 		7F09092213D5586100AEB66A /* MobxRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxRecord.h; sourceTree = "<group>"; };
 		7F09092313D5586100AEB66A /* MobxRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxRecord.m; sourceTree = "<group>"; };
+		7F23393E13DC87760092F4AA /* CompositeSubviewBasedMobxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompositeSubviewBasedMobxCell.h; sourceTree = "<group>"; };
+		7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompositeSubviewBasedMobxCell.m; sourceTree = "<group>"; };
+		7F23394213DC91990092F4AA /* CategoryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CategoryList.plist; sourceTree = "<group>"; };
+		7F23394713DC96630092F4AA /* MobxUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxUIConstants.h; sourceTree = "<group>"; };
 		7F2C6BB513D6B070009A77EE /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		7F2C6BB613D6B070009A77EE /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		7F52ACBC13D3BE5E00686761 /* CategoryListViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryListViewHandler.h; path = HomeView/CategoryListViewHandler.h; sourceTree = "<group>"; };
@@ -203,12 +209,15 @@
 		7F09092513D5591D00AEB66A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7F23394713DC96630092F4AA /* MobxUIConstants.h */,
+				7F09092213D5586100AEB66A /* MobxRecord.h */,
+				7F09092313D5586100AEB66A /* MobxRecord.m */,
 				7FA567A513D939D100C75C31 /* MobxCell.h */,
 				7FA567A613D939D100C75C31 /* MobxCell.m */,
 				7FA5680313D94B6E00C75C31 /* IndividualSubViewBasedMobxCell.h */,
 				7FA567DB13D9475100C75C31 /* IndividualSubViewBasedMobxCell.m */,
-				7F09092213D5586100AEB66A /* MobxRecord.h */,
-				7F09092313D5586100AEB66A /* MobxRecord.m */,
+				7F23393E13DC87760092F4AA /* CompositeSubviewBasedMobxCell.h */,
+				7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -426,6 +435,7 @@
 				7FA567DD13D947B600C75C31 /* Images */,
 				7FBDF59513D38102008627AF /* weicheng.jpg */,
 				7F64B0CA13DA8FD5009F6B18 /* Settings.bundle */,
+				7F23394213DC91990092F4AA /* CategoryList.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -515,6 +525,7 @@
 				7FB231E413DC073600CFDB91 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
 				7FB231E513DC073600CFDB91 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				7FB231E613DC073600CFDB91 /* IASKSpecifierValuesView.xib in Resources */,
+				7F23394313DC91990092F4AA /* CategoryList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +564,7 @@
 				7FB231D813DC072400CFDB91 /* IASKSlider.m in Sources */,
 				7FB231D913DC072400CFDB91 /* IASKSwitch.m in Sources */,
 				7FB231DA13DC072400CFDB91 /* IASKTextField.m in Sources */,
+				7F23394013DC87770092F4AA /* CompositeSubviewBasedMobxCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,8 +618,10 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = $SRCROOT;
 			};
 			name = Debug;
 		};

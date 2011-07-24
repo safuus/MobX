@@ -1,5 +1,5 @@
 //
-//  ChatsViewCell.m
+//  IndividualSubViewBasedMobxCell.m
 //  Mobx
 //
 //  Created by Weicheng Peng on 7/21/11.

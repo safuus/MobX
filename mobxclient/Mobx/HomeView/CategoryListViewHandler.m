@@ -7,20 +7,24 @@
 //
 
 #import "CategoryListViewHandler.h"
+#import "CompositeSubviewBasedMobxCell.h"
+#import "MobxUIConstants.h"
 
 @implementation CategoryListViewHandler
 
 @synthesize tableListData;
 
+
 - (void) fillList {
-    NSArray * tempArray = [[[NSArray alloc] initWithObjects:@"New messages", @"Friends' status update", @"Activities around you", nil] autorelease];
     
-    self.tableListData = tempArray; 
+    NSBundle* bundle = [NSBundle mainBundle];
+    NSString *dataPath = [bundle pathForResource:@"CategoryList" ofType:@"plist"];
+    self.tableListData = [[NSArray alloc] initWithContentsOfFile:dataPath]; 
 }
 
 #pragma mark table view delegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    cell.backgroundColor = ((MobxCell *)cell).useDarkBackground ? DARK_BACKGROUND : LIGHT_BACKGROUND;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -40,15 +44,22 @@
 }
 
 -(UITableViewCell *) tableView : (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath {
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryListCell"]; 
-    if(cell == nil) { 
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"categoryListCell"] autorelease]; 
-    }
+    static NSString *CellIdentifier = @"categoryListCell";
+    
+    MobxCell *cell = (MobxCell *)[tableView dequeueReusableCellWithIdentifier: CellIdentifier];     
         
-    NSUInteger index = [indexPath row];
-    NSString *text = [self.tableListData objectAtIndex: index];
-    cell.textLabel.text = text;
+    if (cell == nil)
+    {
+        cell = [[[CompositeSubviewBasedMobxCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                            reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+	// Display dark and light background in alternate rows -- see tableView:willDisplayCell:forRowAtIndexPath:.
+    cell.useDarkBackground = (indexPath.row % 2 == 0);
+    // Configure the data for the cell.
+    NSDictionary *dataItem = [self.tableListData objectAtIndex:indexPath.row];
+    cell.icon = [UIImage imageNamed:[dataItem objectForKey:@"Icon"]];
+    cell.name = [dataItem objectForKey:@"Name"];
     
     return cell; 
 }

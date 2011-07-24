@@ -7,19 +7,12 @@
 //
 
 #import "ChatsTableViewController.h"
-
+#import "MobxUIConstants.h"
 
 @implementation ChatsTableViewController
 
 @synthesize navController;
 @synthesize tmpCell, data, cellNib;
-
-/*
- Predefined colors to alternate the background color of each cell row by row
- (see tableView:cellForRowAtIndexPath: and tableView:willDisplayCell:forRowAtIndexPath:).
- */
-#define DARK_BACKGROUND  [UIColor colorWithRed:151.0/255.0 green:152.0/255.0 blue:155.0/255.0 alpha:1.0]
-#define LIGHT_BACKGROUND [UIColor colorWithRed:172.0/255.0 green:173.0/255.0 blue:175.0/255.0 alpha:1.0]
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

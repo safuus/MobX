@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface MobxCell : UITableViewCell {
     BOOL useDarkBackground;
     
