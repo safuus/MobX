@@ -5,8 +5,8 @@
 *.perspective
 *.perspectivev3
 #ignore private workspace user data
-xcuserdata
-project.xcworkspace
+**/*.xcodeproj/xcuserdata/
+**/*.xcodeproj/project.xcworkspace/xcuserdata/
 
 #generic files to ignore
 .DS_Store
