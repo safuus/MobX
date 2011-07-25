@@ -29,7 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    // Set up the edit and add buttons.
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
 	self.navController.navigationBar.tintColor = [UIColor darkGrayColor];
 	
 	// Configure the table view.

@@ -10,6 +10,9 @@
 		7F09092413D5586100AEB66A /* MobxRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F09092313D5586100AEB66A /* MobxRecord.m */; };
 		7F23394013DC87770092F4AA /* CompositeSubviewBasedMobxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */; };
 		7F23394313DC91990092F4AA /* CategoryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F23394213DC91990092F4AA /* CategoryList.plist */; };
+		7F23398013DD42450092F4AA /* MobxModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F23397E13DD42450092F4AA /* MobxModel.xcdatamodeld */; };
+		7F23398213DD42EE0092F4AA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F23398113DD42EE0092F4AA /* CoreData.framework */; };
+		7F23398513DD47300092F4AA /* MobxRootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23398413DD47300092F4AA /* MobxRootTabBarController.m */; };
 		7F2C6BB713D6B070009A77EE /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C6BB613D6B070009A77EE /* SearchTableViewController.m */; };
 		7F52ACBE13D3BE5E00686761 /* CategoryListViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */; };
 		7F64B0CB13DA8FD5009F6B18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F64B0CA13DA8FD5009F6B18 /* Settings.bundle */; };
@@ -85,6 +88,10 @@
 		7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompositeSubviewBasedMobxCell.m; sourceTree = "<group>"; };
 		7F23394213DC91990092F4AA /* CategoryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CategoryList.plist; sourceTree = "<group>"; };
 		7F23394713DC96630092F4AA /* MobxUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxUIConstants.h; sourceTree = "<group>"; };
+		7F23397F13DD42450092F4AA /* MobxModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobxModel.xcdatamodel; sourceTree = "<group>"; };
+		7F23398113DD42EE0092F4AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7F23398313DD472F0092F4AA /* MobxRootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxRootTabBarController.h; sourceTree = "<group>"; };
+		7F23398413DD47300092F4AA /* MobxRootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxRootTabBarController.m; sourceTree = "<group>"; };
 		7F2C6BB513D6B070009A77EE /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		7F2C6BB613D6B070009A77EE /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		7F52ACBC13D3BE5E00686761 /* CategoryListViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryListViewHandler.h; path = HomeView/CategoryListViewHandler.h; sourceTree = "<group>"; };
@@ -187,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F23398213DD42EE0092F4AA /* CoreData.framework in Frameworks */,
 				7FB231A413DBFF7300CFDB91 /* MessageUI.framework in Frameworks */,
 				7FBDF55713D361C4008627AF /* UIKit.framework in Frameworks */,
 				7FBDF55913D361C4008627AF /* Foundation.framework in Frameworks */,
@@ -200,6 +208,8 @@
 		7F09090013D5324700AEB66A /* Search View */ = {
 			isa = PBXGroup;
 			children = (
+				7FBDF56E13D361C4008627AF /* SearchViewController.h */,
+				7FBDF56F13D361C4008627AF /* SearchViewController.m */,
 				7F2C6BB513D6B070009A77EE /* SearchTableViewController.h */,
 				7F2C6BB613D6B070009A77EE /* SearchTableViewController.m */,
 			);
@@ -222,9 +232,28 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		7F23394813DCB2250092F4AA /* Property List */ = {
+			isa = PBXGroup;
+			children = (
+				7FA5680F13D956C800C75C31 /* ChatsViewTableData.plist */,
+				7F23394213DC91990092F4AA /* CategoryList.plist */,
+			);
+			name = "Property List";
+			sourceTree = "<group>";
+		};
+		7F23394913DCBDD60092F4AA /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F23397E13DD42450092F4AA /* MobxModel.xcdatamodeld */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
 		7F52ACAE13D3B8A700686761 /* Home View */ = {
 			isa = PBXGroup;
 			children = (
+				7FBDF56B13D361C4008627AF /* HomeViewController.h */,
+				7FBDF56C13D361C4008627AF /* HomeViewController.m */,
 				7F52ACBC13D3BE5E00686761 /* CategoryListViewHandler.h */,
 				7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */,
 			);
@@ -234,6 +263,8 @@
 		7F8C41E113DA91EA007297E4 /* Settings View */ = {
 			isa = PBXGroup;
 			children = (
+				7FBDF58C13D36AB0008627AF /* SettingsViewController.h */,
+				7FBDF58D13D36AB0008627AF /* SettingsViewController.m */,
 				7F8C41E613DA967F007297E4 /* AllConfigsViewController.h */,
 				7F8C41E713DA967F007297E4 /* AllConfigsViewController.m */,
 			);
@@ -243,6 +274,8 @@
 		7FA5679B13D9396100C75C31 /* Chats View */ = {
 			isa = PBXGroup;
 			children = (
+				7FBDF59213D37EAF008627AF /* ChatsViewController.h */,
+				7FBDF59313D37EAF008627AF /* ChatsViewController.m */,
 				7FA567D713D9415200C75C31 /* ChatsTableViewController.h */,
 				7FA567D813D9415200C75C31 /* ChatsTableViewController.m */,
 			);
@@ -383,6 +416,7 @@
 		7FBDF55513D361C4008627AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F23398113DD42EE0092F4AA /* CoreData.framework */,
 				7FB231A313DBFF7300CFDB91 /* MessageUI.framework */,
 				7FBDF55613D361C4008627AF /* UIKit.framework */,
 				7FBDF55813D361C4008627AF /* Foundation.framework */,
@@ -394,6 +428,7 @@
 		7FBDF55C13D361C4008627AF /* Mobx */ = {
 			isa = PBXGroup;
 			children = (
+				7F23394913DCBDD60092F4AA /* Data Models */,
 				7FB2316513DBFE5000CFDB91 /* InAppSettingsKit */,
 				7F09092513D5591D00AEB66A /* Common */,
 				7F52ACAE13D3B8A700686761 /* Home View */,
@@ -403,14 +438,8 @@
 				7FBDF58813D36A35008627AF /* Resources */,
 				7FBDF56513D361C4008627AF /* MobxAppDelegate.h */,
 				7FBDF56613D361C4008627AF /* MobxAppDelegate.m */,
-				7FBDF56B13D361C4008627AF /* HomeViewController.h */,
-				7FBDF56C13D361C4008627AF /* HomeViewController.m */,
-				7FBDF56E13D361C4008627AF /* SearchViewController.h */,
-				7FBDF56F13D361C4008627AF /* SearchViewController.m */,
-				7FBDF59213D37EAF008627AF /* ChatsViewController.h */,
-				7FBDF59313D37EAF008627AF /* ChatsViewController.m */,
-				7FBDF58C13D36AB0008627AF /* SettingsViewController.h */,
-				7FBDF58D13D36AB0008627AF /* SettingsViewController.m */,
+				7F23398313DD472F0092F4AA /* MobxRootTabBarController.h */,
+				7F23398413DD47300092F4AA /* MobxRootTabBarController.m */,
 				7FBDF55D13D361C4008627AF /* Supporting Files */,
 			);
 			path = Mobx;
@@ -430,12 +459,11 @@
 		7FBDF58813D36A35008627AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7FA5680F13D956C800C75C31 /* ChatsViewTableData.plist */,
+				7F23394813DCB2250092F4AA /* Property List */,
 				7FA5680213D948EB00C75C31 /* Xib View files */,
 				7FA567DD13D947B600C75C31 /* Images */,
 				7FBDF59513D38102008627AF /* weicheng.jpg */,
 				7F64B0CA13DA8FD5009F6B18 /* Settings.bundle */,
-				7F23394213DC91990092F4AA /* CategoryList.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -565,6 +593,8 @@
 				7FB231D913DC072400CFDB91 /* IASKSwitch.m in Sources */,
 				7FB231DA13DC072400CFDB91 /* IASKTextField.m in Sources */,
 				7F23394013DC87770092F4AA /* CompositeSubviewBasedMobxCell.m in Sources */,
+				7F23398013DD42450092F4AA /* MobxModel.xcdatamodeld in Sources */,
+				7F23398513DD47300092F4AA /* MobxRootTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +679,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobx/Mobx-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				INFOPLIST_FILE = "Mobx/Mobx-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -693,6 +724,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7F23397E13DD42450092F4AA /* MobxModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7F23397F13DD42450092F4AA /* MobxModel.xcdatamodel */,
+			);
+			currentVersion = 7F23397F13DD42450092F4AA /* MobxModel.xcdatamodel */;
+			path = MobxModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7FBDF54913D361C4008627AF /* Project object */;
 }
