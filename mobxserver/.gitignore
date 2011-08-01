@@ -8,3 +8,6 @@
 #eclipse workspace settings
 **/.settings/
 
+#maven ignore files
+**/target/
+
