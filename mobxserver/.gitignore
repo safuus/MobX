@@ -1,0 +1,10 @@
+#java classes
+*.class
+
+#eclipse project files
+*.project
+*.classpath
+
+#eclipse workspace settings
+**/.settings/
+

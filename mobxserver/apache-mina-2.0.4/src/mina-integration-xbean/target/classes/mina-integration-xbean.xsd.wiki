@@ -1,0 +1,1307 @@
+h3. Elements By Type
+{anchor:org.apache.mina.core.filterchain.IoFilterChainBuilder-types}
+h4. The _[org.apache.mina.core.filterchain.IoFilterChainBuilder|#org.apache.mina.core.filterchain.IoFilterChainBuilder-types]_ Type Implementations
+    | _[<defaultIoFilterChainBuilder>|#defaultIoFilterChainBuilder-element]_ | {html}The default implementation of {@link IoFilterChainBuilder} which is useful
+in most cases. {@link DefaultIoFilterChainBuilder} has an identical interface
+with {@link IoFilter}; it contains a list of {@link IoFilter}s that you can
+modify. The {@link IoFilter}s which are added to this builder will be appended
+to the {@link IoFilterChain} when {@link #buildFilterChain(IoFilterChain)} is
+invoked.
+<p>
+However, the identical interface doesn't mean that it behaves in an exactly
+same way with {@link IoFilterChain}. {@link DefaultIoFilterChainBuilder}
+doesn't manage the life cycle of the {@link IoFilter}s at all, and the
+existing {@link IoSession}s won't get affected by the changes in this builder.
+{@link IoFilterChainBuilder}s affect only newly created {@link IoSession}s.
+
+<pre>
+IoAcceptor acceptor = ...;
+DefaultIoFilterChainBuilder builder = acceptor.getFilterChain();
+builder.addLast( "myFilter", new MyFilter() );
+...
+</pre>{html} |
+
+{anchor:org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder-types}
+h4. The _[org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder|#org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder-types]_ Type Implementations
+    | _[<defaultIoFilterChainBuilder>|#defaultIoFilterChainBuilder-element]_ | {html}The default implementation of {@link IoFilterChainBuilder} which is useful
+in most cases. {@link DefaultIoFilterChainBuilder} has an identical interface
+with {@link IoFilter}; it contains a list of {@link IoFilter}s that you can
+modify. The {@link IoFilter}s which are added to this builder will be appended
+to the {@link IoFilterChain} when {@link #buildFilterChain(IoFilterChain)} is
+invoked.
+<p>
+However, the identical interface doesn't mean that it behaves in an exactly
+same way with {@link IoFilterChain}. {@link DefaultIoFilterChainBuilder}
+doesn't manage the life cycle of the {@link IoFilter}s at all, and the
+existing {@link IoSession}s won't get affected by the changes in this builder.
+{@link IoFilterChainBuilder}s affect only newly created {@link IoSession}s.
+
+<pre>
+IoAcceptor acceptor = ...;
+DefaultIoFilterChainBuilder builder = acceptor.getFilterChain();
+builder.addLast( "myFilter", new MyFilter() );
+...
+</pre>{html} |
+
+{anchor:java.util.concurrent.Executor-types}
+h4. The _[java.util.concurrent.Executor|#java.util.concurrent.Executor-types]_ Type Implementations
+    | _[<standardThreadPool>|#standardThreadPool-element]_ | {html}{html} |
+
+{anchor:org.apache.mina.core.session.IoSessionRecycler-types}
+h4. The _[org.apache.mina.core.session.IoSessionRecycler|#org.apache.mina.core.session.IoSessionRecycler-types]_ Type Implementations
+    | _[<expiringSessionRecycler>|#expiringSessionRecycler-element]_ | {html}An {@link IoSessionRecycler} with sessions that time out on inactivity.
+
+TODO Document me.{html} |
+
+{anchor:org.apache.mina.core.filterchain.IoFilter-types}
+h4. The _[org.apache.mina.core.filterchain.IoFilter|#org.apache.mina.core.filterchain.IoFilter-types]_ Type Implementations
+    | _[<blacklistFilter>|#blacklistFilter-element]_ | {html}A {@link IoFilter} which blocks connections from blacklisted remote
+address.{html} |
+    | _[<bufferedWriteFilter>|#bufferedWriteFilter-element]_ | {html}An {@link IoFilter} implementation used to buffer outgoing {@link WriteRequest} almost
+like what {@link BufferedOutputStream} does. Using this filter allows to be less dependent
+from network latency. It is also useful when a session is generating very small messages
+too frequently and consequently generating unnecessary traffic overhead.
+
+Please note that it should always be placed before the {@link ProtocolCodecFilter}
+as it only handles {@link WriteRequest}'s carrying {@link IoBuffer} objects.{html} |
+    | _[<errorGeneratingFilter>|#errorGeneratingFilter-element]_ | {html}An {@link IoFilter} implementation generating random bytes and PDU modification in
+your communication streams.
+It's quite simple to use :
+<code>ErrorGeneratingFilter egf = new ErrorGeneratingFilter();</code>
+For activate the change of some bytes in your {@link IoBuffer}, for a probability of 200 out
+of 1000 {@link IoBuffer} processed :
+<code>egf.setChangeByteProbability(200);</code>
+For activate the insertion of some bytes in your {@link IoBuffer}, for a
+probability of 200 out of 1000 :
+<code>egf.setInsertByteProbability(200);</code>
+And for the removing of some bytes :
+<code>egf.setRemoveByteProbability(200);</code>
+You can activate the error generation for write or read with the
+following methods :
+<code>egf.setManipulateReads(true);
+egf.setManipulateWrites(true); </code>{html} |
+    | _[<executorFilter>|#executorFilter-element]_ | {html}A filter that forwards I/O events to {@link Executor} to enforce a certain
+thread model while allowing the events per session to be processed
+simultaneously. You can apply various thread model by inserting this filter
+to a {@link IoFilterChain}.
+
+<h2>Life Cycle Management</h2>
+
+Please note that this filter doesn't manage the life cycle of the {@link Executor}.
+If you created this filter using {@link #ExecutorFilter(Executor)} or similar
+constructor that accepts an {@link Executor} that you've instantiated, you have
+full control and responsibility of managing its life cycle (e.g. calling
+{@link ExecutorService#shutdown()}.
+<p>
+If you created this filter using convenience constructors like
+{@link #ExecutorFilter(int)}, then you can shut down the executor by calling
+{@link #destroy()} explicitly.
+
+<h2>Event Ordering</h2>
+
+All convenience constructors of this filter creates a new
+{@link OrderedThreadPoolExecutor} instance. Therefore, the order of event is
+maintained like the following:
+<ul>
+<li>All event handler methods are called exclusively.
+(e.g. messageReceived and messageSent can't be invoked at the same time.)</li>
+<li>The event order is never mixed up.
+(e.g. messageReceived is always invoked before sessionClosed or messageSent.)</li>
+</ul>
+However, if you specified other {@link Executor} instance in the constructor,
+the order of events are not maintained at all. This means more than one event
+handler methods can be invoked at the same time with mixed order. For example,
+let's assume that messageReceived, messageSent, and sessionClosed events are
+fired.
+<ul>
+<li>All event handler methods can be called simultaneously.
+(e.g. messageReceived and messageSent can be invoked at the same time.)</li>
+<li>The event order can be mixed up.
+(e.g. sessionClosed or messageSent can be invoked before messageReceived
+is invoked.)</li>
+</ul>
+If you need to maintain the order of events per session, please specify an
+{@link OrderedThreadPoolExecutor} instance or use the convenience constructors.
+
+<h2>Selective Filtering</h2>
+
+By default, all event types but <tt>sessionCreated</tt>, <tt>filterWrite</tt>,
+<tt>filterClose</tt> and <tt>filterSetTrafficMask</tt> are submitted to the
+underlying executor, which is most common setting.
+<p>
+If you want to submit only a certain set of event types, you can specify them
+in the constructor. For example, you could configure a thread pool for
+write operation for the maximum performance:
+<pre><code>
+IoService service = ...;
+DefaultIoFilterChainBuilder chain = service.getFilterChain();
+
+chain.addLast("codec", new ProtocolCodecFilter(...));
+// Use one thread pool for most events.
+chain.addLast("executor1", new ExecutorFilter());
+// and another dedicated thread pool for 'filterWrite' events.
+chain.addLast("executor2", new ExecutorFilter(IoEventType.WRITE));
+</code></pre>
+
+<h2>Preventing {@link OutOfMemoryError}</h2>
+
+Please refer to {@link IoEventQueueThrottle}, which is specified as
+a parameter of the convenience constructors.{html} |
+    | _[<fileRegionWriteFilter>|#fileRegionWriteFilter-element]_ | {html}Filter implementation that converts a {@link FileRegion} to {@link IoBuffer}
+objects and writes those buffers to the next filter. When end of the
+{@code FileRegion} has been reached this filter will call
+{@link IoFilter.NextFilter#messageSent(IoSession,WriteRequest)} using the
+original {@link FileRegion} written to the session and notifies
+{@link org.apache.mina.core.future.WriteFuture} on the original
+{@link org.apache.mina.core.write.WriteRequest}.
+<p>Normall {@code FileRegion} objects should be handled by the
+{@link org.apache.mina.core.service.IoProcessor} but this is not always possible
+if a filter is being used that needs to modify the contents of the file
+before sending over the network (i.e. the
+{@link org.apache.mina.filter.ssl.SslFilter} or a data compression filter.)
+</p>
+<p> This filter will ignore written messages which aren't {@link FileRegion}
+instances. Such messages will be passed to the next filter directly.
+</p>
+<p><b>NOTE:</b> this filter does not close the file channel in
+{@link FileRegion#getFileChannel()} after the data from the file has been
+written. The {@code FileChannel} should be closed in either
+{@link org.apache.mina.core.service.IoHandler#messageSent(IoSession,Object)}
+or in an {@link org.apache.mina.core.future.IoFutureListener} associated with the
+{@code WriteFuture}.
+</p>{html} |
+    | _[<keepAliveFilter>|#keepAliveFilter-element]_ | {html}An {@link IoFilter} that sends a keep-alive request on
+{@link IoEventType#SESSION_IDLE} and sends back the response for the
+sent keep-alive request.
+
+<h2>Interference with {@link IoSessionConfig#setIdleTime(IdleStatus, int)}</h2>
+
+This filter adjusts <tt>idleTime</tt> of the {@link IdleStatus}s that
+this filter is interested in automatically (e.g. {@link IdleStatus#READER_IDLE}
+and {@link IdleStatus#WRITER_IDLE}.) Changing the <tt>idleTime</tt>
+of the {@link IdleStatus}s can lead this filter to a unexpected behavior.
+Please also note that any {@link IoFilter} and {@link IoHandler} behind
+{@link KeepAliveFilter} will not get any {@link IoEventType#SESSION_IDLE}
+event. To receive the internal {@link IoEventType#SESSION_IDLE} event,
+you can call {@link #setForwardEvent(boolean)} with <tt>true</tt>.
+
+<h2>Implementing {@link KeepAliveMessageFactory}</h2>
+
+To use this filter, you have to provide an implementation of
+{@link KeepAliveMessageFactory}, which determines a received or sent
+message is a keep-alive message or not and creates a new keep-alive
+message:
+
+<table border="1">
+<tr>
+<th>Name</th><th>Description</th><th>Implementation</th>
+</tr>
+<tr valign="top">
+<td>Active</td>
+<td>You want a keep-alive request is sent when the reader is idle.
+Once the request is sent, the response for the request should be
+received within <tt>keepAliveRequestTimeout</tt> seconds. Otherwise,
+the specified {@link KeepAliveRequestTimeoutHandler} will be invoked.
+If a keep-alive request is received, its response also should be sent back.
+</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return a non-<tt>null</tt>.</td>
+</tr>
+<tr valign="top">
+<td>Semi-active</td>
+<td>You want a keep-alive request to be sent when the reader is idle.
+However, you don't really care if the response is received or not.
+If a keep-alive request is received, its response should
+also be sent back.
+</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return a non-<tt>null</tt>, and the <tt>timeoutHandler</tt> property
+should be set to {@link KeepAliveRequestTimeoutHandler#NOOP},
+{@link KeepAliveRequestTimeoutHandler#LOG} or the custom {@link KeepAliveRequestTimeoutHandler}
+implementation that doesn't affect the session state nor throw an exception.
+</td>
+</tr>
+<tr valign="top">
+<td>Passive</td>
+<td>You don't want to send a keep-alive request by yourself, but the
+response should be sent back if a keep-alive request is received.</td>
+<td>{@link KeepAliveMessageFactory#getRequest(IoSession)} must return
+<tt>null</tt> and {@link KeepAliveMessageFactory#getResponse(IoSession, Object)}
+must return a non-<tt>null</tt>.</td>
+</tr>
+<tr valign="top">
+<td>Deaf Speaker</td>
+<td>You want a keep-alive request to be sent when the reader is idle, but
+you don't want to send any response back.</td>
+<td>{@link KeepAliveMessageFactory#getRequest(IoSession)} must return
+a non-<tt>null</tt>,
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return <tt>null</tt> and the <tt>timeoutHandler</tt> must be set to
+{@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}.</td>
+</tr>
+<tr valign="top">
+<td>Silent Listener</td>
+<td>You don't want to send a keep-alive request by yourself nor send any
+response back.</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return <tt>null</tt>.</td>
+</tr>
+</table>
+Please note that you must implement
+{@link KeepAliveMessageFactory#isRequest(IoSession, Object)} and
+{@link KeepAliveMessageFactory#isResponse(IoSession, Object)} properly
+whatever case you chose.
+
+<h2>Handling timeout</h2>
+
+{@link KeepAliveFilter} will notify its {@link KeepAliveRequestTimeoutHandler}
+when {@link KeepAliveFilter} didn't receive the response message for a sent
+keep-alive message. The default handler is {@link KeepAliveRequestTimeoutHandler#CLOSE},
+but you can use other presets such as {@link KeepAliveRequestTimeoutHandler#NOOP},
+{@link KeepAliveRequestTimeoutHandler#LOG} or {@link KeepAliveRequestTimeoutHandler#EXCEPTION}.
+You can even implement your own handler.
+
+<h3>Special handler: {@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}</h3>
+
+{@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER} is a special handler which is
+dedicated for the 'deaf speaker' mode mentioned above. Setting the
+<tt>timeoutHandler</tt> property to {@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}
+stops this filter from waiting for response messages and therefore disables
+response timeout detection.{html} |
+    | _[<loggingFilter>|#loggingFilter-element]_ | {html}Logs all MINA protocol events. Each event can be
+tuned to use a different level based on the user's specific requirements. Methods
+are in place that allow the user to use either the get or set method for each event
+and pass in the {@link IoEventType} and the {@link LogLevel}.
+
+By default, all events are logged to the {@link LogLevel#INFO} level except
+{@link IoFilterAdapter#exceptionCaught(IoFilter.NextFilter, IoSession, Throwable)},
+which is logged to {@link LogLevel#WARN}.{html} |
+    | _[<profilerTimerFilter>|#profilerTimerFilter-element]_ | {html}This class will measure the time it takes for a
+method in the {@link IoFilterAdapter} class to execute. The basic
+premise of the logic in this class is to get the current time
+at the beginning of the method, call method on nextFilter, and
+then get the current time again. An example of how to use
+the filter is:
+
+<pre>
+ProfilerTimerFilter profiler = new ProfilerTimerFilter(
+TimeUnit.MILLISECOND, IoEventType.MESSAGE_RECEIVED);
+chain.addFirst("Profiler", profiler);
+</pre>
+
+The profiled {@link IoEventType} are :
+<ul>
+<li>IoEventType.MESSAGE_RECEIVED</li>
+<li>IoEventType.MESSAGE_SENT</li>
+<li>IoEventType.SESSION_CREATED</li>
+<li>IoEventType.SESSION_OPENED</li>
+<li>IoEventType.SESSION_IDLE</li>
+<li>IoEventType.SESSION_CLOSED</li>
+</ul>{html} |
+    | _[<protocolCodecFilter>|#protocolCodecFilter-element]_ | {html}An {@link IoFilter} which translates binary or protocol specific data into
+message objects and vice versa using {@link ProtocolCodecFactory},
+{@link ProtocolEncoder}, or {@link ProtocolDecoder}.{html} |
+    | _[<referenceCountingFilter>|#referenceCountingFilter-element]_ | {html}An {@link IoFilter}s wrapper that keeps track of the number of usages of this filter and will call init/destroy
+when the filter is not in use.{html} |
+    | _[<requestResponseFilter>|#requestResponseFilter-element]_ | {html}TODO Add documentation{html} |
+    | _[<sessionAttributeInitializingFilter>|#sessionAttributeInitializingFilter-element]_ | {html}An {@link IoFilter} that sets initial attributes when a new
+{@link IoSession} is created. By default, the attribute map is empty when
+an {@link IoSession} is newly created. Inserting this filter will make
+the pre-configured attributes available after this filter executes the
+<tt>sessionCreated</tt> event.{html} |
+    | _[<sslFilter>|#sslFilter-element]_ | {html}An SSL filter that encrypts and decrypts the data exchanged in the session.
+Adding this filter triggers SSL handshake procedure immediately by sending
+a SSL 'hello' message, so you don't need to call
+{@link #startSsl(IoSession)} manually unless you are implementing StartTLS
+(see below). If you don't want the handshake procedure to start
+immediately, please specify {@code false} as {@code autoStart} parameter in
+the constructor.
+<p>
+This filter uses an {@link SSLEngine} which was introduced in Java 5, so
+Java version 5 or above is mandatory to use this filter. And please note that
+this filter only works for TCP/IP connections.
+<p>
+
+<h2>Implementing StartTLS</h2>
+<p>
+You can use {@link #DISABLE_ENCRYPTION_ONCE} attribute to implement StartTLS:
+<pre>
+public void messageReceived(IoSession session, Object message) {
+if (message instanceof MyStartTLSRequest) {
+// Insert SSLFilter to get ready for handshaking
+session.getFilterChain().addFirst(sslFilter);
+
+// Disable encryption temporarilly.
+// This attribute will be removed by SSLFilter
+// inside the Session.write() call below.
+session.setAttribute(SSLFilter.DISABLE_ENCRYPTION_ONCE, Boolean.TRUE);
+
+// Write StartTLSResponse which won't be encrypted.
+session.write(new MyStartTLSResponse(OK));
+
+// Now DISABLE_ENCRYPTION_ONCE attribute is cleared.
+assert session.getAttribute(SSLFilter.DISABLE_ENCRYPTION_ONCE) == null;
+}
+}
+</pre>{html} |
+    | _[<streamWriteFilter>|#streamWriteFilter-element]_ | {html}Filter implementation which makes it possible to write {@link InputStream}
+objects directly using {@link IoSession#write(Object)}. When an
+{@link InputStream} is written to a session this filter will read the bytes
+from the stream into {@link IoBuffer} objects and write those buffers
+to the next filter. When end of stream has been reached this filter will
+call {@link IoFilter.NextFilter#messageSent(IoSession,WriteRequest)} using the original
+{@link InputStream} written to the session and notifies
+{@link org.apache.mina.core.future.WriteFuture} on the
+original {@link org.apache.mina.core.write.WriteRequest}.
+<p/>
+This filter will ignore written messages which aren't {@link InputStream}
+instances. Such messages will be passed to the next filter directly.
+</p>
+<p/>
+NOTE: this filter does not close the stream after all data from stream
+has been written. The {@link org.apache.mina.core.service.IoHandler} should take
+care of that in its
+{@link org.apache.mina.core.service.IoHandler#messageSent(IoSession,Object)}
+callback.
+</p>{html} |
+
+
+{anchor:blacklistFilter-element}
+h3. The _[<blacklistFilter>|#blacklistFilter-element]_ Element
+    {html}A {@link IoFilter} which blocks connections from blacklisted remote
+address.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | blacklist | _java.lang.Iterable_ | {html}Sets the addresses to be blacklisted.
+
+NOTE: this call will remove any previously blacklisted addresses.{html} |
+    | subnetBlacklist | _java.lang.Iterable_ | {html}Sets the subnets to be blacklisted.
+
+NOTE: this call will remove any previously blacklisted subnets.{html} |
+
+{anchor:bufferedWriteFilter-element}
+h3. The _[<bufferedWriteFilter>|#bufferedWriteFilter-element]_ Element
+    {html}An {@link IoFilter} implementation used to buffer outgoing {@link WriteRequest} almost
+like what {@link BufferedOutputStream} does. Using this filter allows to be less dependent
+from network latency. It is also useful when a session is generating very small messages
+too frequently and consequently generating unnecessary traffic overhead.
+
+Please note that it should always be placed before the {@link ProtocolCodecFilter}
+as it only handles {@link WriteRequest}'s carrying {@link IoBuffer} objects.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | bufferSize | _int_ | {html}Returns buffer size.{html} |
+    | buffersMap | _org.apache.mina.util.LazyInitializedCacheMap_ | {html}the map to use for storing each session buffer{html} |
+
+{anchor:defaultIoFilterChainBuilder-element}
+h3. The _[<defaultIoFilterChainBuilder>|#defaultIoFilterChainBuilder-element]_ Element
+    {html}The default implementation of {@link IoFilterChainBuilder} which is useful
+in most cases. {@link DefaultIoFilterChainBuilder} has an identical interface
+with {@link IoFilter}; it contains a list of {@link IoFilter}s that you can
+modify. The {@link IoFilter}s which are added to this builder will be appended
+to the {@link IoFilterChain} when {@link #buildFilterChain(IoFilterChain)} is
+invoked.
+<p>
+However, the identical interface doesn't mean that it behaves in an exactly
+same way with {@link IoFilterChain}. {@link DefaultIoFilterChainBuilder}
+doesn't manage the life cycle of the {@link IoFilter}s at all, and the
+existing {@link IoSession}s won't get affected by the changes in this builder.
+{@link IoFilterChainBuilder}s affect only newly created {@link IoSession}s.
+
+<pre>
+IoAcceptor acceptor = ...;
+DefaultIoFilterChainBuilder builder = acceptor.getFilterChain();
+builder.addLast( "myFilter", new MyFilter() );
+...
+</pre>{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | filterChain | _[org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder|#org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder-types]_ | {html}{html} |
+    | filters | _java.util.Map_ | {html}Clears the current list of filters and adds the specified
+filter mapping to this builder. Please note that you must specify
+a {@link Map} implementation that iterates the filter mapping in the
+order of insertion such as {@link LinkedHashMap}. Otherwise, it will
+throw an {@link IllegalArgumentException}.{html} |
+
+{anchor:errorGeneratingFilter-element}
+h3. The _[<errorGeneratingFilter>|#errorGeneratingFilter-element]_ Element
+    {html}An {@link IoFilter} implementation generating random bytes and PDU modification in
+your communication streams.
+It's quite simple to use :
+<code>ErrorGeneratingFilter egf = new ErrorGeneratingFilter();</code>
+For activate the change of some bytes in your {@link IoBuffer}, for a probability of 200 out
+of 1000 {@link IoBuffer} processed :
+<code>egf.setChangeByteProbability(200);</code>
+For activate the insertion of some bytes in your {@link IoBuffer}, for a
+probability of 200 out of 1000 :
+<code>egf.setInsertByteProbability(200);</code>
+And for the removing of some bytes :
+<code>egf.setRemoveByteProbability(200);</code>
+You can activate the error generation for write or read with the
+following methods :
+<code>egf.setManipulateReads(true);
+egf.setManipulateWrites(true); </code>{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | changeByteProbability | _int_ | {html}Set the probability for the change byte error.
+If this probability is > 0 the filter will modify a random number of byte
+of the processed {@link IoBuffer}.{html} |
+    | duplicatePduProbability | _int_ | {html}not functional ATM{html} |
+    | insertByteProbability | _int_ | {html}Set the probability for the insert byte error.
+If this probability is > 0 the filter will insert a random number of byte
+in the processed {@link IoBuffer}.{html} |
+    | manipulateReads | _boolean_ | {html}Set to true if you want to apply error to the read {@link IoBuffer}{html} |
+    | manipulateWrites | _boolean_ | {html}Set to true if you want to apply error to the written {@link IoBuffer}{html} |
+    | maxInsertByte | _int_ | {html}Set the maximum number of byte the filter can insert in a {@link IoBuffer}.
+The default value is 10.{html} |
+    | removeByteProbability | _int_ | {html}Set the probability for the remove byte error.
+If this probability is > 0 the filter will remove a random number of byte
+in the processed {@link IoBuffer}.{html} |
+    | removePduProbability | _int_ | {html}not functional ATM{html} |
+    | resendPduLasterProbability | _int_ | {html}not functional ATM{html} |
+
+{anchor:executorFilter-element}
+h3. The _[<executorFilter>|#executorFilter-element]_ Element
+    {html}A filter that forwards I/O events to {@link Executor} to enforce a certain
+thread model while allowing the events per session to be processed
+simultaneously. You can apply various thread model by inserting this filter
+to a {@link IoFilterChain}.
+
+<h2>Life Cycle Management</h2>
+
+Please note that this filter doesn't manage the life cycle of the {@link Executor}.
+If you created this filter using {@link #ExecutorFilter(Executor)} or similar
+constructor that accepts an {@link Executor} that you've instantiated, you have
+full control and responsibility of managing its life cycle (e.g. calling
+{@link ExecutorService#shutdown()}.
+<p>
+If you created this filter using convenience constructors like
+{@link #ExecutorFilter(int)}, then you can shut down the executor by calling
+{@link #destroy()} explicitly.
+
+<h2>Event Ordering</h2>
+
+All convenience constructors of this filter creates a new
+{@link OrderedThreadPoolExecutor} instance. Therefore, the order of event is
+maintained like the following:
+<ul>
+<li>All event handler methods are called exclusively.
+(e.g. messageReceived and messageSent can't be invoked at the same time.)</li>
+<li>The event order is never mixed up.
+(e.g. messageReceived is always invoked before sessionClosed or messageSent.)</li>
+</ul>
+However, if you specified other {@link Executor} instance in the constructor,
+the order of events are not maintained at all. This means more than one event
+handler methods can be invoked at the same time with mixed order. For example,
+let's assume that messageReceived, messageSent, and sessionClosed events are
+fired.
+<ul>
+<li>All event handler methods can be called simultaneously.
+(e.g. messageReceived and messageSent can be invoked at the same time.)</li>
+<li>The event order can be mixed up.
+(e.g. sessionClosed or messageSent can be invoked before messageReceived
+is invoked.)</li>
+</ul>
+If you need to maintain the order of events per session, please specify an
+{@link OrderedThreadPoolExecutor} instance or use the convenience constructors.
+
+<h2>Selective Filtering</h2>
+
+By default, all event types but <tt>sessionCreated</tt>, <tt>filterWrite</tt>,
+<tt>filterClose</tt> and <tt>filterSetTrafficMask</tt> are submitted to the
+underlying executor, which is most common setting.
+<p>
+If you want to submit only a certain set of event types, you can specify them
+in the constructor. For example, you could configure a thread pool for
+write operation for the maximum performance:
+<pre><code>
+IoService service = ...;
+DefaultIoFilterChainBuilder chain = service.getFilterChain();
+
+chain.addLast("codec", new ProtocolCodecFilter(...));
+// Use one thread pool for most events.
+chain.addLast("executor1", new ExecutorFilter());
+// and another dedicated thread pool for 'filterWrite' events.
+chain.addLast("executor2", new ExecutorFilter(IoEventType.WRITE));
+</code></pre>
+
+<h2>Preventing {@link OutOfMemoryError}</h2>
+
+Please refer to {@link IoEventQueueThrottle}, which is specified as
+a parameter of the convenience constructors.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | corePoolSize | _int_ | {html}The initial pool size{html} |
+    | eventTypes | _org.apache.mina.core.session.IoEventType_ | {html}The event for which the executor will be used{html} |
+    | executor | _[java.util.concurrent.Executor|#java.util.concurrent.Executor-types]_ | {html}Returns the underlying {@link Executor} instance this filter uses.{html} |
+    | keepAliveTime | _long_ | {html}Default duration for a thread{html} |
+    | maximumPoolSize | _int_ | {html}The maximum pool size{html} |
+    | queueHandler | _org.apache.mina.filter.executor.IoEventQueueHandler_ | {html}The queue used to store events{html} |
+    | threadFactory | _java.util.concurrent.ThreadFactory_ | {html}The factory used to create threads{html} |
+    | unit | _java.util.concurrent.TimeUnit_ | {html}Time unit used for the keepAlive value{html} |
+
+{anchor:expiringSessionRecycler-element}
+h3. The _[<expiringSessionRecycler>|#expiringSessionRecycler-element]_ Element
+    {html}An {@link IoSessionRecycler} with sessions that time out on inactivity.
+
+TODO Document me.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | expirationInterval | _int_ | {html}{html} |
+    | timeToLive | _int_ | {html}{html} |
+
+{anchor:fileRegionWriteFilter-element}
+h3. The _[<fileRegionWriteFilter>|#fileRegionWriteFilter-element]_ Element
+    {html}Filter implementation that converts a {@link FileRegion} to {@link IoBuffer}
+objects and writes those buffers to the next filter. When end of the
+{@code FileRegion} has been reached this filter will call
+{@link IoFilter.NextFilter#messageSent(IoSession,WriteRequest)} using the
+original {@link FileRegion} written to the session and notifies
+{@link org.apache.mina.core.future.WriteFuture} on the original
+{@link org.apache.mina.core.write.WriteRequest}.
+<p>Normall {@code FileRegion} objects should be handled by the
+{@link org.apache.mina.core.service.IoProcessor} but this is not always possible
+if a filter is being used that needs to modify the contents of the file
+before sending over the network (i.e. the
+{@link org.apache.mina.filter.ssl.SslFilter} or a data compression filter.)
+</p>
+<p> This filter will ignore written messages which aren't {@link FileRegion}
+instances. Such messages will be passed to the next filter directly.
+</p>
+<p><b>NOTE:</b> this filter does not close the file channel in
+{@link FileRegion#getFileChannel()} after the data from the file has been
+written. The {@code FileChannel} should be closed in either
+{@link org.apache.mina.core.service.IoHandler#messageSent(IoSession,Object)}
+or in an {@link org.apache.mina.core.future.IoFutureListener} associated with the
+{@code WriteFuture}.
+</p>{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | writeBufferSize | _int_ | {html}Returns the size of the write buffer in bytes. Data will be read from the
+stream in chunks of this size and then written to the next filter.{html} |
+
+{anchor:keepAliveFilter-element}
+h3. The _[<keepAliveFilter>|#keepAliveFilter-element]_ Element
+    {html}An {@link IoFilter} that sends a keep-alive request on
+{@link IoEventType#SESSION_IDLE} and sends back the response for the
+sent keep-alive request.
+
+<h2>Interference with {@link IoSessionConfig#setIdleTime(IdleStatus, int)}</h2>
+
+This filter adjusts <tt>idleTime</tt> of the {@link IdleStatus}s that
+this filter is interested in automatically (e.g. {@link IdleStatus#READER_IDLE}
+and {@link IdleStatus#WRITER_IDLE}.) Changing the <tt>idleTime</tt>
+of the {@link IdleStatus}s can lead this filter to a unexpected behavior.
+Please also note that any {@link IoFilter} and {@link IoHandler} behind
+{@link KeepAliveFilter} will not get any {@link IoEventType#SESSION_IDLE}
+event. To receive the internal {@link IoEventType#SESSION_IDLE} event,
+you can call {@link #setForwardEvent(boolean)} with <tt>true</tt>.
+
+<h2>Implementing {@link KeepAliveMessageFactory}</h2>
+
+To use this filter, you have to provide an implementation of
+{@link KeepAliveMessageFactory}, which determines a received or sent
+message is a keep-alive message or not and creates a new keep-alive
+message:
+
+<table border="1">
+<tr>
+<th>Name</th><th>Description</th><th>Implementation</th>
+</tr>
+<tr valign="top">
+<td>Active</td>
+<td>You want a keep-alive request is sent when the reader is idle.
+Once the request is sent, the response for the request should be
+received within <tt>keepAliveRequestTimeout</tt> seconds. Otherwise,
+the specified {@link KeepAliveRequestTimeoutHandler} will be invoked.
+If a keep-alive request is received, its response also should be sent back.
+</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return a non-<tt>null</tt>.</td>
+</tr>
+<tr valign="top">
+<td>Semi-active</td>
+<td>You want a keep-alive request to be sent when the reader is idle.
+However, you don't really care if the response is received or not.
+If a keep-alive request is received, its response should
+also be sent back.
+</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return a non-<tt>null</tt>, and the <tt>timeoutHandler</tt> property
+should be set to {@link KeepAliveRequestTimeoutHandler#NOOP},
+{@link KeepAliveRequestTimeoutHandler#LOG} or the custom {@link KeepAliveRequestTimeoutHandler}
+implementation that doesn't affect the session state nor throw an exception.
+</td>
+</tr>
+<tr valign="top">
+<td>Passive</td>
+<td>You don't want to send a keep-alive request by yourself, but the
+response should be sent back if a keep-alive request is received.</td>
+<td>{@link KeepAliveMessageFactory#getRequest(IoSession)} must return
+<tt>null</tt> and {@link KeepAliveMessageFactory#getResponse(IoSession, Object)}
+must return a non-<tt>null</tt>.</td>
+</tr>
+<tr valign="top">
+<td>Deaf Speaker</td>
+<td>You want a keep-alive request to be sent when the reader is idle, but
+you don't want to send any response back.</td>
+<td>{@link KeepAliveMessageFactory#getRequest(IoSession)} must return
+a non-<tt>null</tt>,
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return <tt>null</tt> and the <tt>timeoutHandler</tt> must be set to
+{@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}.</td>
+</tr>
+<tr valign="top">
+<td>Silent Listener</td>
+<td>You don't want to send a keep-alive request by yourself nor send any
+response back.</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return <tt>null</tt>.</td>
+</tr>
+</table>
+Please note that you must implement
+{@link KeepAliveMessageFactory#isRequest(IoSession, Object)} and
+{@link KeepAliveMessageFactory#isResponse(IoSession, Object)} properly
+whatever case you chose.
+
+<h2>Handling timeout</h2>
+
+{@link KeepAliveFilter} will notify its {@link KeepAliveRequestTimeoutHandler}
+when {@link KeepAliveFilter} didn't receive the response message for a sent
+keep-alive message. The default handler is {@link KeepAliveRequestTimeoutHandler#CLOSE},
+but you can use other presets such as {@link KeepAliveRequestTimeoutHandler#NOOP},
+{@link KeepAliveRequestTimeoutHandler#LOG} or {@link KeepAliveRequestTimeoutHandler#EXCEPTION}.
+You can even implement your own handler.
+
+<h3>Special handler: {@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}</h3>
+
+{@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER} is a special handler which is
+dedicated for the 'deaf speaker' mode mentioned above. Setting the
+<tt>timeoutHandler</tt> property to {@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}
+stops this filter from waiting for response messages and therefore disables
+response timeout detection.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | forwardEvent | _boolean_ | {html}Returns <tt>true</tt> if and only if this filter forwards
+a {@link IoEventType#SESSION_IDLE} event to the next filter.
+By default, the value of this property is <tt>false</tt>.{html} |
+    | interestedIdleStatus | _org.apache.mina.core.session.IdleStatus_ | {html}{html} |
+    | keepAliveRequestInterval | _int_ | {html}{html} |
+    | keepAliveRequestTimeout | _int_ | {html}{html} |
+    | messageFactory | _org.apache.mina.filter.keepalive.KeepAliveMessageFactory_ | {html}{html} |
+    | policy | _org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler_ | {html}{html} |
+    | requestInterval | _int_ | {html}{html} |
+    | requestTimeout | _int_ | {html}{html} |
+    | requestTimeoutHandler | _org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler_ | {html}{html} |
+
+{anchor:loggingFilter-element}
+h3. The _[<loggingFilter>|#loggingFilter-element]_ Element
+    {html}Logs all MINA protocol events. Each event can be
+tuned to use a different level based on the user's specific requirements. Methods
+are in place that allow the user to use either the get or set method for each event
+and pass in the {@link IoEventType} and the {@link LogLevel}.
+
+By default, all events are logged to the {@link LogLevel#INFO} level except
+{@link IoFilterAdapter#exceptionCaught(IoFilter.NextFilter, IoSession, Throwable)},
+which is logged to {@link LogLevel#WARN}.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | clazz | _java.lang.Class_ | {html}the cass which name will be used to create the logger{html} |
+    | exceptionCaughtLogLevel | _org.apache.mina.filter.logging.LogLevel_ | {html}Get the LogLevel for the ExceptionCaught event.{html} |
+    | messageReceivedLogLevel | _org.apache.mina.filter.logging.LogLevel_ | {html}Get the LogLevel for the MessageReceived event.{html} |
+    | messageSentLogLevel | _org.apache.mina.filter.logging.LogLevel_ | {html}Get the LogLevel for the MessageSent event.{html} |
+    | name | _java.lang.String_ | {html}the name used to create the logger. If null, will default to "NoopFilter"{html} |
+    | sessionClosedLogLevel | _org.apache.mina.filter.logging.LogLevel_ | {html}Get the LogLevel for the SessionClosed event.{html} |
+    | sessionCreatedLogLevel | _org.apache.mina.filter.logging.LogLevel_ | {html}Get the LogLevel for the SessionCreated event.{html} |
+    | sessionIdleLogLevel | _org.apache.mina.filter.logging.LogLevel_ | {html}Get the LogLevel for the SessionIdle event.{html} |
+    | sessionOpenedLogLevel | _org.apache.mina.filter.logging.LogLevel_ | {html}Get the LogLevel for the SessionOpened event.{html} |
+
+{anchor:nioDatagramAcceptor-element}
+h3. The _[<nioDatagramAcceptor>|#nioDatagramAcceptor-element]_ Element
+    {html}{@link IoAcceptor} for datagram transport (UDP/IP).{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | closeOnDeactivation | _boolean_ | {html}{@inheritDoc}{html} |
+    | defaultLocalAddress | _java.net.InetSocketAddress_ | {html}{html} |
+    | defaultLocalAddresses | _java.lang.Iterable_ | {html}{@inheritDoc}{html} |
+    | executor | _[java.util.concurrent.Executor|#java.util.concurrent.Executor-types]_ | {html}{html} |
+    | filterChainBuilder | _[org.apache.mina.core.filterchain.IoFilterChainBuilder|#org.apache.mina.core.filterchain.IoFilterChainBuilder-types]_ | {html}{@inheritDoc}{html} |
+    | handler | _org.apache.mina.core.service.IoHandler_ | {html}{@inheritDoc}{html} |
+    | sessionDataStructureFactory | _org.apache.mina.core.session.IoSessionDataStructureFactory_ | {html}{@inheritDoc}{html} |
+    | sessionRecycler | _[org.apache.mina.core.session.IoSessionRecycler|#org.apache.mina.core.session.IoSessionRecycler-types]_ | {html}{html} |
+
+{anchor:orderedThreadPoolExecutor-element}
+h3. The _[<orderedThreadPoolExecutor>|#orderedThreadPoolExecutor-element]_ Element
+    {html}A {@link ThreadPoolExecutor} that maintains the order of {@link IoEvent}s.
+<p>
+If you don't need to maintain the order of events per session, please use
+{@link UnorderedThreadPoolExecutor}.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | corePoolSize | _int_ | {html}{@inheritDoc}{html} |
+    | eventQueueHandler | _org.apache.mina.filter.executor.IoEventQueueHandler_ | {html}The queue used to store events{html} |
+    | keepAliveTime | _long_ | {html}Default duration for a thread{html} |
+    | maximumPoolSize | _int_ | {html}{@inheritDoc}{html} |
+    | rejectedExecutionHandler | _java.util.concurrent.RejectedExecutionHandler_ | {html}{@inheritDoc}{html} |
+    | threadFactory | _java.util.concurrent.ThreadFactory_ | {html}{html} |
+    | unit | _java.util.concurrent.TimeUnit_ | {html}Time unit used for the keepAlive value{html} |
+
+{anchor:profilerTimerFilter-element}
+h3. The _[<profilerTimerFilter>|#profilerTimerFilter-element]_ Element
+    {html}This class will measure the time it takes for a
+method in the {@link IoFilterAdapter} class to execute. The basic
+premise of the logic in this class is to get the current time
+at the beginning of the method, call method on nextFilter, and
+then get the current time again. An example of how to use
+the filter is:
+
+<pre>
+ProfilerTimerFilter profiler = new ProfilerTimerFilter(
+TimeUnit.MILLISECOND, IoEventType.MESSAGE_RECEIVED);
+chain.addFirst("Profiler", profiler);
+</pre>
+
+The profiled {@link IoEventType} are :
+<ul>
+<li>IoEventType.MESSAGE_RECEIVED</li>
+<li>IoEventType.MESSAGE_SENT</li>
+<li>IoEventType.SESSION_CREATED</li>
+<li>IoEventType.SESSION_OPENED</li>
+<li>IoEventType.SESSION_IDLE</li>
+<li>IoEventType.SESSION_CLOSED</li>
+</ul>{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | eventTypes | _org.apache.mina.core.session.IoEventType_ | {html}A list of {@link IoEventType} representation of the methods to profile{html} |
+    | eventsToProfile | _org.apache.mina.core.session.IoEventType_ | {html}Return the set of {@link IoEventType} which are profiled.{html} |
+    | profilers | _org.apache.mina.core.session.IoEventType_ | {html}Create the profilers for a list of {@link IoEventType}.{html} |
+    | timeUnit | _java.util.concurrent.TimeUnit_ | {html}Sets the {@link TimeUnit} being used.{html} |
+
+{anchor:protocolCodecFilter-element}
+h3. The _[<protocolCodecFilter>|#protocolCodecFilter-element]_ Element
+    {html}An {@link IoFilter} which translates binary or protocol specific data into
+message objects and vice versa using {@link ProtocolCodecFactory},
+{@link ProtocolEncoder}, or {@link ProtocolDecoder}.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | decoder | _org.apache.mina.filter.codec.ProtocolDecoder_ | {html}The class responsible for decoding the message{html} |
+    | decoderClass | _java.lang.Class_ | {html}{html} |
+    | encoder | _org.apache.mina.filter.codec.ProtocolEncoder_ | {html}The class responsible for encoding the message{html} |
+    | encoderClass | _java.lang.Class_ | {html}{html} |
+    | factory | _org.apache.mina.filter.codec.ProtocolCodecFactory_ | {html}The associated factory{html} |
+
+{anchor:referenceCountingFilter-element}
+h3. The _[<referenceCountingFilter>|#referenceCountingFilter-element]_ Element
+    {html}An {@link IoFilter}s wrapper that keeps track of the number of usages of this filter and will call init/destroy
+when the filter is not in use.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | filter | _[org.apache.mina.core.filterchain.IoFilter|#org.apache.mina.core.filterchain.IoFilter-types]_ | {html}{html} |
+
+{anchor:requestResponseFilter-element}
+h3. The _[<requestResponseFilter>|#requestResponseFilter-element]_ Element
+    {html}TODO Add documentation{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | responseInspector | _org.apache.mina.filter.reqres.ResponseInspector_ | {html}{html} |
+    | responseInspectorFactory | _org.apache.mina.filter.reqres.ResponseInspectorFactory_ | {html}{html} |
+    | timeoutScheduler | _java.util.concurrent.ScheduledExecutorService_ | {html}{html} |
+
+{anchor:sessionAttributeInitializingFilter-element}
+h3. The _[<sessionAttributeInitializingFilter>|#sessionAttributeInitializingFilter-element]_ Element
+    {html}An {@link IoFilter} that sets initial attributes when a new
+{@link IoSession} is created. By default, the attribute map is empty when
+an {@link IoSession} is newly created. Inserting this filter will make
+the pre-configured attributes available after this filter executes the
+<tt>sessionCreated</tt> event.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | attribute | _java.lang.String_ | {html}Sets a user defined attribute without a value. This is useful when
+you just want to put a 'mark' attribute. Its value is set to
+{@link Boolean#TRUE}.{html} |
+    | attributes | _java.util.Map_ | {html}Sets the attribute map. The specified attributes are copied into the
+underlying map, so modifying the specified attributes parameter after
+the call won't change the internal state.{html} |
+
+{anchor:socketAddress-element}
+h3. The _[<socketAddress>|#socketAddress-element]_ Element
+    {html}Workaround for dealing with inability to annotate java docs of JDK
+socket address classes.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | value | _java.lang.String_ | {html}{html} |
+
+{anchor:sslFilter-element}
+h3. The _[<sslFilter>|#sslFilter-element]_ Element
+    {html}An SSL filter that encrypts and decrypts the data exchanged in the session.
+Adding this filter triggers SSL handshake procedure immediately by sending
+a SSL 'hello' message, so you don't need to call
+{@link #startSsl(IoSession)} manually unless you are implementing StartTLS
+(see below). If you don't want the handshake procedure to start
+immediately, please specify {@code false} as {@code autoStart} parameter in
+the constructor.
+<p>
+This filter uses an {@link SSLEngine} which was introduced in Java 5, so
+Java version 5 or above is mandatory to use this filter. And please note that
+this filter only works for TCP/IP connections.
+<p>
+
+<h2>Implementing StartTLS</h2>
+<p>
+You can use {@link #DISABLE_ENCRYPTION_ONCE} attribute to implement StartTLS:
+<pre>
+public void messageReceived(IoSession session, Object message) {
+if (message instanceof MyStartTLSRequest) {
+// Insert SSLFilter to get ready for handshaking
+session.getFilterChain().addFirst(sslFilter);
+
+// Disable encryption temporarilly.
+// This attribute will be removed by SSLFilter
+// inside the Session.write() call below.
+session.setAttribute(SSLFilter.DISABLE_ENCRYPTION_ONCE, Boolean.TRUE);
+
+// Write StartTLSResponse which won't be encrypted.
+session.write(new MyStartTLSResponse(OK));
+
+// Now DISABLE_ENCRYPTION_ONCE attribute is cleared.
+assert session.getAttribute(SSLFilter.DISABLE_ENCRYPTION_ONCE) == null;
+}
+}
+</pre>{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | autoStart | _boolean_ | {html}{html} |
+    | enabledCipherSuites | (_java.lang.String_)\* | {html}Returns the list of cipher suites to be enabled when {@link SSLEngine}
+is initialized.{html} |
+    | enabledProtocols | (_java.lang.String_)\* | {html}Returns the list of protocols to be enabled when {@link SSLEngine}
+is initialized.{html} |
+    | needClientAuth | _boolean_ | {html}Returns <tt>true</tt> if the engine will <em>require</em> client authentication.
+This option is only useful to engines in the server mode.{html} |
+    | sslContext | _javax.net.ssl.SSLContext_ | {html}{html} |
+    | useClientMode | _boolean_ | {html}Returns <tt>true</tt> if the engine is set to use client mode
+when handshaking.{html} |
+    | wantClientAuth | _boolean_ | {html}Returns <tt>true</tt> if the engine will <em>request</em> client authentication.
+This option is only useful to engines in the server mode.{html} |
+
+{anchor:standardThreadPool-element}
+h3. The _[<standardThreadPool>|#standardThreadPool-element]_ Element
+    {html}{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | maxThreads | _int_ | {html}{html} |
+
+{anchor:streamWriteFilter-element}
+h3. The _[<streamWriteFilter>|#streamWriteFilter-element]_ Element
+    {html}Filter implementation which makes it possible to write {@link InputStream}
+objects directly using {@link IoSession#write(Object)}. When an
+{@link InputStream} is written to a session this filter will read the bytes
+from the stream into {@link IoBuffer} objects and write those buffers
+to the next filter. When end of stream has been reached this filter will
+call {@link IoFilter.NextFilter#messageSent(IoSession,WriteRequest)} using the original
+{@link InputStream} written to the session and notifies
+{@link org.apache.mina.core.future.WriteFuture} on the
+original {@link org.apache.mina.core.write.WriteRequest}.
+<p/>
+This filter will ignore written messages which aren't {@link InputStream}
+instances. Such messages will be passed to the next filter directly.
+</p>
+<p/>
+NOTE: this filter does not close the stream after all data from stream
+has been written. The {@link org.apache.mina.core.service.IoHandler} should take
+care of that in its
+{@link org.apache.mina.core.service.IoHandler#messageSent(IoSession,Object)}
+callback.
+</p>{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | writeBufferSize | _int_ | {html}Returns the size of the write buffer in bytes. Data will be read from the
+stream in chunks of this size and then written to the next filter.{html} |
+
+{anchor:unorderedThreadPoolExecutor-element}
+h3. The _[<unorderedThreadPoolExecutor>|#unorderedThreadPoolExecutor-element]_ Element
+    {html}A {@link ThreadPoolExecutor} that does not maintain the order of {@link IoEvent}s.
+This means more than one event handler methods can be invoked at the same
+time with mixed order. For example, let's assume that messageReceived, messageSent,
+and sessionClosed events are fired.
+<ul>
+<li>All event handler methods can be called simultaneously.
+(e.g. messageReceived and messageSent can be invoked at the same time.)</li>
+<li>The event order can be mixed up.
+(e.g. sessionClosed or messageSent can be invoked before messageReceived
+is invoked.)</li>
+</ul>
+If you need to maintain the order of events per session, please use
+{@link OrderedThreadPoolExecutor}.{html}
+h4. Properties
+    || Property Name || Type || Description ||
+    | corePoolSize | _int_ | {html}{html} |
+    | keepAliveTime | _long_ | {html}{html} |
+    | maximumPoolSize | _int_ | {html}{html} |
+    | queueHandler | _org.apache.mina.filter.executor.IoEventQueueHandler_ | {html}{html} |
+    | rejectedExecutionHandler | _java.util.concurrent.RejectedExecutionHandler_ | {html}{html} |
+    | threadFactory | _java.util.concurrent.ThreadFactory_ | {html}{html} |
+    | unit | _java.util.concurrent.TimeUnit_ | {html}{html} |
+
+h3. Element Index
+    | _[<blacklistFilter>|#blacklistFilter-element]_ | {html}A {@link IoFilter} which blocks connections from blacklisted remote
+address.{html} |
+    | _[<bufferedWriteFilter>|#bufferedWriteFilter-element]_ | {html}An {@link IoFilter} implementation used to buffer outgoing {@link WriteRequest} almost
+like what {@link BufferedOutputStream} does. Using this filter allows to be less dependent
+from network latency. It is also useful when a session is generating very small messages
+too frequently and consequently generating unnecessary traffic overhead.
+
+Please note that it should always be placed before the {@link ProtocolCodecFilter}
+as it only handles {@link WriteRequest}'s carrying {@link IoBuffer} objects.{html} |
+    | _[<defaultIoFilterChainBuilder>|#defaultIoFilterChainBuilder-element]_ | {html}The default implementation of {@link IoFilterChainBuilder} which is useful
+in most cases. {@link DefaultIoFilterChainBuilder} has an identical interface
+with {@link IoFilter}; it contains a list of {@link IoFilter}s that you can
+modify. The {@link IoFilter}s which are added to this builder will be appended
+to the {@link IoFilterChain} when {@link #buildFilterChain(IoFilterChain)} is
+invoked.
+<p>
+However, the identical interface doesn't mean that it behaves in an exactly
+same way with {@link IoFilterChain}. {@link DefaultIoFilterChainBuilder}
+doesn't manage the life cycle of the {@link IoFilter}s at all, and the
+existing {@link IoSession}s won't get affected by the changes in this builder.
+{@link IoFilterChainBuilder}s affect only newly created {@link IoSession}s.
+
+<pre>
+IoAcceptor acceptor = ...;
+DefaultIoFilterChainBuilder builder = acceptor.getFilterChain();
+builder.addLast( "myFilter", new MyFilter() );
+...
+</pre>{html} |
+    | _[<errorGeneratingFilter>|#errorGeneratingFilter-element]_ | {html}An {@link IoFilter} implementation generating random bytes and PDU modification in
+your communication streams.
+It's quite simple to use :
+<code>ErrorGeneratingFilter egf = new ErrorGeneratingFilter();</code>
+For activate the change of some bytes in your {@link IoBuffer}, for a probability of 200 out
+of 1000 {@link IoBuffer} processed :
+<code>egf.setChangeByteProbability(200);</code>
+For activate the insertion of some bytes in your {@link IoBuffer}, for a
+probability of 200 out of 1000 :
+<code>egf.setInsertByteProbability(200);</code>
+And for the removing of some bytes :
+<code>egf.setRemoveByteProbability(200);</code>
+You can activate the error generation for write or read with the
+following methods :
+<code>egf.setManipulateReads(true);
+egf.setManipulateWrites(true); </code>{html} |
+    | _[<executorFilter>|#executorFilter-element]_ | {html}A filter that forwards I/O events to {@link Executor} to enforce a certain
+thread model while allowing the events per session to be processed
+simultaneously. You can apply various thread model by inserting this filter
+to a {@link IoFilterChain}.
+
+<h2>Life Cycle Management</h2>
+
+Please note that this filter doesn't manage the life cycle of the {@link Executor}.
+If you created this filter using {@link #ExecutorFilter(Executor)} or similar
+constructor that accepts an {@link Executor} that you've instantiated, you have
+full control and responsibility of managing its life cycle (e.g. calling
+{@link ExecutorService#shutdown()}.
+<p>
+If you created this filter using convenience constructors like
+{@link #ExecutorFilter(int)}, then you can shut down the executor by calling
+{@link #destroy()} explicitly.
+
+<h2>Event Ordering</h2>
+
+All convenience constructors of this filter creates a new
+{@link OrderedThreadPoolExecutor} instance. Therefore, the order of event is
+maintained like the following:
+<ul>
+<li>All event handler methods are called exclusively.
+(e.g. messageReceived and messageSent can't be invoked at the same time.)</li>
+<li>The event order is never mixed up.
+(e.g. messageReceived is always invoked before sessionClosed or messageSent.)</li>
+</ul>
+However, if you specified other {@link Executor} instance in the constructor,
+the order of events are not maintained at all. This means more than one event
+handler methods can be invoked at the same time with mixed order. For example,
+let's assume that messageReceived, messageSent, and sessionClosed events are
+fired.
+<ul>
+<li>All event handler methods can be called simultaneously.
+(e.g. messageReceived and messageSent can be invoked at the same time.)</li>
+<li>The event order can be mixed up.
+(e.g. sessionClosed or messageSent can be invoked before messageReceived
+is invoked.)</li>
+</ul>
+If you need to maintain the order of events per session, please specify an
+{@link OrderedThreadPoolExecutor} instance or use the convenience constructors.
+
+<h2>Selective Filtering</h2>
+
+By default, all event types but <tt>sessionCreated</tt>, <tt>filterWrite</tt>,
+<tt>filterClose</tt> and <tt>filterSetTrafficMask</tt> are submitted to the
+underlying executor, which is most common setting.
+<p>
+If you want to submit only a certain set of event types, you can specify them
+in the constructor. For example, you could configure a thread pool for
+write operation for the maximum performance:
+<pre><code>
+IoService service = ...;
+DefaultIoFilterChainBuilder chain = service.getFilterChain();
+
+chain.addLast("codec", new ProtocolCodecFilter(...));
+// Use one thread pool for most events.
+chain.addLast("executor1", new ExecutorFilter());
+// and another dedicated thread pool for 'filterWrite' events.
+chain.addLast("executor2", new ExecutorFilter(IoEventType.WRITE));
+</code></pre>
+
+<h2>Preventing {@link OutOfMemoryError}</h2>
+
+Please refer to {@link IoEventQueueThrottle}, which is specified as
+a parameter of the convenience constructors.{html} |
+    | _[<expiringSessionRecycler>|#expiringSessionRecycler-element]_ | {html}An {@link IoSessionRecycler} with sessions that time out on inactivity.
+
+TODO Document me.{html} |
+    | _[<fileRegionWriteFilter>|#fileRegionWriteFilter-element]_ | {html}Filter implementation that converts a {@link FileRegion} to {@link IoBuffer}
+objects and writes those buffers to the next filter. When end of the
+{@code FileRegion} has been reached this filter will call
+{@link IoFilter.NextFilter#messageSent(IoSession,WriteRequest)} using the
+original {@link FileRegion} written to the session and notifies
+{@link org.apache.mina.core.future.WriteFuture} on the original
+{@link org.apache.mina.core.write.WriteRequest}.
+<p>Normall {@code FileRegion} objects should be handled by the
+{@link org.apache.mina.core.service.IoProcessor} but this is not always possible
+if a filter is being used that needs to modify the contents of the file
+before sending over the network (i.e. the
+{@link org.apache.mina.filter.ssl.SslFilter} or a data compression filter.)
+</p>
+<p> This filter will ignore written messages which aren't {@link FileRegion}
+instances. Such messages will be passed to the next filter directly.
+</p>
+<p><b>NOTE:</b> this filter does not close the file channel in
+{@link FileRegion#getFileChannel()} after the data from the file has been
+written. The {@code FileChannel} should be closed in either
+{@link org.apache.mina.core.service.IoHandler#messageSent(IoSession,Object)}
+or in an {@link org.apache.mina.core.future.IoFutureListener} associated with the
+{@code WriteFuture}.
+</p>{html} |
+    | _[<keepAliveFilter>|#keepAliveFilter-element]_ | {html}An {@link IoFilter} that sends a keep-alive request on
+{@link IoEventType#SESSION_IDLE} and sends back the response for the
+sent keep-alive request.
+
+<h2>Interference with {@link IoSessionConfig#setIdleTime(IdleStatus, int)}</h2>
+
+This filter adjusts <tt>idleTime</tt> of the {@link IdleStatus}s that
+this filter is interested in automatically (e.g. {@link IdleStatus#READER_IDLE}
+and {@link IdleStatus#WRITER_IDLE}.) Changing the <tt>idleTime</tt>
+of the {@link IdleStatus}s can lead this filter to a unexpected behavior.
+Please also note that any {@link IoFilter} and {@link IoHandler} behind
+{@link KeepAliveFilter} will not get any {@link IoEventType#SESSION_IDLE}
+event. To receive the internal {@link IoEventType#SESSION_IDLE} event,
+you can call {@link #setForwardEvent(boolean)} with <tt>true</tt>.
+
+<h2>Implementing {@link KeepAliveMessageFactory}</h2>
+
+To use this filter, you have to provide an implementation of
+{@link KeepAliveMessageFactory}, which determines a received or sent
+message is a keep-alive message or not and creates a new keep-alive
+message:
+
+<table border="1">
+<tr>
+<th>Name</th><th>Description</th><th>Implementation</th>
+</tr>
+<tr valign="top">
+<td>Active</td>
+<td>You want a keep-alive request is sent when the reader is idle.
+Once the request is sent, the response for the request should be
+received within <tt>keepAliveRequestTimeout</tt> seconds. Otherwise,
+the specified {@link KeepAliveRequestTimeoutHandler} will be invoked.
+If a keep-alive request is received, its response also should be sent back.
+</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return a non-<tt>null</tt>.</td>
+</tr>
+<tr valign="top">
+<td>Semi-active</td>
+<td>You want a keep-alive request to be sent when the reader is idle.
+However, you don't really care if the response is received or not.
+If a keep-alive request is received, its response should
+also be sent back.
+</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return a non-<tt>null</tt>, and the <tt>timeoutHandler</tt> property
+should be set to {@link KeepAliveRequestTimeoutHandler#NOOP},
+{@link KeepAliveRequestTimeoutHandler#LOG} or the custom {@link KeepAliveRequestTimeoutHandler}
+implementation that doesn't affect the session state nor throw an exception.
+</td>
+</tr>
+<tr valign="top">
+<td>Passive</td>
+<td>You don't want to send a keep-alive request by yourself, but the
+response should be sent back if a keep-alive request is received.</td>
+<td>{@link KeepAliveMessageFactory#getRequest(IoSession)} must return
+<tt>null</tt> and {@link KeepAliveMessageFactory#getResponse(IoSession, Object)}
+must return a non-<tt>null</tt>.</td>
+</tr>
+<tr valign="top">
+<td>Deaf Speaker</td>
+<td>You want a keep-alive request to be sent when the reader is idle, but
+you don't want to send any response back.</td>
+<td>{@link KeepAliveMessageFactory#getRequest(IoSession)} must return
+a non-<tt>null</tt>,
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return <tt>null</tt> and the <tt>timeoutHandler</tt> must be set to
+{@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}.</td>
+</tr>
+<tr valign="top">
+<td>Silent Listener</td>
+<td>You don't want to send a keep-alive request by yourself nor send any
+response back.</td>
+<td>Both {@link KeepAliveMessageFactory#getRequest(IoSession)} and
+{@link KeepAliveMessageFactory#getResponse(IoSession, Object)} must
+return <tt>null</tt>.</td>
+</tr>
+</table>
+Please note that you must implement
+{@link KeepAliveMessageFactory#isRequest(IoSession, Object)} and
+{@link KeepAliveMessageFactory#isResponse(IoSession, Object)} properly
+whatever case you chose.
+
+<h2>Handling timeout</h2>
+
+{@link KeepAliveFilter} will notify its {@link KeepAliveRequestTimeoutHandler}
+when {@link KeepAliveFilter} didn't receive the response message for a sent
+keep-alive message. The default handler is {@link KeepAliveRequestTimeoutHandler#CLOSE},
+but you can use other presets such as {@link KeepAliveRequestTimeoutHandler#NOOP},
+{@link KeepAliveRequestTimeoutHandler#LOG} or {@link KeepAliveRequestTimeoutHandler#EXCEPTION}.
+You can even implement your own handler.
+
+<h3>Special handler: {@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}</h3>
+
+{@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER} is a special handler which is
+dedicated for the 'deaf speaker' mode mentioned above. Setting the
+<tt>timeoutHandler</tt> property to {@link KeepAliveRequestTimeoutHandler#DEAF_SPEAKER}
+stops this filter from waiting for response messages and therefore disables
+response timeout detection.{html} |
+    | _[<loggingFilter>|#loggingFilter-element]_ | {html}Logs all MINA protocol events. Each event can be
+tuned to use a different level based on the user's specific requirements. Methods
+are in place that allow the user to use either the get or set method for each event
+and pass in the {@link IoEventType} and the {@link LogLevel}.
+
+By default, all events are logged to the {@link LogLevel#INFO} level except
+{@link IoFilterAdapter#exceptionCaught(IoFilter.NextFilter, IoSession, Throwable)},
+which is logged to {@link LogLevel#WARN}.{html} |
+    | _[<nioDatagramAcceptor>|#nioDatagramAcceptor-element]_ | {html}{@link IoAcceptor} for datagram transport (UDP/IP).{html} |
+    | _[<orderedThreadPoolExecutor>|#orderedThreadPoolExecutor-element]_ | {html}A {@link ThreadPoolExecutor} that maintains the order of {@link IoEvent}s.
+<p>
+If you don't need to maintain the order of events per session, please use
+{@link UnorderedThreadPoolExecutor}.{html} |
+    | _[<profilerTimerFilter>|#profilerTimerFilter-element]_ | {html}This class will measure the time it takes for a
+method in the {@link IoFilterAdapter} class to execute. The basic
+premise of the logic in this class is to get the current time
+at the beginning of the method, call method on nextFilter, and
+then get the current time again. An example of how to use
+the filter is:
+
+<pre>
+ProfilerTimerFilter profiler = new ProfilerTimerFilter(
+TimeUnit.MILLISECOND, IoEventType.MESSAGE_RECEIVED);
+chain.addFirst("Profiler", profiler);
+</pre>
+
+The profiled {@link IoEventType} are :
+<ul>
+<li>IoEventType.MESSAGE_RECEIVED</li>
+<li>IoEventType.MESSAGE_SENT</li>
+<li>IoEventType.SESSION_CREATED</li>
+<li>IoEventType.SESSION_OPENED</li>
+<li>IoEventType.SESSION_IDLE</li>
+<li>IoEventType.SESSION_CLOSED</li>
+</ul>{html} |
+    | _[<protocolCodecFilter>|#protocolCodecFilter-element]_ | {html}An {@link IoFilter} which translates binary or protocol specific data into
+message objects and vice versa using {@link ProtocolCodecFactory},
+{@link ProtocolEncoder}, or {@link ProtocolDecoder}.{html} |
+    | _[<referenceCountingFilter>|#referenceCountingFilter-element]_ | {html}An {@link IoFilter}s wrapper that keeps track of the number of usages of this filter and will call init/destroy
+when the filter is not in use.{html} |
+    | _[<requestResponseFilter>|#requestResponseFilter-element]_ | {html}TODO Add documentation{html} |
+    | _[<sessionAttributeInitializingFilter>|#sessionAttributeInitializingFilter-element]_ | {html}An {@link IoFilter} that sets initial attributes when a new
+{@link IoSession} is created. By default, the attribute map is empty when
+an {@link IoSession} is newly created. Inserting this filter will make
+the pre-configured attributes available after this filter executes the
+<tt>sessionCreated</tt> event.{html} |
+    | _[<socketAddress>|#socketAddress-element]_ | {html}Workaround for dealing with inability to annotate java docs of JDK
+socket address classes.{html} |
+    | _[<sslFilter>|#sslFilter-element]_ | {html}An SSL filter that encrypts and decrypts the data exchanged in the session.
+Adding this filter triggers SSL handshake procedure immediately by sending
+a SSL 'hello' message, so you don't need to call
+{@link #startSsl(IoSession)} manually unless you are implementing StartTLS
+(see below). If you don't want the handshake procedure to start
+immediately, please specify {@code false} as {@code autoStart} parameter in
+the constructor.
+<p>
+This filter uses an {@link SSLEngine} which was introduced in Java 5, so
+Java version 5 or above is mandatory to use this filter. And please note that
+this filter only works for TCP/IP connections.
+<p>
+
+<h2>Implementing StartTLS</h2>
+<p>
+You can use {@link #DISABLE_ENCRYPTION_ONCE} attribute to implement StartTLS:
+<pre>
+public void messageReceived(IoSession session, Object message) {
+if (message instanceof MyStartTLSRequest) {
+// Insert SSLFilter to get ready for handshaking
+session.getFilterChain().addFirst(sslFilter);
+
+// Disable encryption temporarilly.
+// This attribute will be removed by SSLFilter
+// inside the Session.write() call below.
+session.setAttribute(SSLFilter.DISABLE_ENCRYPTION_ONCE, Boolean.TRUE);
+
+// Write StartTLSResponse which won't be encrypted.
+session.write(new MyStartTLSResponse(OK));
+
+// Now DISABLE_ENCRYPTION_ONCE attribute is cleared.
+assert session.getAttribute(SSLFilter.DISABLE_ENCRYPTION_ONCE) == null;
+}
+}
+</pre>{html} |
+    | _[<standardThreadPool>|#standardThreadPool-element]_ | {html}{html} |
+    | _[<streamWriteFilter>|#streamWriteFilter-element]_ | {html}Filter implementation which makes it possible to write {@link InputStream}
+objects directly using {@link IoSession#write(Object)}. When an
+{@link InputStream} is written to a session this filter will read the bytes
+from the stream into {@link IoBuffer} objects and write those buffers
+to the next filter. When end of stream has been reached this filter will
+call {@link IoFilter.NextFilter#messageSent(IoSession,WriteRequest)} using the original
+{@link InputStream} written to the session and notifies
+{@link org.apache.mina.core.future.WriteFuture} on the
+original {@link org.apache.mina.core.write.WriteRequest}.
+<p/>
+This filter will ignore written messages which aren't {@link InputStream}
+instances. Such messages will be passed to the next filter directly.
+</p>
+<p/>
+NOTE: this filter does not close the stream after all data from stream
+has been written. The {@link org.apache.mina.core.service.IoHandler} should take
+care of that in its
+{@link org.apache.mina.core.service.IoHandler#messageSent(IoSession,Object)}
+callback.
+</p>{html} |
+    | _[<unorderedThreadPoolExecutor>|#unorderedThreadPoolExecutor-element]_ | {html}A {@link ThreadPoolExecutor} that does not maintain the order of {@link IoEvent}s.
+This means more than one event handler methods can be invoked at the same
+time with mixed order. For example, let's assume that messageReceived, messageSent,
+and sessionClosed events are fired.
+<ul>
+<li>All event handler methods can be called simultaneously.
+(e.g. messageReceived and messageSent can be invoked at the same time.)</li>
+<li>The event order can be mixed up.
+(e.g. sessionClosed or messageSent can be invoked before messageReceived
+is invoked.)</li>
+</ul>
+If you need to maintain the order of events per session, please use
+{@link OrderedThreadPoolExecutor}.{html} |
+

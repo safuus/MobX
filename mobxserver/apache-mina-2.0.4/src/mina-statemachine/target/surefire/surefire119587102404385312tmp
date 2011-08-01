@@ -1,0 +1,35 @@
+#surefire
+#Sun Jul 31 18:28:29 PDT 2011
+testClassesDirectory=/Users/wallacepeng/dev/MobX/mobxserver/apache-mina-2.0.4/src/mina-statemachine/target/test-classes
+classPathUrl.4=/Users/wallacepeng/.m2/repository/com/agical/rmock/rmock/2.0.2/rmock-2.0.2.jar
+classPathUrl.3=/Users/wallacepeng/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar
+classPathUrl.2=/Users/wallacepeng/dev/MobX/mobxserver/apache-mina-2.0.4/src/mina-core/target/mina-core-2.0.4.jar
+useManifestOnlyJar=true
+classPathUrl.1=/Users/wallacepeng/dev/MobX/mobxserver/apache-mina-2.0.4/src/mina-statemachine/target/classes
+reportsDirectory=/Users/wallacepeng/dev/MobX/mobxserver/apache-mina-2.0.4/src/mina-statemachine/target/surefire-reports
+classPathUrl.0=/Users/wallacepeng/dev/MobX/mobxserver/apache-mina-2.0.4/src/mina-statemachine/target/test-classes
+dirscanner.0=directoryScannerOptions
+providerConfiguration=org.apache.maven.surefire.junit4.JUnit4Provider
+testSuiteDefinitionTestSourceDirectory=/Users/wallacepeng/dev/MobX/mobxserver/apache-mina-2.0.4/src/mina-statemachine/src/test/java
+surefireClassPathUrl.1=/Users/wallacepeng/.m2/repository/org/apache/maven/surefire/surefire-api/2.7.1/surefire-api-2.7.1.jar
+surefireClassPathUrl.0=/Users/wallacepeng/.m2/repository/org/apache/maven/surefire/surefire-junit4/2.7.1/surefire-junit4-2.7.1.jar
+report.2=org.apache.maven.surefire.report.XMLReporter
+useSystemClassLoader=true
+report.1=org.apache.maven.surefire.report.BriefFileReporter
+excludes1=**/*RegressionTest*
+report.0=org.apache.maven.surefire.report.ForkingConsoleReporter
+excludes0=**/Abstract*
+isTrimStackTrace=true
+dirscanner.0.params=/Users/wallacepeng/dev/MobX/mobxserver/apache-mina-2.0.4/src/mina-statemachine/target/test-classes|[**/Test*.java, **/*Test.java, **/*TestCase.java]|[**/Abstract*, **/*RegressionTest*]
+includes2=**/*TestCase.java
+enableAssertions=true
+includes1=**/*Test.java
+failIfNoTests=false
+includes0=**/Test*.java
+dirscanner.0.types=java.io.File|java.util.ArrayList|java.util.ArrayList
+classPathUrl.9=/Users/wallacepeng/.m2/repository/junit/junit/4.8.2/junit-4.8.2.jar
+classPathUrl.8=/Users/wallacepeng/.m2/repository/log4j/log4j/1.2.16/log4j-1.2.16.jar
+classPathUrl.7=/Users/wallacepeng/.m2/repository/org/slf4j/slf4j-log4j12/1.6.1/slf4j-log4j12-1.6.1.jar
+childDelegation=false
+classPathUrl.6=/Users/wallacepeng/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar
+classPathUrl.5=/Users/wallacepeng/.m2/repository/cglib/cglib-nodep/2.1_2/cglib-nodep-2.1_2.jar
