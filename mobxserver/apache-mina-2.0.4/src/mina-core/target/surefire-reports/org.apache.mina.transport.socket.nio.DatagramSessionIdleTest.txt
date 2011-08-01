@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.apache.mina.transport.socket.nio.DatagramSessionIdleTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.042 sec
