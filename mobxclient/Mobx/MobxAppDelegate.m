@@ -8,7 +8,7 @@
 
 #import "MobxAppDelegate.h"
 #import "MobxRootTabBarController.h"
-#import "GCDAsyncSocket.h"
+#import "AsyncSocket.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 
@@ -245,7 +245,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark Socket Delegate
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+- (void)socket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
 {
 	DDLogInfo(@"socket:%p didConnectToHost:%@ port:%hu", sock, host, port);
 	
@@ -269,23 +269,20 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSString *requestStr = [NSString stringWithFormat:@"%@ %@\r\n", @"GetUser", uid];
 	NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     [self.asyncSocket writeData:requestData withTimeout:-1.0 tag:0];
-    // TODO: Bug it only sends data when readData
-    NSData *responseTerminatorData = [@"\r\n" dataUsingEncoding:NSASCIIStringEncoding];
-	[self.asyncSocket readDataToData:responseTerminatorData withTimeout:-1.0 tag:0];
 }
 
-- (void)socketDidSecure:(GCDAsyncSocket *)sock
+- (void)socketDidSecure:(AsyncSocket *)sock
 {
 	DDLogInfo(@"socketDidSecure:%p", sock);
 	//self.viewController.label.text = @"Connected + Secure";
 }
 
-- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
+- (void)socket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
 	DDLogInfo(@"socket:%p didWriteDataWithTag:%d", sock, tag);
 }
 
-- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+- (void)socket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
 	DDLogInfo(@"socket:%p didReadData:withTag:%d", sock, tag);
 	
@@ -296,7 +293,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	[httpResponse release];
 }
 
-- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
+- (void)socketDidDisconnect:(AsyncSocket *)sock withError:(NSError *)err
 {
 	DDLogInfo(@"socketDidDisconnect:%p withError: %@", sock, err);
 	//self.viewController.label.text = @"Disconnected";
