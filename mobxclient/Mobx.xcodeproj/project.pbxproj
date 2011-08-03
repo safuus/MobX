@@ -17,6 +17,13 @@
 		7F52ACBE13D3BE5E00686761 /* CategoryListViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F52ACBD13D3BE5E00686761 /* CategoryListViewHandler.m */; };
 		7F64B0CB13DA8FD5009F6B18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F64B0CA13DA8FD5009F6B18 /* Settings.bundle */; };
 		7F8C41E813DA967F007297E4 /* AllConfigsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8C41E713DA967F007297E4 /* AllConfigsViewController.m */; };
+		7F94F7C513E91CB500884508 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7C413E91CB500884508 /* GCDAsyncSocket.m */; };
+		7F94F7C713E91CD300884508 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F94F7C613E91CD300884508 /* CFNetwork.framework */; };
+		7F94F7D313E91F7F00884508 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7CA13E91F7F00884508 /* DDAbstractDatabaseLogger.m */; };
+		7F94F7D413E91F7F00884508 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7CC13E91F7F00884508 /* DDASLLogger.m */; };
+		7F94F7D513E91F7F00884508 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7CE13E91F7F00884508 /* DDFileLogger.m */; };
+		7F94F7D613E91F7F00884508 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7D013E91F7F00884508 /* DDLog.m */; };
+		7F94F7D713E91F7F00884508 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7D213E91F7F00884508 /* DDTTYLogger.m */; };
 		7FA567A713D939D100C75C31 /* MobxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA567A613D939D100C75C31 /* MobxCell.m */; };
 		7FA567D913D9415200C75C31 /* ChatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA567D813D9415200C75C31 /* ChatsTableViewController.m */; };
 		7FA567DC13D9475100C75C31 /* IndividualSubViewBasedMobxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA567DB13D9475100C75C31 /* IndividualSubViewBasedMobxCell.m */; };
@@ -99,6 +106,19 @@
 		7F64B0CA13DA8FD5009F6B18 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		7F8C41E613DA967F007297E4 /* AllConfigsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllConfigsViewController.h; sourceTree = "<group>"; };
 		7F8C41E713DA967F007297E4 /* AllConfigsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllConfigsViewController.m; sourceTree = "<group>"; };
+		7F94F7C313E91CB500884508 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = GCDSocket/GCDAsyncSocket.h; sourceTree = "<group>"; };
+		7F94F7C413E91CB500884508 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = GCDSocket/GCDAsyncSocket.m; sourceTree = "<group>"; };
+		7F94F7C613E91CD300884508 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7F94F7C913E91F7F00884508 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = CocoaLumberjack/DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		7F94F7CA13E91F7F00884508 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = CocoaLumberjack/DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		7F94F7CB13E91F7F00884508 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDASLLogger.h; path = CocoaLumberjack/DDASLLogger.h; sourceTree = "<group>"; };
+		7F94F7CC13E91F7F00884508 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDASLLogger.m; path = CocoaLumberjack/DDASLLogger.m; sourceTree = "<group>"; };
+		7F94F7CD13E91F7F00884508 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDFileLogger.h; path = CocoaLumberjack/DDFileLogger.h; sourceTree = "<group>"; };
+		7F94F7CE13E91F7F00884508 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDFileLogger.m; path = CocoaLumberjack/DDFileLogger.m; sourceTree = "<group>"; };
+		7F94F7CF13E91F7F00884508 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDLog.h; path = CocoaLumberjack/DDLog.h; sourceTree = "<group>"; };
+		7F94F7D013E91F7F00884508 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDLog.m; path = CocoaLumberjack/DDLog.m; sourceTree = "<group>"; };
+		7F94F7D113E91F7F00884508 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDTTYLogger.h; path = CocoaLumberjack/DDTTYLogger.h; sourceTree = "<group>"; };
+		7F94F7D213E91F7F00884508 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = CocoaLumberjack/DDTTYLogger.m; sourceTree = "<group>"; };
 		7FA567A513D939D100C75C31 /* MobxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxCell.h; sourceTree = "<group>"; };
 		7FA567A613D939D100C75C31 /* MobxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxCell.m; sourceTree = "<group>"; };
 		7FA567D713D9415200C75C31 /* ChatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsTableViewController.h; sourceTree = "<group>"; };
@@ -194,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F94F7C713E91CD300884508 /* CFNetwork.framework in Frameworks */,
 				7F23398213DD42EE0092F4AA /* CoreData.framework in Frameworks */,
 				7FB231A413DBFF7300CFDB91 /* MessageUI.framework in Frameworks */,
 				7FBDF55713D361C4008627AF /* UIKit.framework in Frameworks */,
@@ -269,6 +290,32 @@
 				7F8C41E713DA967F007297E4 /* AllConfigsViewController.m */,
 			);
 			name = "Settings View";
+			sourceTree = "<group>";
+		};
+		7F94F7C113E91C9F00884508 /* GCDSocket */ = {
+			isa = PBXGroup;
+			children = (
+				7F94F7C313E91CB500884508 /* GCDAsyncSocket.h */,
+				7F94F7C413E91CB500884508 /* GCDAsyncSocket.m */,
+			);
+			name = GCDSocket;
+			sourceTree = "<group>";
+		};
+		7F94F7C813E91F7000884508 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				7F94F7C913E91F7F00884508 /* DDAbstractDatabaseLogger.h */,
+				7F94F7CA13E91F7F00884508 /* DDAbstractDatabaseLogger.m */,
+				7F94F7CB13E91F7F00884508 /* DDASLLogger.h */,
+				7F94F7CC13E91F7F00884508 /* DDASLLogger.m */,
+				7F94F7CD13E91F7F00884508 /* DDFileLogger.h */,
+				7F94F7CE13E91F7F00884508 /* DDFileLogger.m */,
+				7F94F7CF13E91F7F00884508 /* DDLog.h */,
+				7F94F7D013E91F7F00884508 /* DDLog.m */,
+				7F94F7D113E91F7F00884508 /* DDTTYLogger.h */,
+				7F94F7D213E91F7F00884508 /* DDTTYLogger.m */,
+			);
+			name = Logging;
 			sourceTree = "<group>";
 		};
 		7FA5679B13D9396100C75C31 /* Chats View */ = {
@@ -416,6 +463,7 @@
 		7FBDF55513D361C4008627AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F94F7C613E91CD300884508 /* CFNetwork.framework */,
 				7F23398113DD42EE0092F4AA /* CoreData.framework */,
 				7FB231A313DBFF7300CFDB91 /* MessageUI.framework */,
 				7FBDF55613D361C4008627AF /* UIKit.framework */,
@@ -428,6 +476,8 @@
 		7FBDF55C13D361C4008627AF /* Mobx */ = {
 			isa = PBXGroup;
 			children = (
+				7F94F7C813E91F7000884508 /* Logging */,
+				7F94F7C113E91C9F00884508 /* GCDSocket */,
 				7F23394913DCBDD60092F4AA /* Data Models */,
 				7FB2316513DBFE5000CFDB91 /* InAppSettingsKit */,
 				7F09092513D5591D00AEB66A /* Common */,
@@ -595,6 +645,12 @@
 				7F23394013DC87770092F4AA /* CompositeSubviewBasedMobxCell.m in Sources */,
 				7F23398013DD42450092F4AA /* MobxModel.xcdatamodeld in Sources */,
 				7F23398513DD47300092F4AA /* MobxRootTabBarController.m in Sources */,
+				7F94F7C513E91CB500884508 /* GCDAsyncSocket.m in Sources */,
+				7F94F7D313E91F7F00884508 /* DDAbstractDatabaseLogger.m in Sources */,
+				7F94F7D413E91F7F00884508 /* DDASLLogger.m in Sources */,
+				7F94F7D513E91F7F00884508 /* DDFileLogger.m in Sources */,
+				7F94F7D613E91F7F00884508 /* DDLog.m in Sources */,
+				7F94F7D713E91F7F00884508 /* DDTTYLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +700,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

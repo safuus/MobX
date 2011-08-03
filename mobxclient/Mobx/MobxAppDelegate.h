@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCDAsyncSocket.h"
 
-@interface MobxAppDelegate : NSObject <UIApplicationDelegate>
+@interface MobxAppDelegate : NSObject <UIApplicationDelegate> {
+    GCDAsyncSocket *asyncSocket;
+}
 
+@property (nonatomic, retain) GCDAsyncSocket *asyncSocket;
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;

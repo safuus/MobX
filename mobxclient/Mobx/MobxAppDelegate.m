@@ -8,11 +8,15 @@
 
 #import "MobxAppDelegate.h"
 #import "MobxRootTabBarController.h"
+#import "GCDAsyncSocket.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 @implementation MobxAppDelegate
 
 
 @synthesize window=_window;
+@synthesize asyncSocket;
 
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
@@ -20,8 +24,47 @@
 
 @synthesize tabBarController=_tabBarController;
 
+// Log levels: off, error, warn, info, verbose // we need override this later!
+static const int ddLogLevel = LOG_LEVEL_INFO;
+
+/*
+ it checks if the server has this iPhone's UDID, if not it creates the user in the server side
+ */
+- (void) createUserProfileAndLogin {
+    // Setup our socket (GCDAsyncSocket).
+	// The socket will invoke our delegate methods using the usual delegate paradigm.
+	// However, it will invoke the delegate methods on a specified GCD delegate dispatch queue.
+	// 
+	// Now we can configure the delegate dispatch queue however we want.
+	// We could use a dedicated dispatch queue for easy parallelization.
+	// Or we could simply use the dispatch queue for the main thread.
+	// 
+	// The best approach for your application will depend upon convenience, requirements and performance.
+	// 
+	// For this simple example, we're just going to use the main thread.
+	
+	dispatch_queue_t mainQueue = dispatch_get_main_queue();
+	
+	self.asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:mainQueue];
+    
+    // TODO: config the host and port! dont use localhost or 127.0.0.1
+    NSString *host = @"192.168.1.14";
+    uint16_t port = 9088;
+    
+    DDLogInfo(@"Connecting to \"%@\" on port %hu...", host, port);
+    
+    NSError *error = nil;
+    if (![self.asyncSocket connectToHost:host onPort:port error:&error])
+    {
+        DDLogError(@"Error connecting: %@", error);
+    }
+    
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self createUserProfileAndLogin];
+    
     // Override point for customization after application launch.
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;
@@ -73,6 +116,7 @@
 
 - (void)dealloc
 {
+    [self.asyncSocket release];
     [_window release];
     [_tabBarController release];
     [super dealloc];
@@ -195,6 +239,67 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Socket Delegate
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+{
+	DDLogInfo(@"socket:%p didConnectToHost:%@ port:%hu", sock, host, port);
+	
+    // Connected to normal server
+		
+#if ENABLE_BACKGROUNDING && !TARGET_IPHONE_SIMULATOR
+		{
+			// Backgrounding doesn't seem to be supported on the simulator yet
+			
+			[sock performBlock:^{
+				if ([sock enableBackgroundingOnSocket])
+					DDLogInfo(@"Enabled backgrounding on socket");
+				else
+					DDLogWarn(@"Enabling backgrounding failed!");
+			}];
+		}
+#endif
+	
+    // check if the current iPhone has been registered.
+    NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
+    NSString *requestStr = [NSString stringWithFormat:@"%@ %@\r\n", @"GetUser", uid];
+	NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [self.asyncSocket writeData:requestData withTimeout:-1.0 tag:0];
+    // TODO: Bug it only sends data when readData
+    NSData *responseTerminatorData = [@"\r\n" dataUsingEncoding:NSASCIIStringEncoding];
+	[self.asyncSocket readDataToData:responseTerminatorData withTimeout:-1.0 tag:0];
+}
+
+- (void)socketDidSecure:(GCDAsyncSocket *)sock
+{
+	DDLogInfo(@"socketDidSecure:%p", sock);
+	//self.viewController.label.text = @"Connected + Secure";
+}
+
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+	DDLogInfo(@"socket:%p didWriteDataWithTag:%d", sock, tag);
+}
+
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+	DDLogInfo(@"socket:%p didReadData:withTag:%d", sock, tag);
+	
+	NSString *httpResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DDLogInfo(@"HTTP Response:\n%@", httpResponse);
+	
+	[httpResponse release];
+}
+
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
+{
+	DDLogInfo(@"socketDidDisconnect:%p withError: %@", sock, err);
+	//self.viewController.label.text = @"Disconnected";
 }
 
 @end
