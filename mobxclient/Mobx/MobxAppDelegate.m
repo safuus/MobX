@@ -264,7 +264,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		}
 #endif
 	
-    // check if the current iPhone has been registered.
+    /*
+     check if the current iPhone has been registered. currently we use \r\n as the end of the message, we can config MINA
+     to support other ending later for example \0 etc. but really \r\n probably is enough as we can copy the same mechanism of HTTP protocol or we can create a separate message filter.
+     For now, i am thinking that we just use \r\n as the end of a Mobx message, we need http encode then send out.
+     
+     */
     NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
     NSString *requestStr = [NSString stringWithFormat:@"%@ %@\r\n", @"GetUser", uid];
 	NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
