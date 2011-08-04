@@ -1,0 +1,9 @@
+1. install jta manually
+
+Try downloading the file manually from: 
+    http://java.sun.com/products/jta
+Then, install it using the command: 
+    mvn install:install-file -DgroupId=javax.transaction -DartifactId=jta \
+        -Dversion=1.1 -Dpackaging=jar -Dfile=/path/to/file
+
+

@@ -8,6 +8,8 @@ import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.filter.logging.MdcInjectionFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.mobx.server.handler.MobxProtocolHandler;
 
@@ -20,8 +22,20 @@ public class App
     /** Choose your favorite port number. */
     private static final int PORT = 9088;
 
+    /**
+     * Initialize the spring and hibernate layer.
+     */
+    private static void initialize() {
+    	ApplicationContext context = new ClassPathXmlApplicationContext(
+    	        new String[] {"appContext.xml"});
+    	
+    	context.getBean("dataSource");
+    }
+    
     public static void main( String[] args ) throws Exception
     {
+    	initialize();
+    	
         NioSocketAcceptor acceptor = new NioSocketAcceptor();
         DefaultIoFilterChainBuilder chain = acceptor.getFilterChain();
 
