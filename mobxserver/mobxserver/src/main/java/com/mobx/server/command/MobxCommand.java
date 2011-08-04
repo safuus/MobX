@@ -3,8 +3,8 @@ package com.mobx.server.command;
 public class MobxCommand {
 
 	public static final int LOGIN = 0;
-	public static final int CREATE_PROFILE = 1;
-	public static final int DELETE_PROFILE = 2;
+	public static final int GETUSER = 1;
+	public static final int CREATEUSER = 2;
 
     private final int num;
 
@@ -21,11 +21,11 @@ public class MobxCommand {
         if ("LOGIN".equals(s)) {
             return new MobxCommand(LOGIN);
         }
-        if ("CREATE_PROFILE".equals(s)) {
-            return new MobxCommand(CREATE_PROFILE);
+        if ("GETUSER".equals(s)) {
+            return new MobxCommand(GETUSER);
         }
-        if ("DELETE_PROFILE".equals(s)) {
-            return new MobxCommand(DELETE_PROFILE);
+        if ("CREATEUSER".equals(s)) {
+            return new MobxCommand(CREATEUSER);
         }
 
         throw new IllegalArgumentException("Unrecognized command: " + s);

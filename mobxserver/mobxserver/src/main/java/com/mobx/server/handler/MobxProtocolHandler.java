@@ -12,10 +12,15 @@ import org.springframework.context.ApplicationContext;
 
 import com.mobx.server.command.MobxCommand;
 import com.mobx.server.context.MobxApplicationContext;
+import com.mobx.server.hibernate.entity.User;
 import com.mobx.server.service.UserService;
 
 public class MobxProtocolHandler extends IoHandlerAdapter {
 	private final static Logger LOGGER = LoggerFactory.getLogger(MobxProtocolHandler.class);
+	
+	// define some constants.
+	public final static int RESULT_FAIL = 0;
+	public final static int RESULT_OK = 1;
 	
     private final Set<IoSession> sessions = Collections
             .synchronizedSet(new HashSet<IoSession>());
@@ -40,17 +45,23 @@ public class MobxProtocolHandler extends IoHandlerAdapter {
         
         ApplicationContext appContext = MobxApplicationContext.getApplicationContext();
         
-        UserService userService = appContext.getBean("userService", UserService.class);
-        
-        userService.createUser("111", "222", "333", "444");
+        UserService userService = appContext.getBean("userService", UserService.class);        
         
         try {
 
             MobxCommand command = MobxCommand.valueOf(theCommand);
 
             switch (command.toInt()) {
- 
-
+            case MobxCommand.GETUSER:
+            	User user = userService.getUserByPhoneIdentifier(result[1]);
+            	if (user==null) {
+            		session.write(RESULT_FAIL);
+            	} else {
+            		session.write(user.getId());
+            	}
+            	break;
+            case MobxCommand.CREATEUSER:
+            	break;
             default:
                 LOGGER.info("Unhandled command: " + command);
                 break;

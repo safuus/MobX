@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	}
 
  
-	public User getUser(String phoneIdentifier) {
+	public User getUserByPhoneIdentifier(String phoneIdentifier) {
 		return userDao.selectUserByPhoneUniqueIdentitier(phoneIdentifier);
 	}
 

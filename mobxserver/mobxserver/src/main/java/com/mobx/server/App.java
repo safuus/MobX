@@ -1,9 +1,11 @@
 package com.mobx.server;
 
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
 
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.codec.textline.LineDelimiter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.filter.logging.MdcInjectionFilter;
@@ -38,10 +40,11 @@ public class App
         MdcInjectionFilter mdcInjectionFilter = new MdcInjectionFilter();
         chain.addLast("mdc", mdcInjectionFilter);
 
+        // We can customize the line delimiter. We can also change to use stream io handler later. Line command is enough for now.
         chain.addLast("codec", new ProtocolCodecFilter(
-                new TextLineCodecFactory()));
+                new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.CRLF, LineDelimiter.CRLF)));
 
-        addLogger(chain);
+        addLogger(chain);        
 
         // Bind
         acceptor.setHandler(new MobxProtocolHandler());

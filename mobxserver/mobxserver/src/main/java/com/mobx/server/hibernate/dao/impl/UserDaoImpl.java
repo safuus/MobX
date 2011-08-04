@@ -34,6 +34,12 @@ public class UserDaoImpl extends MobxCustomHibernateDao implements UserDao {
 	}
 
 	public User selectUserByPhoneUniqueIdentitier(String phoneIdentifier) {
-		return getHibernateTemplate().get(User.class, phoneIdentifier);
+		String queryString = "from User where iphone_udid=?";
+		List<User> users = (List<User>) getHibernateTemplate().find(queryString, phoneIdentifier);
+		
+		if (users.size()>0) {
+		    return users.get(0);	
+		}
+		return null;
 	}
 }
