@@ -2,7 +2,7 @@ CREATE DATABASE  mobx default charset utf8;
 
 CREATE USER 'mobx'@'%' identified by 'm06x$$*l';
 
-GRANT ALL PRIVILEGES on mobx.* to mobx@'%';
+GRANT ALL on mobx.* to 'mobx'@'%' identified by 'm06x$$*l' with grant option;
 
 FLUSH PRIVILEGES;
 
