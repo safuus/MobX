@@ -17,7 +17,7 @@
 
 
 @synthesize window=_window;
-@synthesize asyncSocket;
+@synthesize mobxHandler;
 
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
@@ -25,48 +25,14 @@
 
 @synthesize tabBarController=_tabBarController;
 
-// Log levels: off, error, warn, info, verbose // we need override this later!
-static const int ddLogLevel = LOG_LEVEL_INFO;
-
-/*
- it checks if the server has this iPhone's UDID, if not it creates the user in the server side
- */
-- (void) createUserProfileAndLogin {
-    // Setup our socket (GCDAsyncSocket).
-	// The socket will invoke our delegate methods using the usual delegate paradigm.
-	// However, it will invoke the delegate methods on a specified GCD delegate dispatch queue.
-	// 
-	// Now we can configure the delegate dispatch queue however we want.
-	// We could use a dedicated dispatch queue for easy parallelization.
-	// Or we could simply use the dispatch queue for the main thread.
-	// 
-	// The best approach for your application will depend upon convenience, requirements and performance.
-	// 
-	// For this simple example, we're just going to use the main thread.
-	
-	dispatch_queue_t mainQueue = dispatch_get_main_queue();
-	
-	self.asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:mainQueue];
-
-    
-    DDLogInfo(@"Connecting to \"%@\" on port %hu...", MOBX_SERVER_ADDRESS, MOBX_SERVER_PORT);
-    
-    NSError *error = nil;
-    if (![self.asyncSocket connectToHost:MOBX_SERVER_ADDRESS onPort:MOBX_SERVER_PORT error:&error])
-    {
-        DDLogError(@"Error connecting: %@", error);
-    }
-    
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self createUserProfileAndLogin];
+    MobxProtocol *protocol = [[MobxProtocol alloc] init];
+    protocol.appDelegate = self;
+    self.mobxHandler = protocol;
     
-    // Override point for customization after application launch.
-    // Add the tab bar controller's current view as a subview of the window
-    self.window.rootViewController = self.tabBarController;
-    [self.window makeKeyAndVisible];
+    [self.mobxHandler createUserProfileAndLogin];
+    
     return YES;
 }
 
@@ -114,7 +80,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)dealloc
 {
-    [self.asyncSocket release];
+    [self.mobxHandler release];
     [_window release];
     [_tabBarController release];
     [super dealloc];
@@ -239,67 +205,5 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Socket Delegate
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)socket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
-{
-	DDLogInfo(@"socket:%p didConnectToHost:%@ port:%hu", sock, host, port);
-	
-    // Connected to normal server
-		
-#if ENABLE_BACKGROUNDING && !TARGET_IPHONE_SIMULATOR
-		{
-			// Backgrounding doesn't seem to be supported on the simulator yet
-			
-			[sock performBlock:^{
-				if ([sock enableBackgroundingOnSocket])
-					DDLogInfo(@"Enabled backgrounding on socket");
-				else
-					DDLogWarn(@"Enabling backgrounding failed!");
-			}];
-		}
-#endif
-	
-    /*
-     check if the current iPhone has been registered. currently we use \r\n as the end of the message, we can config MINA
-     to support other ending later for example \0 etc. but really \r\n probably is enough as we can copy the same mechanism of HTTP protocol or we can create a separate message filter.
-     For now, i am thinking that we just use \r\n as the end of a Mobx message, we need http encode then send out.
-     
-     */
-    NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
-    NSString *requestStr = [NSString stringWithFormat:@"%@ %@\r\n", @"GetUser", uid];
-	NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [self.asyncSocket writeData:requestData withTimeout:-1.0 tag:0];
-}
-
-- (void)socketDidSecure:(AsyncSocket *)sock
-{
-	DDLogInfo(@"socketDidSecure:%p", sock);
-	//self.viewController.label.text = @"Connected + Secure";
-}
-
-- (void)socket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
-{
-	DDLogInfo(@"socket:%p didWriteDataWithTag:%d", sock, tag);
-}
-
-- (void)socket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
-{
-	DDLogInfo(@"socket:%p didReadData:withTag:%d", sock, tag);
-	
-	NSString *httpResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
-	DDLogInfo(@"HTTP Response:\n%@", httpResponse);
-	
-	[httpResponse release];
-}
-
-- (void)socketDidDisconnect:(AsyncSocket *)sock withError:(NSError *)err
-{
-	DDLogInfo(@"socketDidDisconnect:%p withError: %@", sock, err);
-	//self.viewController.label.text = @"Disconnected";
-}
 
 @end
