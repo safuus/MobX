@@ -1,6 +1,6 @@
 CREATE DATABASE  mobx default charset utf8;
 
-CREATE USER 'mobx'@'%' identified by 'm06x$&*l';
+CREATE USER 'mobx'@'%' identified by 'm06x$$*l';
 
 GRANT ALL PRIVILEGES on mobx.* to mobx@'%';
 
