@@ -8,8 +8,11 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 
 import com.mobx.server.command.MobxCommand;
+import com.mobx.server.context.MobxApplicationContext;
+import com.mobx.server.service.UserService;
 
 public class MobxProtocolHandler extends IoHandlerAdapter {
 	private final static Logger LOGGER = LoggerFactory.getLogger(MobxProtocolHandler.class);
@@ -34,7 +37,13 @@ public class MobxProtocolHandler extends IoHandlerAdapter {
         String theMessage = (String) message;
         String[] result = theMessage.split(" ", 2);
         String theCommand = result[0];
-
+        
+        ApplicationContext appContext = MobxApplicationContext.getApplicationContext();
+        
+        UserService userService = appContext.getBean("userService", UserService.class);
+        
+        userService.createUser("111", "222", "333", "444");
+        
         try {
 
             MobxCommand command = MobxCommand.valueOf(theCommand);

@@ -147,6 +147,7 @@
 		7FA5F6E713E931C80054CC17 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = AsyncSocket/AsyncSocket.m; sourceTree = "<group>"; };
 		7FA5F6E813E931C80054CC17 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = AsyncSocket/GCDAsyncSocket.h; sourceTree = "<group>"; };
 		7FA5F6E913E931C80054CC17 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = AsyncSocket/GCDAsyncSocket.m; sourceTree = "<group>"; };
+		7FA5F6F413EAF7DA0054CC17 /* OtherConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherConstants.h; sourceTree = "<group>"; };
 		7FB231A313DBFF7300CFDB91 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7FB231A513DC028000CFDB91 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "20-gear2.png"; path = "Resources/Images/20-gear2.png"; sourceTree = "<group>"; };
 		7FB231A613DC028000CFDB91 /* Icon_gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon_gear.png; path = Resources/Images/Icon_gear.png; sourceTree = "<group>"; };
@@ -252,6 +253,7 @@
 				7FA567DB13D9475100C75C31 /* IndividualSubViewBasedMobxCell.m */,
 				7F23393E13DC87760092F4AA /* CompositeSubviewBasedMobxCell.h */,
 				7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */,
+				7FA5F6F413EAF7DA0054CC17 /* OtherConstants.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";

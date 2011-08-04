@@ -11,6 +11,7 @@
 #import "AsyncSocket.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "OtherConstants.h"
 
 @implementation MobxAppDelegate
 
@@ -46,15 +47,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	dispatch_queue_t mainQueue = dispatch_get_main_queue();
 	
 	self.asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:mainQueue];
+
     
-    // TODO: config the host and port! dont use localhost or 127.0.0.1
-    NSString *host = @"192.168.1.14";
-    uint16_t port = 9088;
-    
-    DDLogInfo(@"Connecting to \"%@\" on port %hu...", host, port);
+    DDLogInfo(@"Connecting to \"%@\" on port %hu...", MOBX_SERVER_ADDRESS, MOBX_SERVER_PORT);
     
     NSError *error = nil;
-    if (![self.asyncSocket connectToHost:host onPort:port error:&error])
+    if (![self.asyncSocket connectToHost:MOBX_SERVER_ADDRESS onPort:MOBX_SERVER_PORT error:&error])
     {
         DDLogError(@"Error connecting: %@", error);
     }

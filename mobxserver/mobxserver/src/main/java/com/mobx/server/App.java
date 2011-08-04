@@ -8,9 +8,8 @@ import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.filter.logging.MdcInjectionFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.mobx.server.context.MobxApplicationContext;
 import com.mobx.server.handler.MobxProtocolHandler;
 
 /**
@@ -26,10 +25,7 @@ public class App
      * Initialize the spring and hibernate layer.
      */
     private static void initialize() {
-    	ApplicationContext context = new ClassPathXmlApplicationContext(
-    	        new String[] {"appContext.xml"});
-    	
-    	context.getBean("dataSource");
+    	MobxApplicationContext.initialize();
     }
     
     public static void main( String[] args ) throws Exception

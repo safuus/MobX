@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory name="sessionFactory">
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.password"><![CDATA[m06x$$*l]]></property>
+        <property name="hibernate.connection.password">m06x$$*l</property>
         <property name="hibernate.connection.url">jdbc:mysql://192.168.1.17:3306/mobx</property>
         <property name="hibernate.connection.username">mobx</property>
         <property name="hibernate.default_catalog">mobx</property>
