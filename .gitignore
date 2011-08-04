@@ -16,4 +16,4 @@
 *.out
 
 #mobxserver dev override configurations
-**/resources/settings/override/
+settings/override/
