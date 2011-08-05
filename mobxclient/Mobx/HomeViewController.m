@@ -34,7 +34,7 @@
     _categoryListView.separatorStyle = UITableViewCellSeparatorStyleNone;    
     [_categoryListHandler fillList];
     
-
+    
     // start the geo location finding.
     [UIAppDelegate startFindingLocation];
 }

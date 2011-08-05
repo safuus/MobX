@@ -23,6 +23,11 @@
     return self;
 }
 
+- (void)dealloc {
+    [locationController release];
+    [super dealloc];
+}
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -31,12 +36,19 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)locationUpdate:(NSString *)city {
+    self.location.text = city;
+}
+
 #pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    locationController = [[MobxLocationController alloc] init];
+    locationController.delegate = self;
+    [locationController.locationManager startUpdatingLocation];
 }
 
 - (void)viewDidUnload

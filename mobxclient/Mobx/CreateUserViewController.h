@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MobxLocationController.h"
 
 @interface CreateUserViewController : UIViewController {
     IBOutlet UITextField *userName;
     IBOutlet UILabel     *location;
+    MobxLocationController *locationController;
 }
 
 @property (nonatomic, retain) UITextField *userName;

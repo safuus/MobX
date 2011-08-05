@@ -94,6 +94,8 @@
 		7FBDF58E13D36AB0008627AF /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF58D13D36AB0008627AF /* SettingsViewController.m */; };
 		7FBDF59413D37EB0008627AF /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF59313D37EAF008627AF /* ChatsViewController.m */; };
 		7FBDF59613D38102008627AF /* weicheng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF59513D38102008627AF /* weicheng.jpg */; };
+		7FEAAEF213EBCCAB00127350 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEAAEF113EBCCAB00127350 /* AddressBook.framework */; };
+		7FEAAEF513EBCD0A00127350 /* MobxLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEAAEF413EBCD0A00127350 /* MobxLocationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -228,6 +230,9 @@
 		7FBDF59213D37EAF008627AF /* ChatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsViewController.h; sourceTree = "<group>"; };
 		7FBDF59313D37EAF008627AF /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = "<group>"; };
 		7FBDF59513D38102008627AF /* weicheng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = weicheng.jpg; path = Resources/weicheng.jpg; sourceTree = "<group>"; };
+		7FEAAEF113EBCCAB00127350 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		7FEAAEF313EBCD0A00127350 /* MobxLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxLocationController.h; sourceTree = "<group>"; };
+		7FEAAEF413EBCD0A00127350 /* MobxLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxLocationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FEAAEF213EBCCAB00127350 /* AddressBook.framework in Frameworks */,
 				7FA3A4E113EBAD750030AFA6 /* CoreLocation.framework in Frameworks */,
 				7FA3A4DF13EBAD700030AFA6 /* MapKit.framework in Frameworks */,
 				7F94F7C713E91CD300884508 /* CFNetwork.framework in Frameworks */,
@@ -276,6 +282,8 @@
 				7FA5F70413EB86AB0054CC17 /* MobxContext.h */,
 				7FA5F70513EB86AB0054CC17 /* MobxContext.m */,
 				7FA5F70713EB8D7D0054CC17 /* Common.m */,
+				7FEAAEF313EBCD0A00127350 /* MobxLocationController.h */,
+				7FEAAEF413EBCD0A00127350 /* MobxLocationController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -511,6 +519,7 @@
 		7FBDF55513D361C4008627AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FEAAEF113EBCCAB00127350 /* AddressBook.framework */,
 				7FA3A4E013EBAD750030AFA6 /* CoreLocation.framework */,
 				7FA3A4DE13EBAD700030AFA6 /* MapKit.framework */,
 				7F94F7C613E91CD300884508 /* CFNetwork.framework */,
@@ -709,6 +718,7 @@
 				7FA5F70313EB52EB0054CC17 /* CreateUserViewController.m in Sources */,
 				7FA5F70613EB86AB0054CC17 /* MobxContext.m in Sources */,
 				7FA5F70813EB8D7D0054CC17 /* Common.m in Sources */,
+				7FEAAEF513EBCD0A00127350 /* MobxLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +775,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos4.3;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = $SRCROOT;
 			};
 			name = Debug;
@@ -781,7 +791,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos4.3;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = $SRCROOT;
 			};
 			name = Release;
@@ -798,6 +808,7 @@
 				INFOPLIST_FILE = "Mobx/Mobx-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -812,6 +823,7 @@
 				INFOPLIST_FILE = "Mobx/Mobx-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
