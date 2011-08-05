@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "MobxUIConstants.h"
+#import <AddressBook/AddressBook.h>
 
 @implementation HomeViewController
 
@@ -32,6 +33,10 @@
     _categoryListView.backgroundColor = DARK_BACKGROUND;
     _categoryListView.separatorStyle = UITableViewCellSeparatorStyleNone;    
     [_categoryListHandler fillList];
+    
+
+    // start the geo location finding.
+    [UIAppDelegate startFindingLocation];
 }
 
 
@@ -66,5 +71,6 @@
     [_categoryListHandler release];
     [super dealloc];
 }
+
 
 @end

@@ -23,6 +23,8 @@
 		7F94F7D513E91F7F00884508 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7CE13E91F7F00884508 /* DDFileLogger.m */; };
 		7F94F7D613E91F7F00884508 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7D013E91F7F00884508 /* DDLog.m */; };
 		7F94F7D713E91F7F00884508 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F94F7D213E91F7F00884508 /* DDTTYLogger.m */; };
+		7FA3A4DF13EBAD700030AFA6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA3A4DE13EBAD700030AFA6 /* MapKit.framework */; };
+		7FA3A4E113EBAD750030AFA6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA3A4E013EBAD750030AFA6 /* CoreLocation.framework */; };
 		7FA567A713D939D100C75C31 /* MobxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA567A613D939D100C75C31 /* MobxCell.m */; };
 		7FA567D913D9415200C75C31 /* ChatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA567D813D9415200C75C31 /* ChatsTableViewController.m */; };
 		7FA567DC13D9475100C75C31 /* IndividualSubViewBasedMobxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA567DB13D9475100C75C31 /* IndividualSubViewBasedMobxCell.m */; };
@@ -123,6 +125,8 @@
 		7F94F7D013E91F7F00884508 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDLog.m; path = CocoaLumberjack/DDLog.m; sourceTree = "<group>"; };
 		7F94F7D113E91F7F00884508 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDTTYLogger.h; path = CocoaLumberjack/DDTTYLogger.h; sourceTree = "<group>"; };
 		7F94F7D213E91F7F00884508 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = CocoaLumberjack/DDTTYLogger.m; sourceTree = "<group>"; };
+		7FA3A4DE13EBAD700030AFA6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7FA3A4E013EBAD750030AFA6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7FA567A513D939D100C75C31 /* MobxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxCell.h; sourceTree = "<group>"; };
 		7FA567A613D939D100C75C31 /* MobxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxCell.m; sourceTree = "<group>"; };
 		7FA567D713D9415200C75C31 /* ChatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsTableViewController.h; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA3A4E113EBAD750030AFA6 /* CoreLocation.framework in Frameworks */,
+				7FA3A4DF13EBAD700030AFA6 /* MapKit.framework in Frameworks */,
 				7F94F7C713E91CD300884508 /* CFNetwork.framework in Frameworks */,
 				7F23398213DD42EE0092F4AA /* CoreData.framework in Frameworks */,
 				7FB231A413DBFF7300CFDB91 /* MessageUI.framework in Frameworks */,
@@ -505,6 +511,8 @@
 		7FBDF55513D361C4008627AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FA3A4E013EBAD750030AFA6 /* CoreLocation.framework */,
+				7FA3A4DE13EBAD700030AFA6 /* MapKit.framework */,
 				7F94F7C613E91CD300884508 /* CFNetwork.framework */,
 				7F23398113DD42EE0092F4AA /* CoreData.framework */,
 				7FB231A313DBFF7300CFDB91 /* MessageUI.framework */,

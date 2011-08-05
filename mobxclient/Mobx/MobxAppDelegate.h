@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "AsyncSocket.h"
 #import "MobxProtocol.h"
+#import <MapKit/MapKit.h>
+#import <MapKit/MKReverseGeocoder.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface MobxAppDelegate : NSObject <UIApplicationDelegate> {
+@interface MobxAppDelegate : NSObject <UIApplicationDelegate, MKReverseGeocoderDelegate, CLLocationManagerDelegate> {
     MobxProtocol *mobxHandler;
 }
 

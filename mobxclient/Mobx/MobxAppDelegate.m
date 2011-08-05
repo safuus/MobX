@@ -12,6 +12,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "OtherConstants.h"
+//#import <AddressBook/AddressBook.h>
 
 @implementation MobxAppDelegate
 
@@ -25,8 +26,27 @@
 
 @synthesize tabBarController=_tabBarController;
 
+- (void) startFindingLocation {
+    
+    // this creates the CCLocationManager that will find your current location
+    CLLocationManager *locationManager = [[[CLLocationManager alloc] init] autorelease];
+    
+    if(locationManager.locationServicesEnabled == NO){
+        //Your location service is not enabled, Settings>Location Services  
+        NSLog(@"Location service is disabled!");;
+    }
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    [locationManager startUpdatingLocation];  
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //[self window ].rootViewController = [self tabBarController];
+    //[[self window] makeKeyAndVisible];  
+    
+    
     MobxProtocol *protocol = [[MobxProtocol alloc] init];
     self.mobxHandler = protocol;
     
@@ -204,5 +224,55 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+#pragma CLLocationManager 
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation 
+{
+
+    // stop it.
+    // [manager stopUpdatingLocation];
+    
+    // this creates a MKReverseGeocoder to find a placemark using the found coordinates
+    MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
+    geoCoder.delegate = self;
+    [geoCoder start];
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
+{
+    NSLog(@"locationManager:%@ didFailWithError:%@", manager, error);
+    if ([error domain] == kCLErrorDomain) {
+        
+        // We handle CoreLocation-related errors here
+        switch ([error code]) {
+                // "Don't Allow" on two successive app launches is the same as saying "never allow". The user
+                // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
+            case kCLErrorDenied:
+                
+            case kCLErrorLocationUnknown:
+                
+            default:
+                break;
+        }
+    } else {
+        // We handle all non-CoreLocation errors here
+    }
+}
+
+#pragma MKReverseGeocoder 
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+{
+    MKPlacemark * myPlacemark = placemark;
+    // with the placemark you can now retrieve the city name
+    //NSString *city = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressCityKey];
+}
+
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
+{
+    NSLog(@"reverseGeocoder:%@ didFailWithError:%@", geocoder, error);
+}
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CategoryListViewHandler.h"
 
+
 @interface HomeViewController : UIViewController {
 
     IBOutlet UILabel *userInfo;
