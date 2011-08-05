@@ -13,23 +13,18 @@
 #import "DDTTYLogger.h"
 #import "OtherConstants.h"
 
-// Log levels: off, error, warn, info, verbose // we need override this later!
-extern const int ddLogLevel;
-
-#define TAG_GETUSER 1000
+#define TAG_GETUSER_OR_CREATEUSER 1000
 #define TAG_CREATEUSER 1001
-
-@class MobxAppDelegate;
 
 @interface MobxProtocol : NSObject {
      AsyncSocket *asyncSocket;
-     MobxAppDelegate *appDelegate;
 }
-
-@property (nonatomic, assign) MobxAppDelegate *appDelegate;
 
 @property (nonatomic, retain) AsyncSocket *asyncSocket;
 
 - (void) createUserProfileAndLogin;
+- (void) createUserView;
+
+- (void) createUser: (NSString*) userName;
 
 @end

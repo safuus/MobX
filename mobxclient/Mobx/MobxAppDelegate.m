@@ -28,7 +28,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     MobxProtocol *protocol = [[MobxProtocol alloc] init];
-    protocol.appDelegate = self;
     self.mobxHandler = protocol;
     
     [self.mobxHandler createUserProfileAndLogin];

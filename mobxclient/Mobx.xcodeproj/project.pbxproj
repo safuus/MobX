@@ -48,6 +48,10 @@
 		7FA5F6EA13E931C80054CC17 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5F6E713E931C80054CC17 /* AsyncSocket.m */; };
 		7FA5F6EB13E931C80054CC17 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5F6E913E931C80054CC17 /* GCDAsyncSocket.m */; };
 		7FA5F6F913EB35F50054CC17 /* MobxProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5F6F813EB35F50054CC17 /* MobxProtocol.m */; };
+		7FA5F6FF13EB50880054CC17 /* CreateUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5F6FE13EB50880054CC17 /* CreateUserView.xib */; };
+		7FA5F70313EB52EB0054CC17 /* CreateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5F70213EB52EB0054CC17 /* CreateUserViewController.m */; };
+		7FA5F70613EB86AB0054CC17 /* MobxContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5F70513EB86AB0054CC17 /* MobxContext.m */; };
+		7FA5F70813EB8D7D0054CC17 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5F70713EB8D7D0054CC17 /* Common.m */; };
 		7FB231A413DBFF7300CFDB91 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB231A313DBFF7300CFDB91 /* MessageUI.framework */; };
 		7FB231A713DC028000CFDB91 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FB231A513DC028000CFDB91 /* 20-gear2.png */; };
 		7FB231A813DC028000CFDB91 /* Icon_gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FB231A613DC028000CFDB91 /* Icon_gear.png */; };
@@ -149,8 +153,14 @@
 		7FA5F6E813E931C80054CC17 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = AsyncSocket/GCDAsyncSocket.h; sourceTree = "<group>"; };
 		7FA5F6E913E931C80054CC17 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = AsyncSocket/GCDAsyncSocket.m; sourceTree = "<group>"; };
 		7FA5F6F413EAF7DA0054CC17 /* OtherConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherConstants.h; sourceTree = "<group>"; };
-		7FA5F6F713EB35F50054CC17 /* MobxProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; name = MobxProtocol.h; path = MobxProtocol/MobxProtocol.h; sourceTree = "<group>"; };
+		7FA5F6F713EB35F50054CC17 /* MobxProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobxProtocol.h; path = MobxProtocol/MobxProtocol.h; sourceTree = "<group>"; };
 		7FA5F6F813EB35F50054CC17 /* MobxProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobxProtocol.m; path = MobxProtocol/MobxProtocol.m; sourceTree = "<group>"; };
+		7FA5F6FE13EB50880054CC17 /* CreateUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateUserView.xib; sourceTree = "<group>"; };
+		7FA5F70113EB52EB0054CC17 /* CreateUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUserViewController.h; sourceTree = "<group>"; };
+		7FA5F70213EB52EB0054CC17 /* CreateUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUserViewController.m; sourceTree = "<group>"; };
+		7FA5F70413EB86AB0054CC17 /* MobxContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxContext.h; sourceTree = "<group>"; };
+		7FA5F70513EB86AB0054CC17 /* MobxContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxContext.m; sourceTree = "<group>"; };
+		7FA5F70713EB8D7D0054CC17 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		7FB231A313DBFF7300CFDB91 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7FB231A513DC028000CFDB91 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "20-gear2.png"; path = "Resources/Images/20-gear2.png"; sourceTree = "<group>"; };
 		7FB231A613DC028000CFDB91 /* Icon_gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon_gear.png; path = Resources/Images/Icon_gear.png; sourceTree = "<group>"; };
@@ -257,6 +267,9 @@
 				7F23393E13DC87760092F4AA /* CompositeSubviewBasedMobxCell.h */,
 				7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */,
 				7FA5F6F413EAF7DA0054CC17 /* OtherConstants.h */,
+				7FA5F70413EB86AB0054CC17 /* MobxContext.h */,
+				7FA5F70513EB86AB0054CC17 /* MobxContext.m */,
+				7FA5F70713EB8D7D0054CC17 /* Common.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -374,6 +387,7 @@
 				7FBDF57C13D3699E008627AF /* ChatsView.xib */,
 				7FBDF57E13D369AB008627AF /* SettingsView.xib */,
 				7FA5680013D9484100C75C31 /* ChatsTableViewCell.xib */,
+				7FA5F6FE13EB50880054CC17 /* CreateUserView.xib */,
 			);
 			name = "Xib View files";
 			sourceTree = "<group>";
@@ -385,6 +399,15 @@
 				7FA5F6F813EB35F50054CC17 /* MobxProtocol.m */,
 			);
 			name = MobxProtocol;
+			sourceTree = "<group>";
+		};
+		7FA5F70013EB51050054CC17 /* MiscView */ = {
+			isa = PBXGroup;
+			children = (
+				7FA5F70113EB52EB0054CC17 /* CreateUserViewController.h */,
+				7FA5F70213EB52EB0054CC17 /* CreateUserViewController.m */,
+			);
+			name = MiscView;
 			sourceTree = "<group>";
 		};
 		7FB2316513DBFE5000CFDB91 /* InAppSettingsKit */ = {
@@ -505,6 +528,7 @@
 				7F09090013D5324700AEB66A /* Search View */,
 				7FA5679B13D9396100C75C31 /* Chats View */,
 				7F8C41E113DA91EA007297E4 /* Settings View */,
+				7FA5F70013EB51050054CC17 /* MiscView */,
 				7FBDF58813D36A35008627AF /* Resources */,
 				7FBDF56513D361C4008627AF /* MobxAppDelegate.h */,
 				7FBDF56613D361C4008627AF /* MobxAppDelegate.m */,
@@ -624,6 +648,7 @@
 				7FB231E513DC073600CFDB91 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				7FB231E613DC073600CFDB91 /* IASKSpecifierValuesView.xib in Resources */,
 				7F23394313DC91990092F4AA /* CategoryList.plist in Resources */,
+				7FA5F6FF13EB50880054CC17 /* CreateUserView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +698,9 @@
 				7FA5F6EA13E931C80054CC17 /* AsyncSocket.m in Sources */,
 				7FA5F6EB13E931C80054CC17 /* GCDAsyncSocket.m in Sources */,
 				7FA5F6F913EB35F50054CC17 /* MobxProtocol.m in Sources */,
+				7FA5F70313EB52EB0054CC17 /* CreateUserViewController.m in Sources */,
+				7FA5F70613EB86AB0054CC17 /* MobxContext.m in Sources */,
+				7FA5F70813EB8D7D0054CC17 /* Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

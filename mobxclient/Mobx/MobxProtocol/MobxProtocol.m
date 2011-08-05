@@ -7,11 +7,12 @@
 //
 
 #import "MobxProtocol.h"
-
+#import "CreateUserViewController.h"
+#import "MobxUIConstants.h"
 
 @implementation MobxProtocol
 
-@synthesize asyncSocket, appDelegate;
+@synthesize asyncSocket;
 
 const int ddLogLevel = LOG_LEVEL_INFO;
 
@@ -43,11 +44,25 @@ const int ddLogLevel = LOG_LEVEL_INFO;
     
 }
 
-- (void) createUser {
-    // Override point for customization after application launch.
-    // Add the tab bar controller's current view as a subview of the window
-    [self.appDelegate window ].rootViewController = [self.appDelegate tabBarController];
-    [[self.appDelegate window] makeKeyAndVisible];
+- (void) createUserView {
+    UIViewController *viewController = [[[CreateUserViewController alloc] initWithNibName:@"CreateUserView" bundle:nil] autorelease];
+    
+    [UIAppDelegate window].rootViewController = viewController;
+    [[UIAppDelegate window] makeKeyAndVisible];
+}
+
+/*
+ Request the server to create a user.
+ */
+- (void) createUser: (NSString*) userName {
+    NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
+    NSString *requestStr = [NSString stringWithFormat:@"%@,%@,%@\r\n", 
+                                 @"CREATEUSER", uid, userName];
+	NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [self.asyncSocket writeData:requestData withTimeout:-1.0 tag:TAG_CREATEUSER];
+    
+    [UIAppDelegate window ].rootViewController = [UIAppDelegate tabBarController];
+    [[UIAppDelegate window] makeKeyAndVisible];  
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,12 +81,17 @@ const int ddLogLevel = LOG_LEVEL_INFO;
 	NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	DDLogInfo(@"HTTP Response:\n%@", response);
     
-    if (tag == TAG_GETUSER) {
+    // this tag means if get user fails we need create a new user on the server side
+    if (tag == TAG_GETUSER_OR_CREATEUSER) {
         DDLogInfo(@"GETUSER Response:\n%@", response);
         if ([response isEqualToString:@"0\r\n"] ){
             DDLogInfo(@"user does not exist:\n");
             // create a new user
-            [self createUser];             
+            [self createUserView];             
+        } else {
+            // already exists.
+            [UIAppDelegate window ].rootViewController = [UIAppDelegate tabBarController];
+            [[UIAppDelegate window] makeKeyAndVisible];            
         }
     }
 	
@@ -97,13 +117,13 @@ const int ddLogLevel = LOG_LEVEL_INFO;
      
      */
     NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
-    NSString *requestStr = [NSString stringWithFormat:@"%@ %@\r\n", @"GETUSER", uid];
+    NSString *requestStr = [NSString stringWithFormat:@"%@,%@\r\n", @"GETUSER", uid];
 	NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
-    [self.asyncSocket writeData:requestData withTimeout:-1.0 tag:TAG_GETUSER];
+    [self.asyncSocket writeData:requestData withTimeout:-1.0 tag:TAG_GETUSER_OR_CREATEUSER];
     
     // Start asynchronous read operation.
     // if the user exists, it will return the user information otherwise return 0
-    [self.asyncSocket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:TAG_GETUSER];
+    [self.asyncSocket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:TAG_GETUSER_OR_CREATEUSER];
 }
 
 @end
