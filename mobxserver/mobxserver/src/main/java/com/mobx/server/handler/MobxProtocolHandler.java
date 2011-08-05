@@ -40,7 +40,7 @@ public class MobxProtocolHandler extends IoHandlerAdapter {
         Logger log = LoggerFactory.getLogger(MobxProtocolHandler.class);
         log.info("received: " + message);
         String theMessage = (String) message;
-        String[] result = theMessage.split(" ", 2);
+        String[] result = theMessage.split(",", 10);
         String theCommand = result[0];
         
         ApplicationContext appContext = MobxApplicationContext.getApplicationContext();
@@ -61,6 +61,7 @@ public class MobxProtocolHandler extends IoHandlerAdapter {
             	}
             	break;
             case MobxCommand.CREATEUSER:
+            	userService.createUser(result[1], result[2], "", "");
             	break;
             default:
                 LOGGER.info("Unhandled command: " + command);
