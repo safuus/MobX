@@ -15,6 +15,7 @@
 @synthesize userInfo = _userInfo;
 @synthesize categoryListHandler = _categoryListHandler;
 @synthesize categoryListView = _categoryListView;
+@synthesize location;
 
 /*
  // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -34,9 +35,13 @@
     _categoryListView.separatorStyle = UITableViewCellSeparatorStyleNone;    
     [_categoryListHandler fillList];
     
-    
-    // start the geo location finding.
-    [UIAppDelegate startFindingLocation];
+    locationController = [[MobxLocationController alloc] init];
+    locationController.delegate = self;
+    [locationController.locationManager startUpdatingLocation];
+}
+
+- (void)locationUpdate:(NSString *)city {
+    self.location.text = city;
 }
 
 
@@ -66,6 +71,7 @@
 
 - (void)dealloc
 {
+    [locationController release];
     [self.categoryListView release];
     [self.userInfo release];
     [_categoryListHandler release];
