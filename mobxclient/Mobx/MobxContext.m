@@ -10,19 +10,22 @@
 
 @implementation MobxContext
 
+@synthesize currentViewController;
+
 static MobxContext *instance = nil;
 
 #pragma mark Singleton Methods
 + (id)getInstance {
     @synchronized(self) {
-        if(instance == nil)
+        if(instance == nil) {
             instance = [[super allocWithZone:NULL] init];
+        }
     }
     return instance;
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-    return [[self instance] retain];
+    return [[self getInstance] retain];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -47,14 +50,14 @@ static MobxContext *instance = nil;
 
 - (id)init {
     if (self = [super init]) {
-        //someProperty = [[NSString alloc] initWithString:@"Default Property Value"];
+        self.currentViewController = nil;
     }
     return self;
 }
 
 - (void)dealloc {
     // Should never be called, but just here for clarity really.
-    //[someProperty release];
+    [currentViewController release];
     [super dealloc];
 }
 

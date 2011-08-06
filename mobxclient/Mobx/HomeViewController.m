@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "MobxUIConstants.h"
 #import <AddressBook/AddressBook.h>
+#import "MobxContext.h"
 
 @implementation HomeViewController
 
@@ -17,11 +18,30 @@
 @synthesize categoryListView = _categoryListView;
 @synthesize location;
 
-/*
- // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView {
- }
- */
+- (id)init {
+    [super init];
+    locationController = nil;
+    return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    MobxContext *context = [MobxContext getInstance];
+    context.currentViewController = self;
+    [self startUpdatingLocation];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    MobxContext *context = [MobxContext getInstance];
+    context.currentViewController = nil;
+}
+
+- (void) startUpdatingLocation {
+    if (locationController == nil) {
+        locationController = [[MobxLocationController alloc] init];
+        locationController.delegate = self;
+    }
+    [locationController.locationManager startUpdatingLocation];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -35,9 +55,7 @@
     _categoryListView.separatorStyle = UITableViewCellSeparatorStyleNone;    
     [_categoryListHandler fillList];
     
-    locationController = [[MobxLocationController alloc] init];
-    locationController.delegate = self;
-    [locationController.locationManager startUpdatingLocation];
+    [self startUpdatingLocation];
 }
 
 - (void)locationUpdate:(NSString *)city {

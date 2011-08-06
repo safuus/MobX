@@ -28,4 +28,6 @@
 @property (nonatomic, retain) IBOutlet CategoryListViewHandler *categoryListHandler;
 @property (nonatomic, retain) IBOutlet UITableView *categoryListView;
 
+- (void) startUpdatingLocation;
+
 @end

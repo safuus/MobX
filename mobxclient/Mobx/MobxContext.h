@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface MobxContext : NSObject {
-    
+    id currentViewController;
 }
+
+@property(nonatomic, retain) id currentViewController;
 
 + (id)getInstance;
 
