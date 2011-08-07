@@ -98,9 +98,10 @@
 
 - (void)dealloc
 {
-    [locationController release];
     [self.categoryListView release];
     [self.userInfo release];
+    [self.imageView release];
+    [self.location release];
     [_categoryListHandler release];
     [super dealloc];
 }

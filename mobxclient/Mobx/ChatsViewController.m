@@ -15,6 +15,7 @@
 
 - (void)dealloc
 {
+    [self.chatsTableViewCont release];
     [super dealloc];
 }
 
