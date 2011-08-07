@@ -27,7 +27,7 @@
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
-		<property name="packagesToScan" value="com.mobx.server.hibernate" />
+		<property name="packagesToScan" value="com.mobx.hibernate" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${jdbc.hibernate.dialect}</prop>

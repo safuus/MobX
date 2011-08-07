@@ -5,8 +5,8 @@ import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mobx.server.hibernate.dao.UserDao;
-import com.mobx.server.hibernate.entity.User;
+import com.mobx.hibernate.dao.UserDao;
+import com.mobx.hibernate.entity.User;
 import com.mobx.server.service.UserService;
 
 @Service("userService")

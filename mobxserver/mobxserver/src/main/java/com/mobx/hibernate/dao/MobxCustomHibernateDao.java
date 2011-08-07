@@ -1,4 +1,4 @@
-package com.mobx.server.hibernate.dao;
+package com.mobx.hibernate.dao;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

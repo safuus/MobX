@@ -1,6 +1,6 @@
 package com.mobx.server.service;
 
-import com.mobx.server.hibernate.entity.User;
+import com.mobx.hibernate.entity.User;
 
 public interface UserService {
     public User getUserByPhoneIdentifier(String phoneIdentifier);

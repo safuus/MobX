@@ -10,9 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
+import com.mobx.hibernate.entity.User;
 import com.mobx.server.command.MobxCommand;
 import com.mobx.server.context.MobxApplicationContext;
-import com.mobx.server.hibernate.entity.User;
 import com.mobx.server.service.UserService;
 
 public class MobxProtocolHandler extends IoHandlerAdapter {

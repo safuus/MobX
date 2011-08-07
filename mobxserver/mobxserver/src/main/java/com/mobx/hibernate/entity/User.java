@@ -1,4 +1,4 @@
-package com.mobx.server.hibernate.entity;
+package com.mobx.hibernate.entity;
 
 // Generated Aug 4, 2011 7:58:47 AM by Hibernate Tools 3.4.0.CR1
 
