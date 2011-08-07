@@ -7,6 +7,7 @@
 #ignore private workspace user data
 **/*.xcodeproj/xcuserdata/
 **/*.xcodeproj/project.xcworkspace/xcuserdata/
+xcuserdata/
 
 #generic files to ignore
 .DS_Store
