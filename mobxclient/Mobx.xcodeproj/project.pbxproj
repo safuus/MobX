@@ -94,6 +94,10 @@
 		7FBDF58E13D36AB0008627AF /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF58D13D36AB0008627AF /* SettingsViewController.m */; };
 		7FBDF59413D37EB0008627AF /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF59313D37EAF008627AF /* ChatsViewController.m */; };
 		7FBDF59613D38102008627AF /* weicheng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF59513D38102008627AF /* weicheng.jpg */; };
+		7FD0DD1713EE06620062EECD /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0DD1613EE06620062EECD /* OverlayViewController.m */; };
+		7FD0DD1913EE06C40062EECD /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0DD1813EE06C40062EECD /* OverlayViewController.xib */; };
+		7FD0DD1C13EE0B620062EECD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD0DD1B13EE0B610062EECD /* AudioToolbox.framework */; };
+		7FD0DD1E13EE15660062EECD /* tick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0DD1D13EE15660062EECD /* tick.aiff */; };
 		7FEAAEF213EBCCAB00127350 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEAAEF113EBCCAB00127350 /* AddressBook.framework */; };
 		7FEAAEF513EBCD0A00127350 /* MobxLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEAAEF413EBCD0A00127350 /* MobxLocationController.m */; };
 /* End PBXBuildFile section */
@@ -230,6 +234,11 @@
 		7FBDF59213D37EAF008627AF /* ChatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsViewController.h; sourceTree = "<group>"; };
 		7FBDF59313D37EAF008627AF /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = "<group>"; };
 		7FBDF59513D38102008627AF /* weicheng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = weicheng.jpg; path = Resources/weicheng.jpg; sourceTree = "<group>"; };
+		7FD0DD1513EE06620062EECD /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
+		7FD0DD1613EE06620062EECD /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
+		7FD0DD1813EE06C40062EECD /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayViewController.xib; sourceTree = "<group>"; };
+		7FD0DD1B13EE0B610062EECD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7FD0DD1D13EE15660062EECD /* tick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = tick.aiff; sourceTree = "<group>"; };
 		7FEAAEF113EBCCAB00127350 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		7FEAAEF313EBCD0A00127350 /* MobxLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxLocationController.h; sourceTree = "<group>"; };
 		7FEAAEF413EBCD0A00127350 /* MobxLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxLocationController.m; sourceTree = "<group>"; };
@@ -240,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FD0DD1C13EE0B620062EECD /* AudioToolbox.framework in Frameworks */,
 				7FEAAEF213EBCCAB00127350 /* AddressBook.framework in Frameworks */,
 				7FA3A4E113EBAD750030AFA6 /* CoreLocation.framework in Frameworks */,
 				7FA3A4DF13EBAD700030AFA6 /* MapKit.framework in Frameworks */,
@@ -395,13 +405,13 @@
 		7FA5680213D948EB00C75C31 /* Xib View files */ = {
 			isa = PBXGroup;
 			children = (
+				7FD0DD1A13EE07810062EECD /* Setup */,
 				7FBDF56813D361C4008627AF /* MainWindow.xib */,
 				7FBDF57113D361C4008627AF /* HomeView.xib */,
 				7FBDF57413D361C4008627AF /* SearchView.xib */,
 				7FBDF57C13D3699E008627AF /* ChatsView.xib */,
 				7FBDF57E13D369AB008627AF /* SettingsView.xib */,
 				7FA5680013D9484100C75C31 /* ChatsTableViewCell.xib */,
-				7FA5F6FE13EB50880054CC17 /* CreateUserView.xib */,
 			);
 			name = "Xib View files";
 			sourceTree = "<group>";
@@ -415,13 +425,15 @@
 			name = MobxProtocol;
 			sourceTree = "<group>";
 		};
-		7FA5F70013EB51050054CC17 /* MiscView */ = {
+		7FA5F70013EB51050054CC17 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
+				7FD0DD1513EE06620062EECD /* OverlayViewController.h */,
+				7FD0DD1613EE06620062EECD /* OverlayViewController.m */,
 				7FA5F70113EB52EB0054CC17 /* CreateUserViewController.h */,
 				7FA5F70213EB52EB0054CC17 /* CreateUserViewController.m */,
 			);
-			name = MiscView;
+			name = Setup;
 			sourceTree = "<group>";
 		};
 		7FB2316513DBFE5000CFDB91 /* InAppSettingsKit */ = {
@@ -519,6 +531,7 @@
 		7FBDF55513D361C4008627AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FD0DD1B13EE0B610062EECD /* AudioToolbox.framework */,
 				7FEAAEF113EBCCAB00127350 /* AddressBook.framework */,
 				7FA3A4E013EBAD750030AFA6 /* CoreLocation.framework */,
 				7FA3A4DE13EBAD700030AFA6 /* MapKit.framework */,
@@ -545,7 +558,7 @@
 				7F09090013D5324700AEB66A /* Search View */,
 				7FA5679B13D9396100C75C31 /* Chats View */,
 				7F8C41E113DA91EA007297E4 /* Settings View */,
-				7FA5F70013EB51050054CC17 /* MiscView */,
+				7FA5F70013EB51050054CC17 /* Setup */,
 				7FBDF58813D36A35008627AF /* Resources */,
 				7FBDF56513D361C4008627AF /* MobxAppDelegate.h */,
 				7FBDF56613D361C4008627AF /* MobxAppDelegate.m */,
@@ -570,6 +583,7 @@
 		7FBDF58813D36A35008627AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7FD0DD1D13EE15660062EECD /* tick.aiff */,
 				7F23394813DCB2250092F4AA /* Property List */,
 				7FA5680213D948EB00C75C31 /* Xib View files */,
 				7FA567DD13D947B600C75C31 /* Images */,
@@ -577,6 +591,15 @@
 				7F64B0CA13DA8FD5009F6B18 /* Settings.bundle */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		7FD0DD1A13EE07810062EECD /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				7FD0DD1813EE06C40062EECD /* OverlayViewController.xib */,
+				7FA5F6FE13EB50880054CC17 /* CreateUserView.xib */,
+			);
+			name = Setup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -666,6 +689,8 @@
 				7FB231E613DC073600CFDB91 /* IASKSpecifierValuesView.xib in Resources */,
 				7F23394313DC91990092F4AA /* CategoryList.plist in Resources */,
 				7FA5F6FF13EB50880054CC17 /* CreateUserView.xib in Resources */,
+				7FD0DD1913EE06C40062EECD /* OverlayViewController.xib in Resources */,
+				7FD0DD1E13EE15660062EECD /* tick.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +744,7 @@
 				7FA5F70613EB86AB0054CC17 /* MobxContext.m in Sources */,
 				7FA5F70813EB8D7D0054CC17 /* Common.m in Sources */,
 				7FEAAEF513EBCD0A00127350 /* MobxLocationController.m in Sources */,
+				7FD0DD1713EE06620062EECD /* OverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

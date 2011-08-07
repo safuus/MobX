@@ -45,9 +45,9 @@ const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 - (void) createUserView {
-    UIViewController *viewController = [[[CreateUserViewController alloc] initWithNibName:@"CreateUserView" bundle:nil] autorelease];
+    //UIViewController *viewController = [[[CreateUserViewController alloc] initWithNibName:@"CreateUserView" bundle:nil] autorelease];
     
-    [UIAppDelegate window].rootViewController = viewController;
+    [UIAppDelegate window].rootViewController = [UIAppDelegate setupNavController];
     [[UIAppDelegate window] makeKeyAndVisible];
 }
 

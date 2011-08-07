@@ -14,6 +14,7 @@
 
     IBOutlet UILabel *userInfo;
     IBOutlet UILabel *location;
+    IBOutlet UIImageView *imageView;
     
     // New messages etc table list data view handler
     IBOutlet CategoryListViewHandler *categoryListHandler;
@@ -24,6 +25,7 @@
 
 @property(retain) IBOutlet UILabel *userInfo;
 @property(retain) IBOutlet UILabel *location;
+@property(retain) IBOutlet UIImageView *imageView;
 
 @property (nonatomic, retain) IBOutlet CategoryListViewHandler *categoryListHandler;
 @property (nonatomic, retain) IBOutlet UITableView *categoryListView;

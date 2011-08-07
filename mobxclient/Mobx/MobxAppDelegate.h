@@ -24,6 +24,7 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet UINavigationController *setupNavController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

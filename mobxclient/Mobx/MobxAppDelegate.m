@@ -25,6 +25,7 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 @synthesize tabBarController=_tabBarController;
+@synthesize setupNavController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -84,6 +85,7 @@
     [self.mobxHandler release];
     [_window release];
     [_tabBarController release];
+    [self.setupNavController release];
     [super dealloc];
 }
 

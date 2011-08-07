@@ -15,6 +15,7 @@
 
 @synthesize userInfo = _userInfo;
 @synthesize categoryListHandler = _categoryListHandler;
+@synthesize imageView;
 @synthesize categoryListView = _categoryListView;
 @synthesize location;
 
@@ -24,7 +25,15 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {    
+    // load the profile image
+    NSString* path = [NSHomeDirectory() stringByAppendingString:@"/Documents/myImage.png"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSFileHandle* myFileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
+        UIImage* loadedImage = [UIImage imageWithData:[myFileHandle readDataToEndOfFile]];
+        [self.imageView setImage:loadedImage];
+    }
+            
     MobxContext *context = [MobxContext getInstance];
     context.currentViewController = self;
     [self startUpdatingLocation];
@@ -48,7 +57,7 @@
 {
     [super viewDidLoad];
     _userInfo.text = @"Wallace Peng";
-    
+
 	// Configure the table view.
     _categoryListView.rowHeight = 73.0;
     _categoryListView.backgroundColor = DARK_BACKGROUND;

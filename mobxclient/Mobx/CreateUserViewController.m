@@ -13,6 +13,9 @@
 
 @synthesize userName;
 @synthesize location;
+@synthesize overlayViewController;
+@synthesize imageView;
+@synthesize takenPicture;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,6 +27,9 @@
 }
 
 - (void)dealloc {
+    [takenPicture release];
+    [imageView release];
+    [overlayViewController release];
     [locationController release];
     [super dealloc];
 }
@@ -49,13 +55,21 @@
     locationController = [[MobxLocationController alloc] init];
     locationController.delegate = self;
     [locationController.locationManager startUpdatingLocation];
+    
+    self.overlayViewController =
+    [[[OverlayViewController alloc] initWithNibName:@"OverlayViewController" bundle:nil] autorelease];
+    
+    // as a delegate we will be notified when pictures are taken and when to dismiss the image picker
+    self.overlayViewController.delegate = self;             
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.imageView = nil;
+    
+    self.overlayViewController = nil;
+    self.takenPicture = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -63,6 +77,63 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark -
+#pragma mark Toolbar Actions
+
+- (void)showImagePicker:(UIImagePickerControllerSourceType)sourceType
+{
+    if ([UIImagePickerController isSourceTypeAvailable:sourceType])
+    {
+        [self.overlayViewController setupImagePicker:sourceType];
+        [self presentModalViewController:self.overlayViewController.imagePickerController animated:YES];
+    }
+}
+
+- (IBAction)photoLibraryAction:(id)sender
+{   
+	[self showImagePicker:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (IBAction)cameraAction:(id)sender
+{
+    [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
+}
+
+#pragma mark -
+#pragma mark OverlayViewControllerDelegate
+
+// as a delegate we are being told a picture was taken
+- (void)didTakePicture:(UIImage *)picture
+{
+    //TODO: save it locally.
+    self.takenPicture = picture;
+    
+    //
+    // Saving into Documents folder
+    //
+    NSString* path = [NSHomeDirectory() stringByAppendingString:@"/Documents/myImage.png"];
+    
+    BOOL ok = [[NSFileManager defaultManager] createFileAtPath:path 
+                                                      contents:nil attributes:nil];    
+    if (!ok) {
+        NSLog(@"Error creating file %@", path);
+    } else {
+        NSFileHandle* myFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
+        [myFileHandle writeData:UIImagePNGRepresentation(self.takenPicture)];
+        [myFileHandle closeFile];
+    }    
+}
+
+// as a delegate we are told to finished with the camera
+- (void)didFinishWithCamera
+{
+    [self dismissModalViewControllerAnimated:YES];
+    
+    [self.imageView setImage: self.takenPicture];
+}
+
+#pragma mark - Actions
 
 -(IBAction) onUserNameDone: (id) sender {
     [[self userName] resignFirstResponder];
