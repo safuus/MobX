@@ -27,10 +27,11 @@
 }
 
 - (void)dealloc {
+    [userName release];
+    [location release];
     [takenPicture release];
     [imageView release];
     [overlayViewController release];
-    [locationController release];
     [super dealloc];
 }
 

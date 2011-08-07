@@ -26,6 +26,11 @@ const int ddLogLevel = LOG_LEVEL_INFO;
     return self;
 }
 
+- (void) dealloc {
+    [self.asyncSocket release];
+    [super dealloc];
+}
+
 /*
  it checks if the server has this iPhone's UDID, if not it creates the user in the server side
  */
