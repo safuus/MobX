@@ -1,8 +1,8 @@
-package com.mobx.server.hibernate.dao;
+package com.mobx.hibernate.dao;
 
 import java.util.List;
 
-import com.mobx.server.hibernate.entity.User;
+import com.mobx.hibernate.entity.User;
 
 public interface UserDao {
 	public void saveUser(User user);

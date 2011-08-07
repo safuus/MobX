@@ -1,10 +1,10 @@
-package com.mobx.server.hibernate.dao.impl;
+package com.mobx.hibernate.dao.impl;
 
 import java.util.List;
 
-import com.mobx.server.hibernate.dao.MobxCustomHibernateDao;
-import com.mobx.server.hibernate.dao.UserDao;
-import com.mobx.server.hibernate.entity.User;
+import com.mobx.hibernate.dao.MobxCustomHibernateDao;
+import com.mobx.hibernate.dao.UserDao;
+import com.mobx.hibernate.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
