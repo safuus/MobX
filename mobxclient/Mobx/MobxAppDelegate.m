@@ -91,8 +91,6 @@
 
 - (void)awakeFromNib
 {
-    MobxRootTabBarController *rootViewController = (MobxRootTabBarController *) self.tabBarController;
-    rootViewController.appDelegate = self;
 }
 
 - (void)saveContext

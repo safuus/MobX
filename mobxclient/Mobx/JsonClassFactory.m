@@ -1,14 +1,14 @@
 //
-//  DataModelCommon.m
+//  JsonClassFactory.m
 //  Mobx
 //
 //  Created by Weicheng Peng on 8/6/11.
 //  Copyright 2011 Mobx. All rights reserved.
 //
 
-#import "DataModelCommon.h"
+#import "JsonClassFactory.h"
 
-@implementation DataModelCommon
+@implementation JsonClassFactory
 
 - (id)init
 {
@@ -18,6 +18,11 @@
     }
     
     return self;
+}
+
+// Return the class instance by class id.
++ (id) getClassInstance:(NSInteger)classId {
+    
 }
 
 @end

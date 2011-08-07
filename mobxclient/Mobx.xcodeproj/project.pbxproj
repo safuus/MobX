@@ -94,6 +94,8 @@
 		7FBDF58E13D36AB0008627AF /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF58D13D36AB0008627AF /* SettingsViewController.m */; };
 		7FBDF59413D37EB0008627AF /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDF59313D37EAF008627AF /* ChatsViewController.m */; };
 		7FBDF59613D38102008627AF /* weicheng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDF59513D38102008627AF /* weicheng.jpg */; };
+		7FCA717C13EE469E00E90912 /* JsonClassFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA717B13EE469E00E90912 /* JsonClassFactory.m */; };
+		7FCA717F13EE47EC00E90912 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA717E13EE47EC00E90912 /* User.m */; };
 		7FD0DD1713EE06620062EECD /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0DD1613EE06620062EECD /* OverlayViewController.m */; };
 		7FD0DD1913EE06C40062EECD /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0DD1813EE06C40062EECD /* OverlayViewController.xib */; };
 		7FD0DD1C13EE0B620062EECD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD0DD1B13EE0B610062EECD /* AudioToolbox.framework */; };
@@ -101,6 +103,44 @@
 		7FEAAEF213EBCCAB00127350 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEAAEF113EBCCAB00127350 /* AddressBook.framework */; };
 		7FEAAEF513EBCD0A00127350 /* MobxLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEAAEF413EBCD0A00127350 /* MobxLocationController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7FCA716F13EE460100E90912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7FCA716513EE460000E90912 /* SBJson.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC12323D1391D5CC00131607;
+			remoteInfo = SBJson;
+		};
+		7FCA717113EE460100E90912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7FCA716513EE460000E90912 /* SBJson.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC1232521391D5CC00131607;
+			remoteInfo = SBJsonTests;
+		};
+		7FCA717313EE460100E90912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7FCA716513EE460000E90912 /* SBJson.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCC2626913920FC7003D9994;
+			remoteInfo = "sbjson-ios";
+		};
+		7FCA717513EE460100E90912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7FCA716513EE460000E90912 /* SBJson.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCC2627313920FC7003D9994;
+			remoteInfo = "sbjson-iosTests";
+		};
+		7FCA717813EE461300E90912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7FCA716513EE460000E90912 /* SBJson.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC12323C1391D5CC00131607;
+			remoteInfo = SBJson;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7F09092213D5586100AEB66A /* MobxRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxRecord.h; sourceTree = "<group>"; };
@@ -234,6 +274,11 @@
 		7FBDF59213D37EAF008627AF /* ChatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsViewController.h; sourceTree = "<group>"; };
 		7FBDF59313D37EAF008627AF /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = "<group>"; };
 		7FBDF59513D38102008627AF /* weicheng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = weicheng.jpg; path = Resources/weicheng.jpg; sourceTree = "<group>"; };
+		7FCA716513EE460000E90912 /* SBJson.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBJson.xcodeproj; path = "json-framework/SBJson.xcodeproj"; sourceTree = "<group>"; };
+		7FCA717A13EE469E00E90912 /* JsonClassFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonClassFactory.h; sourceTree = "<group>"; };
+		7FCA717B13EE469E00E90912 /* JsonClassFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonClassFactory.m; sourceTree = "<group>"; };
+		7FCA717D13EE47EC00E90912 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = DataModel/User.h; sourceTree = "<group>"; };
+		7FCA717E13EE47EC00E90912 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = DataModel/User.m; sourceTree = "<group>"; };
 		7FD0DD1513EE06620062EECD /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		7FD0DD1613EE06620062EECD /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		7FD0DD1813EE06C40062EECD /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayViewController.xib; sourceTree = "<group>"; };
@@ -311,6 +356,10 @@
 			isa = PBXGroup;
 			children = (
 				7F23397E13DD42450092F4AA /* MobxModel.xcdatamodeld */,
+				7FCA717A13EE469E00E90912 /* JsonClassFactory.h */,
+				7FCA717B13EE469E00E90912 /* JsonClassFactory.m */,
+				7FCA717D13EE47EC00E90912 /* User.h */,
+				7FCA717E13EE47EC00E90912 /* User.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -514,6 +563,7 @@
 		7FBDF54713D361C4008627AF = {
 			isa = PBXGroup;
 			children = (
+				7FCA716513EE460000E90912 /* SBJson.xcodeproj */,
 				7FBDF55C13D361C4008627AF /* Mobx */,
 				7FBDF55513D361C4008627AF /* Frameworks */,
 				7FBDF55313D361C4008627AF /* Products */,
@@ -593,6 +643,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		7FCA716613EE460000E90912 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7FCA717013EE460100E90912 /* SBJson.framework */,
+				7FCA717213EE460100E90912 /* SBJsonTests.octest */,
+				7FCA717413EE460100E90912 /* libsbjson-ios.a */,
+				7FCA717613EE460100E90912 /* sbjson-iosTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7FD0DD1A13EE07810062EECD /* Setup */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,6 +677,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7FCA717913EE461300E90912 /* PBXTargetDependency */,
 			);
 			name = Mobx;
 			productName = Mobx;
@@ -640,12 +702,49 @@
 			mainGroup = 7FBDF54713D361C4008627AF;
 			productRefGroup = 7FBDF55313D361C4008627AF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7FCA716613EE460000E90912 /* Products */;
+					ProjectRef = 7FCA716513EE460000E90912 /* SBJson.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7FBDF55113D361C4008627AF /* Mobx */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7FCA717013EE460100E90912 /* SBJson.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SBJson.framework;
+			remoteRef = 7FCA716F13EE460100E90912 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7FCA717213EE460100E90912 /* SBJsonTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SBJsonTests.octest;
+			remoteRef = 7FCA717113EE460100E90912 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7FCA717413EE460100E90912 /* libsbjson-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libsbjson-ios.a";
+			remoteRef = 7FCA717313EE460100E90912 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7FCA717613EE460100E90912 /* sbjson-iosTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "sbjson-iosTests.octest";
+			remoteRef = 7FCA717513EE460100E90912 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7FBDF55013D361C4008627AF /* Resources */ = {
@@ -745,10 +844,20 @@
 				7FA5F70813EB8D7D0054CC17 /* Common.m in Sources */,
 				7FEAAEF513EBCD0A00127350 /* MobxLocationController.m in Sources */,
 				7FD0DD1713EE06620062EECD /* OverlayViewController.m in Sources */,
+				7FCA717C13EE469E00E90912 /* JsonClassFactory.m in Sources */,
+				7FCA717F13EE47EC00E90912 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7FCA717913EE461300E90912 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SBJson;
+			targetProxy = 7FCA717813EE461300E90912 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7FBDF55F13D361C4008627AF /* InfoPlist.strings */ = {

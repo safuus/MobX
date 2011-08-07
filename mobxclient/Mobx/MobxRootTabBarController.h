@@ -10,10 +10,6 @@
 #import "MobxAppDelegate.h"
 
 @interface MobxRootTabBarController : UITabBarController {
-    IBOutlet MobxAppDelegate *appDelegate;
 }
-
-// not necessary to retain as app will exit at the end.
-@property (nonatomic) IBOutlet MobxAppDelegate *appDelegate;
 
 @end

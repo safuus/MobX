@@ -1,5 +1,5 @@
 //
-//  DataModelCommon.h
+//  JsonClassFactory.h
 //  Mobx
 //
 //  Created by Weicheng Peng on 8/6/11.
@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DataModelCommon : NSObject
+@interface JsonClassFactory : NSObject
+
++ (id) getClassInstance:(NSInteger)classId;
 
 @end
