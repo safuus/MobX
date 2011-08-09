@@ -31,6 +31,15 @@ const int ddLogLevel = LOG_LEVEL_INFO;
     [super dealloc];
 }
 
+- (void) deleteUserProfile {
+    NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
+    NSString *requestStr = [NSString stringWithFormat:@"%@,%@\r\n", 
+                            @"DELETEUSER", uid];
+	NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
+    [self.asyncSocket writeData:requestData withTimeout:-1.0 tag:TAG_DELETEUSER];
+    [self.asyncSocket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:TAG_DELETEUSER];
+}
+
 /*
  it checks if the server has this iPhone's UDID, if not it creates the user in the server side
  */
@@ -115,6 +124,9 @@ const int ddLogLevel = LOG_LEVEL_INFO;
             [UIAppDelegate window ].rootViewController = [UIAppDelegate tabBarController];
             [[UIAppDelegate window] makeKeyAndVisible];            
         }
+    } else if (tag == TAG_DELETEUSER) {
+        // deleted the user. we need go to the registration view
+        [self createUserProfileAndLogin];
     }
 	
 	[response release];

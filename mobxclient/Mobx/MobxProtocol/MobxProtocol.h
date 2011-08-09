@@ -15,6 +15,7 @@
 
 #define TAG_GETUSER_OR_CREATEUSER 1000
 #define TAG_CREATEUSER 1001
+#define TAG_DELETEUSER 1002
 
 @interface MobxProtocol : NSObject {
      AsyncSocket *asyncSocket;
@@ -24,6 +25,7 @@
 
 - (void) createUserProfileAndLogin;
 - (void) createUserView;
+- (void) deleteUserProfile;
 
 - (void) createUser: (NSString*) userName;
 

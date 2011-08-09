@@ -16,6 +16,8 @@
     IBOutlet UILabel *location;
     IBOutlet UIImageView *imageView;
     
+    IBOutlet UINavigationItem *navItem;
+    
     // New messages etc table list data view handler
     IBOutlet CategoryListViewHandler *categoryListHandler;
     IBOutlet UITableView *categoryListView;
@@ -26,10 +28,14 @@
 @property(retain) IBOutlet UILabel *userInfo;
 @property(retain) IBOutlet UILabel *location;
 @property(retain) IBOutlet UIImageView *imageView;
+@property(retain) IBOutlet UINavigationItem *navItem;
+@property(retain) IBOutlet UINavigationItem *destroyButton;
 
 @property (nonatomic, retain) IBOutlet CategoryListViewHandler *categoryListHandler;
 @property (nonatomic, retain) IBOutlet UITableView *categoryListView;
 
 - (void) startUpdatingLocation;
+
+- (IBAction)destroyApplication:(id)sender;
 
 @end

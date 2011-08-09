@@ -18,6 +18,8 @@
 @synthesize imageView;
 @synthesize categoryListView = _categoryListView;
 @synthesize location;
+@synthesize navItem;
+@synthesize destroyButton;
 
 - (id)init {
     [super init];
@@ -50,6 +52,11 @@
         locationController.delegate = self;
     }
     [locationController.locationManager startUpdatingLocation];
+}
+
+// Destroy the user profile.
+- (IBAction)destroyApplication:(id)sender {
+    [[UIAppDelegate mobxHandler] deleteUserProfile];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
