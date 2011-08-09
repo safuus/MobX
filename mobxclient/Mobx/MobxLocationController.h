@@ -14,9 +14,14 @@
 @interface MobxLocationController : NSObject<MKReverseGeocoderDelegate, CLLocationManagerDelegate> {
     CLLocationManager *locationManager;
     id delegate; 
+    
+    UInt16 count;
 }
 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, assign) id  delegate;
+
+@property (nonatomic, assign) UInt16 count;
+
 
 @end

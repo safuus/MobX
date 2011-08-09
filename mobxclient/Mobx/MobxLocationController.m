@@ -13,6 +13,7 @@
 
 @synthesize locationManager;
 @synthesize delegate;
+@synthesize count;
 
 - (void) startFindingLocation {
     
@@ -31,6 +32,7 @@
     if (self != nil) {
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self; // send loc updates to myself
+        self.count = 0;
     }
     
     return self;
@@ -45,19 +47,25 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation 
 {    
-    // stop it.
-    [manager stopUpdatingLocation];
-    
-    // this creates a MKReverseGeocoder to find a placemark using the found coordinates
-    /* // Beijing's Latitude and Longtitude
-    CLLocationCoordinate2D coordinate;
-    coordinate.latitude = 39.93;
-    coordinate.longitude = 116.39;
-    MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:coordinate];
-    */
-    MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
-    geoCoder.delegate = self;
-    [geoCoder start];
+    self.count++;
+    if (self.count==12) {
+        // stop it.
+        [manager stopUpdatingLocation];
+         self.count = 0;
+    }
+
+    if (self.count>2) {
+        // this creates a MKReverseGeocoder to find a placemark using the found coordinates
+        /* // Beijing's Latitude and Longtitude
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = 39.93;
+        coordinate.longitude = 116.39;
+        MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:coordinate];
+        */
+        MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
+        geoCoder.delegate = self;
+        [geoCoder start];
+    }
 }
 
 
@@ -93,8 +101,6 @@
     // with the placemark you can now retrieve the city name
     NSString *city = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressCityKey];
     NSString *street = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressStreetKey];
-    
-    [geocoder cancel];
     
     NSString* cityStreet = [NSString stringWithFormat:@"%@, %@", street, city];
     
