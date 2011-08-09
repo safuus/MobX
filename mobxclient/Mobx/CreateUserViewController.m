@@ -145,10 +145,9 @@
 -(IBAction) onSubmitClick: (id) sender {
     // create the user on the server then redirect to tab controller view
     NSString *l_userName = [[self userName] text];
-    [[UIAppDelegate mobxHandler] createUser: l_userName];
-    
     // save the user name locally for now!
     [[NSUserDefaults standardUserDefaults] setObject:l_userName forKey:@"userName"];
+    [[UIAppDelegate mobxHandler] createUser: l_userName];    
 }
 
 @end

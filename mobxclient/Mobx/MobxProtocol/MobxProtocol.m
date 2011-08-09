@@ -126,7 +126,7 @@ const int ddLogLevel = LOG_LEVEL_INFO;
         }
     } else if (tag == TAG_DELETEUSER) {
         // exit the application!
-        [[NSThread mainThread] exit];
+        exit(0);
         // deleted the user. we need go to the registration view
         //[self createUserProfileAndLogin];
     }
