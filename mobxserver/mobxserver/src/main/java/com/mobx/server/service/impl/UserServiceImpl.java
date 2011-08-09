@@ -23,6 +23,10 @@ public class UserServiceImpl implements IUserService {
 		return userDao.selectUserByPhoneUniqueIdentitier(phoneIdentifier);
 	}
 
+	public void deleteUserByPhoneIdentifier(String phoneIdentifier) {
+		userDao.deleteUserByPhoneUniqueIdentitier(phoneIdentifier);
+	}
+	
 	public User createUser(String phoneIdentigier, String userName,
 			String location, String photoLocation) {
 		

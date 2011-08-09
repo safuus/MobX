@@ -5,6 +5,7 @@ public class MobxCommand {
 	public static final int LOGIN = 0;
 	public static final int GETUSER = 1;
 	public static final int CREATEUSER = 2;
+	public static final int DELETEUSER = 3;
 
     private final int num;
 
@@ -26,6 +27,9 @@ public class MobxCommand {
         }
         if ("CREATEUSER".equals(s)) {
             return new MobxCommand(CREATEUSER);
+        }
+        if ("DELETEUSER".equals(s)) {
+            return new MobxCommand(DELETEUSER);
         }
 
         throw new IllegalArgumentException("Unrecognized command: " + s);

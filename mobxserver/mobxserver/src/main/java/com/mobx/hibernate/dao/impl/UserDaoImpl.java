@@ -1,10 +1,15 @@
 package com.mobx.hibernate.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.mobx.hibernate.dao.MobxCustomHibernateDao;
 import com.mobx.hibernate.dao.IUserDao;
 import com.mobx.hibernate.entity.User;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +23,17 @@ public class UserDaoImpl extends MobxCustomHibernateDao implements IUserDao {
 	}
 
 	@Transactional(readOnly = false)
-	public void deleteUser(User user) {
-		getHibernateTemplate().delete(user);
+	public void deleteUserByPhoneUniqueIdentitier(final String phoneIdentifier) {
+		getHibernateTemplate().execute(new HibernateCallback<Integer>() {
+			public Integer doInHibernate(Session session) {
 
+				int affectedRecords = session.createQuery(
+									"delete from User where iphone_udid = ?")
+									.setParameter(0, phoneIdentifier)
+									.executeUpdate();
+				return affectedRecords;
+			}
+		});
 	}
 
 	@SuppressWarnings("unchecked")

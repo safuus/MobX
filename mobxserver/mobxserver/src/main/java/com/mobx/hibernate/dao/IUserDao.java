@@ -8,6 +8,6 @@ public interface IUserDao {
 	public void saveUser(User user);
 	public List<User> getAllUser(User user);
 	public User selectUserById(String userId);
-	public void deleteUser(User user);
+	public void deleteUserByPhoneUniqueIdentitier(String phoneIdentifier);
 	public User selectUserByPhoneUniqueIdentitier(String phoneIdentifier);
 }

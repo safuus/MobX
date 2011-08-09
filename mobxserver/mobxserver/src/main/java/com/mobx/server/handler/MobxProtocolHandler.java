@@ -62,7 +62,12 @@ public class MobxProtocolHandler extends IoHandlerAdapter {
             	break;
             case MobxCommand.CREATEUSER:
             	userService.createUser(result[1], result[2], "", "");
+            	session.write(RESULT_OK);
             	break;
+            case MobxCommand.DELETEUSER:
+            	userService.deleteUserByPhoneIdentifier(result[1]);
+            	session.write(RESULT_OK);
+            	break;           
             default:
                 LOGGER.info("Unhandled command: " + command);
                 break;
