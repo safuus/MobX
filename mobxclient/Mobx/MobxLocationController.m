@@ -49,6 +49,12 @@
     [manager stopUpdatingLocation];
     
     // this creates a MKReverseGeocoder to find a placemark using the found coordinates
+    /* // Beijing's Latitude and Longtitude
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = 39.93;
+    coordinate.longitude = 116.39;
+    MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:coordinate];
+    */
     MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
     geoCoder.delegate = self;
     [geoCoder start];
