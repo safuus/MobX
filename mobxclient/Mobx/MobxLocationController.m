@@ -92,9 +92,13 @@
     MKPlacemark * myPlacemark = placemark;
     // with the placemark you can now retrieve the city name
     NSString *city = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressCityKey];
+    NSString *street = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressStreetKey];
     
     [geocoder cancel];
-    [self.delegate locationUpdate:city];
+    
+    NSString* cityStreet = [NSString stringWithFormat:@"%@, %@", street, city];
+    
+    [self.delegate locationUpdate:cityStreet];
 }
 
 
