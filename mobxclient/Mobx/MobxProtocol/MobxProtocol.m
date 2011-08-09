@@ -38,7 +38,10 @@ const int ddLogLevel = LOG_LEVEL_INFO;
 	
 	self.asyncSocket = [[AsyncSocket alloc] initWithDelegate:self];
     
-    
+    [self connectToHost];
+}
+
+- (void) connectToHost {
     DDLogInfo(@"Connecting to \"%@\" on port %hu...", MOBX_SERVER_ADDRESS, MOBX_SERVER_PORT);
     
     NSError *error = nil;
@@ -46,7 +49,6 @@ const int ddLogLevel = LOG_LEVEL_INFO;
     {
         DDLogError(@"Error connecting: %@", error);
     }
-    
 }
 
 - (void) createUserView {
@@ -70,6 +72,13 @@ const int ddLogLevel = LOG_LEVEL_INFO;
     [[UIAppDelegate window] makeKeyAndVisible];  
 }
 
+- (void) showConnectionFailureAlert:(NSString*)title
+{
+	UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:@"Click OK to retry." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alertView show];
+	[alertView release];
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark AsyncSocket Delegate
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,6 +86,14 @@ const int ddLogLevel = LOG_LEVEL_INFO;
 - (BOOL)onSocketWillConnect:(AsyncSocket *)sock {
 
     return YES;
+}
+
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock {
+    DDLogInfo(@"onSocketDidDisconnect");
+    // network issue.
+    //[self showConnectionFailureAlert: @"Connecting to host failed"];
+    // retry
+    [self connectToHost];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
@@ -108,7 +125,7 @@ const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 - (void) onSocket: (AsyncSocket*) sock willDisconnectWithError: (NSError*) err {
-
+    DDLogInfo(@"onSocket:%p willDisconnectWithError:%@", sock, err);
 }
 
 - (void) onSocket: (AsyncSocket*) sock didConnectToHost: (NSString*) host port: (UInt16) port {
