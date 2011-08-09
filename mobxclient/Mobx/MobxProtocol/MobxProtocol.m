@@ -125,8 +125,10 @@ const int ddLogLevel = LOG_LEVEL_INFO;
             [[UIAppDelegate window] makeKeyAndVisible];            
         }
     } else if (tag == TAG_DELETEUSER) {
+        // exit the application!
+        [[NSThread mainThread] exit];
         // deleted the user. we need go to the registration view
-        [self createUserProfileAndLogin];
+        //[self createUserProfileAndLogin];
     }
 	
 	[response release];

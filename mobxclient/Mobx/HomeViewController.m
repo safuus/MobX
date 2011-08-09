@@ -63,7 +63,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _userInfo.text = @"Wallace Peng";
+    _userInfo.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userName"];
+    //@"Wallace Peng";
 
 	// Configure the table view.
     _categoryListView.rowHeight = 73.0;

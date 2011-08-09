@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F09092413D5586100AEB66A /* MobxRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F09092313D5586100AEB66A /* MobxRecord.m */; };
+		7F0DFBFB13F0D90200BF61A0 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0DFBFA13F0D90100BF61A0 /* UIImage+fixOrientation.m */; };
 		7F23394013DC87770092F4AA /* CompositeSubviewBasedMobxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */; };
 		7F23394313DC91990092F4AA /* CategoryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F23394213DC91990092F4AA /* CategoryList.plist */; };
 		7F23398013DD42450092F4AA /* MobxModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F23397E13DD42450092F4AA /* MobxModel.xcdatamodeld */; };
@@ -145,6 +146,8 @@
 /* Begin PBXFileReference section */
 		7F09092213D5586100AEB66A /* MobxRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobxRecord.h; sourceTree = "<group>"; };
 		7F09092313D5586100AEB66A /* MobxRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobxRecord.m; sourceTree = "<group>"; };
+		7F0DFBF913F0D90100BF61A0 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		7F0DFBFA13F0D90100BF61A0 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		7F23393E13DC87760092F4AA /* CompositeSubviewBasedMobxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompositeSubviewBasedMobxCell.h; sourceTree = "<group>"; };
 		7F23393F13DC87770092F4AA /* CompositeSubviewBasedMobxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompositeSubviewBasedMobxCell.m; sourceTree = "<group>"; };
 		7F23394213DC91990092F4AA /* CategoryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CategoryList.plist; sourceTree = "<group>"; };
@@ -339,6 +342,8 @@
 				7FA5F70713EB8D7D0054CC17 /* Common.m */,
 				7FEAAEF313EBCD0A00127350 /* MobxLocationController.h */,
 				7FEAAEF413EBCD0A00127350 /* MobxLocationController.m */,
+				7F0DFBF913F0D90100BF61A0 /* UIImage+fixOrientation.h */,
+				7F0DFBFA13F0D90100BF61A0 /* UIImage+fixOrientation.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -846,6 +851,7 @@
 				7FD0DD1713EE06620062EECD /* OverlayViewController.m in Sources */,
 				7FCA717C13EE469E00E90912 /* JsonClassFactory.m in Sources */,
 				7FCA717F13EE47EC00E90912 /* User.m in Sources */,
+				7F0DFBFB13F0D90200BF61A0 /* UIImage+fixOrientation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

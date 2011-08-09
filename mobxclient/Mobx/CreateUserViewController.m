@@ -8,6 +8,7 @@
 
 #import "CreateUserViewController.h"
 #import "MobxUIConstants.h"
+#import "UIImage+fixOrientation.h"
 
 @implementation CreateUserViewController
 
@@ -121,7 +122,7 @@
         NSLog(@"Error creating file %@", path);
     } else {
         NSFileHandle* myFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
-        [myFileHandle writeData:UIImagePNGRepresentation(self.takenPicture)];
+        [myFileHandle writeData:UIImagePNGRepresentation([self.takenPicture fixOrientation])];
         [myFileHandle closeFile];
     }    
 }
@@ -145,6 +146,9 @@
     // create the user on the server then redirect to tab controller view
     NSString *l_userName = [[self userName] text];
     [[UIAppDelegate mobxHandler] createUser: l_userName];
+    
+    // save the user name locally for now!
+    [[NSUserDefaults standardUserDefaults] setObject:l_userName forKey:@"userName"];
 }
 
 @end
