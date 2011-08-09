@@ -3,14 +3,14 @@ package com.mobx.hibernate.dao.impl;
 import java.util.List;
 
 import com.mobx.hibernate.dao.MobxCustomHibernateDao;
-import com.mobx.hibernate.dao.UserDao;
+import com.mobx.hibernate.dao.IUserDao;
 import com.mobx.hibernate.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository("userDao")
 @Transactional
-public class UserDaoImpl extends MobxCustomHibernateDao implements UserDao {
+public class UserDaoImpl extends MobxCustomHibernateDao implements IUserDao {
 
 	@Transactional(readOnly = false)
 	public void saveUser(User user) {
@@ -35,6 +35,7 @@ public class UserDaoImpl extends MobxCustomHibernateDao implements UserDao {
 
 	public User selectUserByPhoneUniqueIdentitier(String phoneIdentifier) {
 		String queryString = "from User where iphone_udid=?";
+		@SuppressWarnings("unchecked")
 		List<User> users = (List<User>) getHibernateTemplate().find(queryString, phoneIdentifier);
 		
 		if (users.size()>0) {

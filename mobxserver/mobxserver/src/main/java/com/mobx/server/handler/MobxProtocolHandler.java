@@ -13,7 +13,7 @@ import org.springframework.context.ApplicationContext;
 import com.mobx.hibernate.entity.User;
 import com.mobx.server.command.MobxCommand;
 import com.mobx.server.context.MobxApplicationContext;
-import com.mobx.server.service.UserService;
+import com.mobx.server.service.IUserService;
 
 public class MobxProtocolHandler extends IoHandlerAdapter {
 	private final static Logger LOGGER = LoggerFactory.getLogger(MobxProtocolHandler.class);
@@ -45,7 +45,7 @@ public class MobxProtocolHandler extends IoHandlerAdapter {
         
         ApplicationContext appContext = MobxApplicationContext.getApplicationContext();
         
-        UserService userService = appContext.getBean("userService", UserService.class);        
+        IUserService userService = appContext.getBean("userService", IUserService.class);        
         
         try {
 

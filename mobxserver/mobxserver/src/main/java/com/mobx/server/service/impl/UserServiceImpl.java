@@ -5,16 +5,16 @@ import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mobx.hibernate.dao.UserDao;
+import com.mobx.hibernate.dao.IUserDao;
 import com.mobx.hibernate.entity.User;
-import com.mobx.server.service.UserService;
+import com.mobx.server.service.IUserService;
 
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 	@Autowired
-	UserDao userDao;
+	IUserDao userDao;
  
-	public void setUserDao(UserDao userDao) {
+	public void setUserDao(IUserDao userDao) {
 		this.userDao = userDao;
 	}
 
